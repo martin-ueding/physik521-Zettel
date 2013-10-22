@@ -1,0 +1,101 @@
+% Für Seitenformatierung
+
+\documentclass[DIV=15]{scrartcl}
+
+% Zeilenumbrüche
+
+\parindent 0pt
+\parskip 6pt
+
+% Für deutsche Buchstaben und Synthax
+
+\usepackage[ngerman]{babel}
+
+% Für Auflistung mit speziellen Aufzählungszeichen
+
+\usepackage{paralist}
+
+% zB für \del, \dif und andere Mathebefehle
+
+\usepackage{amsmath}
+\usepackage{commath}
+\usepackage{amssymb}
+
+% für nicht kursive griechische Buchstaben
+
+\usepackage{txfonts}
+
+% Für \SIunit[]{} und \num in deutschem Stil
+
+\usepackage[output-decimal-marker={,}]{siunitx}
+\usepackage[utf8]{inputenc}
+
+% Für \sfrac{}{}, also inline-frac
+
+\usepackage{xfrac}
+
+% Für Einbinden von pdf-Grafiken
+
+\usepackage{graphicx}
+
+% Umfließen von Bildern
+
+\usepackage{floatflt}
+
+% Für Links nach außen und innerhalb des Dokumentes
+
+\usepackage{hyperref}
+
+% Für weitere Farben
+
+\usepackage{color}
+
+% Für Streichen von z.B. $\rightarrow$
+
+\usepackage{centernot}
+
+% Für Befehl \cancel{}
+
+\usepackage{cancel}
+
+% Für Layout von Links
+
+\hypersetup{
+	citecolor=black,
+	colorlinks=true,
+	linkcolor=black,
+	urlcolor=blue,
+}
+
+% Verschiedene Mathematik-Hilfen
+
+\newcommand \e[1]{\cdot10^{#1}}
+\newcommand\p{\partial}
+
+\newcommand\half{\frac 12}
+\newcommand\shalf{\sfrac12}
+
+\newcommand\skp[2]{\left\langle#1,#2\right\rangle}
+\newcommand\mw[1]{\left\langle#1\right\rangle}
+\renewcommand \exp[1]{\mathrm e^{#1}}
+
+% Nabla und Kombinationen von Nabla
+
+\renewcommand\div[1]{\skp{\nabla}{#1}}
+\newcommand\rot{\nabla\times}
+\newcommand\grad[1]{\nabla#1}
+\newcommand\laplace{\triangle}
+\newcommand\dalambert{\mathop{{}\Box}\nolimits}
+
+%Für komplexe Zahlen
+
+\renewcommand \i{\mathrm i}
+\renewcommand{\Im}{\mathop{{}\mathrm{Im}}\nolimits}
+\renewcommand{\Re}{\mathop{{}\mathrm{Re}}\nolimits}
+
+%Für Bra-Ket-Notation
+
+\newcommand\bra[1]{\left\langle#1\right|}
+\newcommand\ket[1]{\left|#1\right\rangle}
+\newcommand\braket[2]{\left\langle#1\left.\vphantom{#1 #2}\right|#2\right\rangle}
+\newcommand\braopket[3]{\left\langle#1\left.\vphantom{#1 #2 #3}\right|#2\left.\vphantom{#1 #2 #3}\right|#3\right\rangle}
