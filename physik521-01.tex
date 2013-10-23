@@ -2,6 +2,7 @@
 
 \setcounter{section}{1}
 \renewcommand\thesection{H\,1.\arabic{section}}
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
 
 \title{physik521: Übungsblatt 01}
 \author{Lino Lemmer}
@@ -10,56 +11,61 @@
 \maketitle
 \section{Maxwell Relationen und Ableitungsregeln}
 
-\begin{enumerate}[(a)]
-    \item
-    \item
-    \item
-\end{enumerate}
 
 \section{Wahrscheinlichkeitstheorie}
 
-\begin{enumerate}[(a)]
-    \item
-        \[
-            X = \text{Anzahl der geraden Augenzahlen}
-        \]
-    \item
-        Die Wahrscheinlichkeitsverteilung von $X$ ist
-        \begin{align*}
-            P_X(0) &= \half\cdot\half = \frac 14\\
-            P_X(1) &= \half\cdot\half + \half\cdot\half = \half\\
-            P_X(2) &= \half\cdot\half = \frac 14\\
-            \sum P_X &= \frac 14 + \half + \frac 14 = 1
-        \end{align*}
-    \item
-        Der Mittelwert zur Zufallsvariable $X$ ist
-        \[
-            \mw{X} = 0\cdot\frac14 + 1\cdot\half + 2\cdot\frac14 = 1
-        \]
-    \item
+\subsection{Zufallsvariable}
+
+\[
+    X = \text{Anzahl der geraden Augenzahlen}
+\]
+
+\subsection{Wahrscheinlichkeitsverteilung}
+
+Die Wahrscheinlichkeitsverteilung von $X$ ist
+\begin{align*}
+    P_X(0) &= \half\cdot\half = \frac 14\\
+    P_X(1) &= \half\cdot\half + \half\cdot\half = \half\\
+    P_X(2) &= \half\cdot\half = \frac 14\\
+    \sum P_X &= \frac 14 + \half + \frac 14 = 1
+\end{align*}
+
+\subsection{Mittelwert}
+
+Der Mittelwert zur Zufallsvariable $X$ ist
+\[
+    \mw{X} = 0\cdot\frac14 + 1\cdot\half + 2\cdot\frac14 = 1
+\]
+
+\subsection{Schwankungsquadrat}
+
         Das Schwankungsquadrat von $X$ ist
         \begin{align*}
             \Delta X &= \sqrt{\mw{\del{X - 1}^2}}\\
-                       &= \sqrt{\frac 14 \cdot 1 + \half \cdot 0 + \frac 14 \cdot 1}\\
-                       &= \frac1{\sqrt{2}}
+                     &= \sqrt{\frac 14 \cdot 1 + \half \cdot 0 + \frac 14 \cdot 1}\\
+                     &= \frac1{\sqrt{2}}
         \end{align*}
-    \item
-        Ich berechne zunächst die Mittelwerte für den Würfel
-        \begin{align*}
-            \mw{X_1^1} &= \mw{X_2^1} \\
-                       &= \frac 16 \del{1+2+3+4+5+6} \\
-                       &= \num{3.5} \\
-            \intertext{Die Korrelationsfunktion ist}
-            K_{12} &= \mw{ \del{ X_1^1 - \mw{X_1^1} } \del{ X_2^1 - \mw{X_2^1}}} \\
-                     &= \mw{ \del{ X_1^1 - \num{3.5}}\del{ X_2^1 - \num{3.5}}}
-            \intertext{Da genauso viel negative Abweichungen von den Mittelwerten wie positive Auftauchen, folgt}
-                    &= 0
-            \intertext{Die Zufallsgrößen sind also unkorreliert.
-            Nun für den Fußball-Physiker}
-            \mw{X_1^2} &= \\
-            \mw{X_2^2} &= \\
-        \end{align*}
-    \item
-    \item
-\end{enumerate}
+
+\subsection{Korrelationsfunktion}
+\subsubsection{Würfel}
+Ich berechne zunächst die Mittelwerte für den Würfel
+\begin{align*}
+    \mw{X_1^1} &= \mw{X_2^1} \\
+               &= \frac 16 \del{1+2+3+4+5+6} \\
+               &= \num{3.5} \\
+    \intertext{Die Korrelationsfunktion ist}
+    K_{12} &= \mw{ \del{ X_1^1 - \mw{X_1^1} } \del{ X_2^1 - \mw{X_2^1}}} \\
+           &= \mw{ \del{ X_1^1 - \num{3.5}}\del{ X_2^1 - \num{3.5}}}
+    \intertext{Da genauso viel negative Abweichungen von den Mittelwerten wie positive Auftauchen, folgt}
+    &= 0
+\end{align*}
+Die Zufallsgrößen sind also unkorreliert.
+
+\subsubsection{Fußball-Physiker}
+
+    Nun für den Fußball-Physiker
+    \begin{align*}
+    \mw{X_1^2} &= \\
+    \mw{X_2^2} &=
+    \end{align*}
 \end{document}
