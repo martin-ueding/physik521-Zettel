@@ -79,12 +79,26 @@ Ich verwende folgende Bezeichnungen:
     - &= \text{negative Probe} \\
     \text{d} &= \text{gedopt} \\
     \overline{\text{d}} &= \text{nicht gedopt}
+    \intertext{Für die Wahrscheinlichkeit eines Ereignisses $A$ unter der Bedingung $B$ verwende ich folgende Notation:}
+    &P_B\del{A}
 \end{align*}
 
 \subsubsection{Positive Dopingprobe}
 
-\[
-    P\del{+} = P\del{\text{d}} \cdot P\del{d\wedge+} + P\del{\overline{\text{d}}} \cdot P\del{\overline{\text{d}}\wedge+}
-\]
+\begin{align*}
+    P\del{+} &= P\del{\text{d}} \cdot P_\text{d}\del{+} + P\del{\overline{\text{d}}} \cdot P_{\overline{\text{d}}}\del{+} \\
+             &= \num{0.2} \cdot \num{0.99} + \num{0.8} \cdot \num{0.05} \\
+             &= \num{0.238}
+\end{align*}
+
+\subsubsection{Negative Probe trotz Doping}
+
+\begin{align*}
+    P_\text{d}\del{-} &= \num{0.01}
+    \intertext{Ich vermute, dass die Frage auf die Wahrscheinlichkeit für einen falsch negativen Test abzielt. Diese ist}
+    P\del{\text{d}\wedge-} &= P\del{\text{d}} \cdot P_\text{d}\del{-} \\
+                           &= \num{0.2} \cdot \num{0.01} \\
+                           &= \num{0.002}
+\end{align*}
 
 \end{document}
