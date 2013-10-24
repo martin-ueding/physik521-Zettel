@@ -39,15 +39,17 @@ Der Mittelwert zur Zufallsvariable $X$ ist
 
 \subsection{Schwankungsquadrat}
 
-        Das Schwankungsquadrat von $X$ ist
-        \begin{align*}
-            \Delta X &= \sqrt{\mw{\del{X - 1}^2}}\\
-                     &= \sqrt{\frac 14 \cdot 1 + \half \cdot 0 + \frac 14 \cdot 1}\\
-                     &= \frac1{\sqrt{2}}
-        \end{align*}
+Das Schwankungsquadrat von $X$ ist
+\begin{align*}
+    \Delta X &= \sqrt{\mw{\del{X - 1}^2}}\\
+             &= \sqrt{\frac 14 \cdot 1 + \half \cdot 0 + \frac 14 \cdot 1}\\
+             &= \frac1{\sqrt{2}}
+\end{align*}
 
 \subsection{Korrelationsfunktion}
+
 \subsubsection{Würfel}
+
 Ich berechne zunächst die Mittelwerte für den Würfel
 \begin{align*}
     \mw{X_1^1} &= \mw{X_2^1} \\
@@ -63,9 +65,26 @@ Die Zufallsgrößen sind also unkorreliert.
 
 \subsubsection{Fußball-Physiker}
 
-    Nun für den Fußball-Physiker
-    \begin{align*}
+Nun für den Fußball-Physiker
+\begin{align*}
     \mw{X_1^2} &= \\
     \mw{X_2^2} &=
-    \end{align*}
+\end{align*}
+
+\subsection{Bedingte Wahrscheinlichkeiten}
+
+Ich verwende folgende Bezeichnungen:
+\begin{align*}
+    + &= \text{positive Probe} \\
+    - &= \text{negative Probe} \\
+    \text{d} &= \text{gedopt} \\
+    \overline{\text{d}} &= \text{nicht gedopt}
+\end{align*}
+
+\subsubsection{Positive Dopingprobe}
+
+\[
+    P\del{+} = P\del{\text{d}} \cdot P\del{d\wedge+} + P\del{\overline{\text{d}}} \cdot P\del{\overline{\text{d}}\wedge+}
+\]
+
 \end{document}
