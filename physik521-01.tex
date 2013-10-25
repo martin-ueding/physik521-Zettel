@@ -109,4 +109,19 @@ Ich verwende folgende Bezeichnungen:
     &=\num{0.00262}
 \end{align*}
 
+\subsection{Binomialverteilung}
+
+\subsubsection{Mittelwert}
+
+\begin{align*}
+\mw{k} &= \sum_{k=0}^N k\begin{pmatrix}N\\k\end{pmatrix}p^k\del{1-p}^{N-k} \\
+       &= \sum_{k=1}^N \frac{N!}{\del{k-1}!\del{N-k}!}p^k\del{1-p}^{N-k} \\
+       &= \sum_{k'=0}^{N-1} \frac{N!}{k'!\del{N-1-k'}!}p^{k'+1}\del{1-p}^{N-1-k'} \\
+       &= Np\sum_{k'=0}^{N'} \frac{N'!}{k'!\del{N'-k'}!}p^{k'}\del{1-p}^{N'-k'}\\
+       &= Np\sum_{k'=0}^{N'} \begin{pmatrix}N'\\k'\end{pmatrix}p^{k'}\del{1-p}^{N'-k'}\\
+       &= Np
+\end{align*}
+
+\subsubsection{Schwankungsquadrat}
+
 \end{document}
