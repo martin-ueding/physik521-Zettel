@@ -15,6 +15,8 @@
 \maketitle
 \section{Entropie des idealen Gases}
 
+\marginpar{M.\,U.}
+
 \subsection{Herleitung der adiabatischen Zustandsänderungen}
 
 Wir beginnen mit der ersten Relation. Wegen $\dif S = 0$ und $\dif N = 0$ folgt:
@@ -45,6 +47,33 @@ Nun können wir aus dem Nichts die Relation folgern:
 \subsection{Gleichung aus Fundamentalbeziehung}
 
 \subsection{Integration}
+
+\begin{align*}
+    \dif s &= \frac 1T \dif U + \frac pT \dif v \\
+    \intertext{%
+        Wir integrieren auf beiden Seiten.
+    }
+    \int \dif s &= \int \frac 1T \dif U + \int \frac pT \dif v \\
+    \intertext{%
+        Nun benutzen wir die Relationen.
+    }
+    &= k \frac f2 \int \frac NU \dif U + k \int \frac NV \dif v \\
+    \intertext{%
+        An dieser Stelle substituieren wir $u = U/N$ mit $\dif U = (\dif U N -
+        U \dif N)/N^2$, analog $V$.
+    }
+    &= k \frac f2 \int \frac NU \del{\frac{\dif U}{N} - \frac{U \dif N}{N^2}} + k \int \frac NV \del{\frac{\dif V}{N} - \frac{V \dif N}{N^2}} \\
+    &= k \frac f2 \ln\del{\frac U{U_0}} - k \frac f2 \ln\del{\frac N{N_0}} + k \ln\del{\frac V{V_0}} - k \ln\del{\frac N{N_0}} \\
+    &= k \del{\frac f2 \ln\del{\frac U{U_0}} + \ln\del{\frac V{V_0}} - \frac{f + 2}f \ln\del{\frac N{N_0}}} \\
+    \intertext{%
+        Auf der linken Seite gehen wir ähnlich vor: $s = S/N$, $\dif s = (\dif
+        S N - S \dif N)/N^2$.
+    }
+    \int \frac 1N \dif S - \int \frac S{N^2} \dif N &= \\
+    \eval{\frac SN} + \eval{\frac SN} &= \\
+    \frac SN - \frac{S_0}{N_0} &= \\
+    S &= S_0 \frac{N}{N_0} + k \del{\frac f2 \ln\del{\frac U{U_0}} + \ln\del{\frac V{V_0}} - \frac{f + 2}f \ln\del{\frac N{N_0}}}
+\end{align*}
 
 \section{Otto-Zyklus}
 
