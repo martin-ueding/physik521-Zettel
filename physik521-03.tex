@@ -133,17 +133,17 @@ ausgedrückt werden:
         \]
         Damit erhalten wir:
     }
-    &= - T \tdpd {}VT \tdpd FTV \alpha_p \\
+    &= - T \tdpd {}VT \tdpd FTV V \alpha_p \\
     \intertext{%
         Da $F$ ein exaktes Differential hat, kommutieren die partiellen
         Ableitungen hier.
     }
-    &= - T \tdpd {}TV \tdpd FVT \alpha_p \\
+    &= - T \tdpd {}TV \tdpd FVT V \alpha_p \\
     \intertext{%
         Die partielle Ableitung der freien Energie nach dem Volumen ist gerade
-        der Druck.
+        der negative Druck.
     }
-    &= - T \tdpd pTV \alpha_p \\
+    &= T \tdpd pTV V \alpha_p \\
     \intertext{%
         Mit der Annahme, dass $\dif V = 0$ ist, können wir noch das
         Differential von $V(p, T)$ schreiben als:
@@ -160,9 +160,17 @@ ausgedrückt werden:
         \]
         Dies setzen wir ein.
     }
-    &= T \frac{\tdpd VTp}{\tdpd VpT} \alpha_p \\
+    &= - T \frac{\tdpd VTp}{\tdpd VpT} V \alpha_p \\
+    \intertext{%
+        Im Zähler steht wieder der Ausdehungskoeffizient $\alpha_p$. Im Nenner
+        steht die isotherme Kompressibilität, die angibt, wie sich das Volumen
+        mit dem Druck verändert. Somit erhalten wir:
+    }
+    &= - T \frac{V \alpha_p}{- V \kappa_T} V \alpha_p \\
+    &= TV \frac{\alpha_p^2}{\kappa_T} \\
 \end{align*}
 
+Damit ist die Relation gezeigt.
 
 \section{Joule-Thomson-Effekt}
 \subsection{Enthalpie und Irreversiblität}
