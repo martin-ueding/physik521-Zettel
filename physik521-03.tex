@@ -17,8 +17,74 @@
 \maketitle
 
 \section{Thermodynamische Beziehungen in einem magnetischen System}
-\subsection{}
 
+\newcommand\tdpd[3]{\del{\dpd{#1}{#2}}_{#3}}
+
+\subsection{Erste Herleitung}
+
+Es ist zu zeigen, dass gilt:
+\[
+    \frac{c_B}{c_M} = \frac{\chi_T}{\chi_S}
+\]
+
+Im Skript ab Seite 42 ist diese Aufgabe für zwei andere Größen
+vorgerechnet. Ich habe diese Lösung versucht nachzuvollziehen und hier
+mit mehr Erklärungen für die magnetischen Größen wiederzugeben.
+
+Hier sind alle Umformungen, die Erklärungen folgen:
+\[
+    \frac{c_B}{c_M}
+    \overset{\ref{1-1}}=
+    \frac{T \tdpd S T B}{T \tdpd S T M}
+    \overset{\ref{1-2}}=
+    \frac{ \frac{\tdpd BTS}{\tdpd BST} }{ \frac{\tdpd MTS}{\tdpd MST} }
+    =
+    \frac{\tdpd BTS}{\tdpd MTS} \frac{\tdpd MST}{\tdpd BST}
+    \overset{\ref{1-3}}=
+    \frac{\tdpd BTS \tdpd TMS}{\tdpd BST \tdpd SMT}
+    \overset{\ref{1-4}}=
+    \frac{\tdpd MBS}{\tdpd BMT}
+    \overset{\ref{1-1}}=
+    \frac{\chi_T}{\chi_S}
+\]
+
+\begin{enumerate}
+    \item
+        \label{1-1}
+        Dies gilt nach Aufgabenstellung.
+
+    \item
+        \label{1-2}
+        Wir sehen $B$ als Funktion von $S$ und $T$ an und erhalten somit
+        \[
+            0 = \dif B = \tdpd BST \dif S + \tdpd BTS \dif T,
+        \]
+        welches wir, unter Benutzung des Kehrwertes der Ableitungen und der
+        Kettenregel, zu
+        \[
+            \frac{\dif S}{\dif T} = - \frac{\tdpd BTS}{\tdpd BST} = \tdpd STB
+        \]
+        umstellen können.
+
+        Analog können wir auch herleiten, dass gilt:
+        \[
+            \tdpd STM = - \frac{\tdpd MTS}{\tdpd MST}.
+        \]
+
+    \item
+        \label{1-3}
+        Hier nutzen wir aus, dass der Kehrwert einer solchen partiellen
+        Ableitung die Differenzierung umkehrt.
+
+    \item
+        \label{1-4}
+        An dieser Stelle benutzen wir die Kettenregel
+        \[
+            \tdpd \alpha\delta\gamma = \tdpd \alpha\beta\gamma \tdpd \beta\delta\gamma
+        \]
+        im Zähler und Nenner jeweils um die Zwischenvariable $S$ zu
+        eliminieren.
+\end{enumerate}
 
 
 \section{Joule-Thomson-Effekt}
