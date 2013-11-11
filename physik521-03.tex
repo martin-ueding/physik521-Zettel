@@ -50,37 +50,37 @@ Der Prozess läuft also irreversibel ab.
 \subsection{Joule-Thomson-Koeffizient}
 Der Joule-Thomson-Koeffizient ist definiert als:
 \begin{align*}
-    \delta &= \del {\pd{T}{p}}_H
+    \delta &= \del {\dpd{T}{p}}_H
     \intertext{%
         Wir wissen:
     }
     \dif H &= T \dif S + V \dif p + \mu \dif N \\
-    S\del{T,p,N} \implies \dif S &= \del {\pd ST}_{p,N} \dif T +
-    \del{\pd Sp}_{T,N} \dif p
+    S\del{T,p,N} \implies \dif S &= \del {\dpd ST}_{p,N} \dif T +
+    \del{\dpd Sp}_{T,N} \dif p
     \intertext{%
         Verwende $\dif N = 0$ und setze ein:
     }
-    \dif H &= T \del {\pd ST}_{p,N} \dif T + T \del{\pd Sp}_{T,N} \dif p +
+    \dif H &= T \del {\dpd ST}_{p,N} \dif T + T \del{\dpd Sp}_{T,N} \dif p +
     V \dif p \\
-    \dif H &= C_p \dif T + T \del{\pd Sp}_{T,N} \dif p + V \dif p \\
-    0 &= C_p \del {\pd{T}{p}}_H + T \del{\pd Sp}_{T,N}+ V \\
-    0 &= C_p \delta + T \del{\pd Sp}_{T,N}+ V \\
-    \delta &= \frac{1}{C_p} \del { -T \del{\pd Sp}_{T,N}- V}
+    \dif H &= C_p \dif T + T \del{\dpd Sp}_{T,N} \dif p + V \dif p \\
+    0 &= C_p \del {\dpd{T}{p}}_H + T \del{\dpd Sp}_{T,N}+ V \\
+    0 &= C_p \delta + T \del{\dpd Sp}_{T,N}+ V \\
+    \delta &= \frac{1}{C_p} \del { -T \del{\dpd Sp}_{T,N}- V}
     \intertext{%
         Wir müssen noch eine Maxwell-Relation aus der Gibbs freien Energie herleiten:
     }
     \dif G &= -S \dif T + V \dif p + \mu \dif N \\
-    \del {\pd GT}_{P,N} &= -S \\
-    \del {\pd Gp}_{T,N} &= V \\
-    \implies -\del{\pd Sp}_{T,N} &= \del{\pd VT}_{P,N}
+    \del {\dpd GT}_{P,N} &= -S \\
+    \del {\dpd Gp}_{T,N} &= V \\
+    \implies -\del{\dpd Sp}_{T,N} &= \del{\dpd VT}_{P,N}
     \intertext{%
     Eingesetzt führt das auf das Endergebnis}
-    \delta &= \frac{1}{C_p} \del { T \del{\pd VT}_{P,N}- V}
+    \delta &= \frac{1}{C_p} \del { T \del{\dpd VT}_{P,N}- V}
     \intertext{%
         Für das ideale Gas gilt:
     }
     V &= \frac{Nk_B T}{p} \\
-    \implies T\del{\pd VT}_{N,P}-V &= \frac{Nk_B T}{p} -\frac{Nk_B T}{p} = 0 \\
+    \implies T\del{\dpd VT}_{N,P}-V &= \frac{Nk_B T}{p} -\frac{Nk_B T}{p} = 0 \\
     \implies \delta &= 0
 \end{align*}
 
@@ -92,23 +92,23 @@ Der Joule-Thomson-Koeffizient ist definiert als:
 \subsection{}
 Der Draht habe eine konstante Querschnittsfläche $A$. Dann gilt für die Länge des Drahtes $L=\frac VA$ und für die Kraft $K=Ap$. Für das Differential der inneren Energie $U\del {S,L}$ gilt dann:
 \begin{align*}
-    \dif U &= \del{\pd US}_L \dif S + \del{\pd UL}_S \dif L \\
-           &= T \dif S + \del{\pd VL}_S \del{\pd UV}_S \dif L \\
+    \dif U &= \del{\dpd US}_L \dif S + \del{\dpd UL}_S \dif L \\
+           &= T \dif S + \del{\dpd VL}_S \del{\dpd UV}_S \dif L \\
            &= T \dif S - \frac{p}{A} \dif L \\
            &= T \dif S - K \dif L
     \intertext{%
         Wir wollen nun ein thermodynamisches Potential $M\del{L,T}$ einführen. Führe Legendre-Trafo durch:
     }
-    M\del{L,T} &\coloneqq U\del{S,L}- S \del{\pd US}_L \\
+    M\del{L,T} &\coloneqq U\del{S,L}- S \del{\dpd US}_L \\
                 &= U-TS \\
     \dif M &= T \dif S - K \dif L - T \dif S - S \dif T \\
            &=-F \dif L - S \dif T
     \intertext{%
         Dieses Potential können wir zur Herleitung folgender Maxwell-Relation benutzen:
     }
-    \del{\pd ML}_T &= -K \\
-    \del{\pd MT}_L &= -S \\
-    \implies \del{\pd KT}_L &= \del{\pd SL}_T
+    \del{\dpd ML}_T &= -K \\
+    \del{\dpd MT}_L &= -S \\
+    \implies \del{\dpd KT}_L &= \del{\dpd SL}_T
 \end{align*}
 
 
@@ -119,7 +119,7 @@ Aufgrund der Homogenität des Drahtes und der Tatsache, dass $S$, $L$ und $U$ ex
     \intertext{%
         Differenziation nach $\lambda$ für $\lambda \to 1$ ergibt dann:
     }
-    \dod{}{\lambda} \del{\lambda S}= S &=\del{\pd SU}_L U + \del{\pd SL}_U L \\
+    \dod{}{\lambda} \del{\lambda S}= S &=\del{\dpd SU}_L U + \del{\dpd SL}_U L \\
                                                  &= \frac{U}{T}+ FL
 \end{align*}
 
