@@ -17,9 +17,160 @@
 \maketitle
 
 \section{Thermodynamische Beziehungen in einem magnetischen System}
-\subsection{}
 
+\newcommand\tdpd[3]{\del{\dpd{#1}{#2}}_{#3}}
 
+\subsection{Erste Herleitung}
+
+Es ist zu zeigen, dass gilt:
+\[
+    \frac{c_B}{c_M} = \frac{\chi_T}{\chi_S}
+\]
+
+Im Skript ab Seite 42 ist diese Aufgabe für zwei andere Größen
+vorgerechnet. Ich habe diese Lösung versucht nachzuvollziehen und hier
+mit mehr Erklärungen für die magnetischen Größen wiederzugeben.
+
+Hier sind alle Umformungen, die Erklärungen folgen:
+\[
+    \frac{c_B}{c_M}
+    \overset{\ref{1-1}}=
+    \frac{T \tdpd S T B}{T \tdpd S T M}
+    \overset{\ref{1-2}}=
+    \frac{ \frac{\tdpd BTS}{\tdpd BST} }{ \frac{\tdpd MTS}{\tdpd MST} }
+    =
+    \frac{\tdpd BTS}{\tdpd MTS} \frac{\tdpd MST}{\tdpd BST}
+    \overset{\ref{1-3}}=
+    \frac{\tdpd BTS \tdpd TMS}{\tdpd BST \tdpd SMT}
+    \overset{\ref{1-4}}=
+    \frac{\tdpd MBS}{\tdpd BMT}
+    \overset{\ref{1-1}}=
+    \frac{\chi_T}{\chi_S}
+\]
+
+\begin{enumerate}
+    \item
+        \label{1-1}
+        Dies gilt nach Aufgabenstellung.
+
+    \item
+        \label{1-2}
+        Wir sehen $B$ als Funktion von $S$ und $T$ an und erhalten somit
+        \[
+            0 = \dif B = \tdpd BST \dif S + \tdpd BTS \dif T,
+        \]
+        welches wir, unter Benutzung des Kehrwertes der Ableitungen und der
+        Kettenregel, zu
+        \[
+            \frac{\dif S}{\dif T} = - \frac{\tdpd BTS}{\tdpd BST} = \tdpd STB
+        \]
+        umstellen können.
+
+        Analog können wir auch herleiten, dass gilt:
+        \[
+            \tdpd STM = - \frac{\tdpd MTS}{\tdpd MST}.
+        \]
+
+    \item
+        \label{1-3}
+        Hier nutzen wir aus, dass der Kehrwert einer solchen partiellen
+        Ableitung die Differenzierung umkehrt.
+
+    \item
+        \label{1-4}
+        An dieser Stelle benutzen wir die Kettenregel
+        \[
+            \tdpd \alpha\delta\gamma = \tdpd \alpha\beta\gamma \tdpd \beta\delta\gamma
+        \]
+        im Zähler und Nenner jeweils um die Zwischenvariable $S$ zu
+        eliminieren.
+\end{enumerate}
+
+\subsection{Zweite Herleitung}
+
+Diese Aufgabe wird so komplett ab Seite 42 im Skript vorgerechnet. Hier werden
+wir die Rechungen aus dem Skript repoduzieren und versuchen, sie ausführlicher
+als im Skript zu erläutern, damit es auch etwas zur Übung beiträgt.
+
+Nach Skript folgt können $c_p$ und $c_v$ durch partielle Ableitungen von $S$
+ausgedrückt werden:
+\begin{align*}
+    c_p - c_v
+    &= T \del{\tdpd STp - \tdpd STV} \\
+    \intertext{%
+        Wir beginnen damit, die erste Ableitung anders auszudrücken. Dazu
+        interpretieren wir $S$ nicht als $S(T, V, p)$, sondern als $S(T, V(p,
+        T))$. Wenn wir jetzt nach $T$ ableiten, erhalten wir zwei Terme durch
+        die mehrdimensionale Kettenregel. Jedoch würden wir in dieser Stelle
+        eigentlich erwarten, dass die partielle Ableitung von $S$ nach $T$
+        nicht Term mit $S$ nach $V$ enthält, da nur partiell und nicht total
+        nach $T$ abgeleitet wird. Jedoch wurde dies schon an einigen Stellen so
+        gemacht und scheint auch richtig zu sein. Wir wissen nur noch nicht,
+        warum dies so ist.
+    }
+    &= T \del{\tdpd STV + \tdpd SVT \tdpd VTp - \tdpd STV} \\
+    &= T \tdpd SVT \tdpd VTp \\
+    \intertext{%
+        Der letzte Faktor beschreibt gerade die isobare Expansion. Diese wird
+        durch den Expansionskoeffizienten $\alpha_p$ ausgedrückt, der wie folgt
+        definiert ist:
+        \[
+            \alpha_p := \frac 1V \tdpd VTp.
+        \]
+        Somit erhalten wir:
+    }
+    &= T \tdpd SVT V \alpha_p \\
+    \intertext{%
+        Nun müssen wir die freie Energie $F$ benutzen. Damit können wir die
+        Ableitung $S$ nach $V$ ausdrücken. Es gilt:
+        \[
+            S = - \tdpd FTV.
+        \]
+        Dies leiten wir nun nach dem Volumen $V$ ab, wobei wir die Temperatur
+        $T$ festhalten:
+        \[
+            \tdpd SVT = - \tdpd {}VT \tdpd FTV.
+        \]
+        Damit erhalten wir:
+    }
+    &= - T \tdpd {}VT \tdpd FTV V \alpha_p \\
+    \intertext{%
+        Da $F$ ein exaktes Differential hat, kommutieren die partiellen
+        Ableitungen hier.
+    }
+    &= - T \tdpd {}TV \tdpd FVT V \alpha_p \\
+    \intertext{%
+        Die partielle Ableitung der freien Energie nach dem Volumen ist gerade
+        der negative Druck.
+    }
+    &= T \tdpd pTV V \alpha_p \\
+    \intertext{%
+        Mit der Annahme, dass $\dif V = 0$ ist, können wir noch das
+        Differential von $V(p, T)$ schreiben als:
+        \[
+            \tdpd VpT \dif p + \tdpd VTp \dif T = 0.
+        \]
+        Mit dem gleichen Trick aus der vorherigen Aufgabe kann damit nach $\dif
+        p / \dif T$ umgestellt werden. Da wir $\dif V = 0$ angesetzt hatten,
+        müssen wir jetzt $V$ festhalten. Warum wir dies jetzt als partielle
+        Ableitung schreiben können, ist uns noch nicht ganz klar. Jedenfalls
+        erhalten wir dann:
+        \[
+            \tdpd pTV = - \frac{\tdpd VTp}{\tdpd VpT}.
+        \]
+        Dies setzen wir ein.
+    }
+    &= - T \frac{\tdpd VTp}{\tdpd VpT} V \alpha_p \\
+    \intertext{%
+        Im Zähler steht wieder der Ausdehungskoeffizient $\alpha_p$. Im Nenner
+        steht die isotherme Kompressibilität, die angibt, wie sich das Volumen
+        mit dem Druck verändert. Somit erhalten wir:
+    }
+    &= - T \frac{V \alpha_p}{- V \kappa_T} V \alpha_p \\
+    &= TV \frac{\alpha_p^2}{\kappa_T} \\
+\end{align*}
+
+Damit ist die Relation gezeigt.
 
 \section{Joule-Thomson-Effekt}
 \subsection{Enthalpie und Irreversiblität}
