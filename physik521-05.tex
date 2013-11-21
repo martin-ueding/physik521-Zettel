@@ -17,6 +17,33 @@
 \maketitle
 \section{Sattelpunktmethode}
 \subsection{}
+Gegeben ist das Integral
+\begin{align}
+    I &= \lim_{N\to\infty}\int_a^b\!\dif x\; \exp{Nf(x)} \label{eq:Integral}
+    \intertext{$f$ hat ein globales Maximum bei $x=x_0$. Um diesen Punkt
+    Taylorn wir die Funktion:}
+    f(x) &= f\del{x_0} + f'\del{x_0}x + \frac{f''\del{x_0}}2x^2 + \dots
+    \label{eq:Taylor}
+    \intertext{%
+        Setzen wir \eqref{eq:Taylor} in \eqref{eq:Integral} ein und
+        brechen nach dem dritten Glied ab, erhalten wir
+    }
+    I &= \lim_{N\to\infty}\int_a^b\!\dif x\;
+    \exp{Nf\del{x_0} + Nf'\del{x_0}x + \frac{N}2f''\del{x_0}x^2}\notag
+    \intertext{%
+        Die erste Ableitung verschwindet bei $x_0$, da dort das Maximum der
+        Funktion ist.
+    }
+    &= \lim_{N\to\infty}\int_a^b\!\dif x\;
+    \exp{Nf\del{x_0}}\exp{\frac{N}2f''\del{x_0}x^2}\notag \\
+    &= \lim_{N\to\infty}\exp{Nf\del{x_0}}\int_a^b\!\dif x\;
+    \exp{\frac{N}2f''\del{x_0}x^2}\label{eq:Integral_getaylort}
+    \intertext{%
+        Nun betrachten wir die Formel für Gaußsche Integrale
+    }
+    \int\!\dif t\;\exp{-\ii\omega t}\exp{-at^2} &=
+    \sqrt{\frac{\piup}a\exp{-\frac{\omega^2}{4a}}\label{eq:Gauß}
+\end{align}
 \subsection{}
 
 \section{Ensemble quantenmechanischer harmonischer Oszillatoren}
