@@ -19,30 +19,58 @@
 \subsection{}
 Gegeben ist das Integral
 \begin{align}
-    I &= \lim_{N\to\infty}\int_a^b\!\dif x\; \exp{Nf(x)} \label{eq:Integral}
+    I &= \lim_{N\to\infty}\int_a^b\!\dif x\; \exp{Nf(x)} \label{eq:integral}
     \intertext{$f$ hat ein globales Maximum bei $x=x_0$. Um diesen Punkt
     Taylorn wir die Funktion:}
-    f(x) &= f\del{x_0} + f'\del{x_0}x + \frac{f''\del{x_0}}2x^2 + \dots
-    \label{eq:Taylor}
+    f(x) &= f\del{x_0} + f'\del{x_0}\del{x-x_0} +
+    \frac{f''\del{x_0}}2\del{x-x_0}^2 + \dots
+    \label{eq:taylor}
     \intertext{%
-        Setzen wir \eqref{eq:Taylor} in \eqref{eq:Integral} ein und
+        Setzen wir \eqref{eq:taylor} in \eqref{eq:integral} ein und
         brechen nach dem dritten Glied ab, erhalten wir
     }
     I &= \lim_{N\to\infty}\int_a^b\!\dif x\;
-    \exp{Nf\del{x_0} + Nf'\del{x_0}x + \frac{N}2f''\del{x_0}x^2}\notag
+    \exp{Nf\del{x_0} + Nf'\del{x_0}x + \frac{N}2f''
+    \del{x_0}\del{x-x_0}^2}\notag
     \intertext{%
         Die erste Ableitung verschwindet bei $x_0$, da dort das Maximum der
         Funktion ist.
     }
     &= \lim_{N\to\infty}\int_a^b\!\dif x\;
-    \exp{Nf\del{x_0}}\exp{\frac{N}2f''\del{x_0}x^2}\notag \\
+    \exp{Nf\del{x_0}}\exp{\frac{N}2f''\del{x_0}\del{x-x_0}^2}\notag \\
     &= \lim_{N\to\infty}\exp{Nf\del{x_0}}\int_a^b\!\dif x\;
-    \exp{\frac{N}2f''\del{x_0}x^2}\label{eq:Integral_getaylort}
+    \exp{\frac{N}2f''\del{x_0}\del{x-x_0}^2}\notag \\
+    &= \lim_{N\to\infty}\exp{Nf\del{x_0}}\int_a^b\!\dif x\;
+    \exp{\frac N2f''\del{x_0}x^2}\exp{Nf''\del{x_0}x_0x}
+    \exp{\frac N2f''\del{x_0}x_0^2} \notag \\
+    &= \lim_{N\to\infty}\exp{Nf\del{x_0}}\exp{\frac N2f''\del{x_0}x_0^2}
+    \int_a^b\!\dif x\;
+    \exp{\frac N2f''\del{x_0}x^2}\exp{Nf''\del{x_0}x_0x} \notag
+    \intertext{mit $a = -\frac N2 f''\del{x_0}$:}
+    &= \lim_{N\to\infty} \exp{Nf\del{x_0}} \exp{-ax_0^2} \int_a^b\!\dif x\;
+    \exp{2ax_0x}\exp{-ax^2} \notag
+    \intertext{mit $\ii\omega = -2ax_0$}
+    &= \lim_{N\to\infty} \exp{Nf\del{x_0}} \exp{\frac{\omega^2}{4a}} \int_a^b
+    \!\dif x\; \exp{-\ii\omega x}\exp{-ax^2} \label{eq:integral_getaylort}
     \intertext{%
         Nun betrachten wir die Formel für Gaußsche Integrale
     }
-    \int\!\dif t\;\exp{-\ii\omega t}\exp{-at^2} &=
-    \sqrt{\frac{\piup}a\exp{-\frac{\omega^2}{4a}}\label{eq:Gauß}
+    \sqrt{\frac{\piup}a}\exp{-\frac{\omega^2}{4a}}&=
+    \int\!\dif t\;\exp{-\ii\omega t}\exp{-at^2}\label{eq:Gauss} 
+    \intertext{%
+        Lösen wir nun \eqref{eq:integral_getaylort} mit \eqref{eq:Gauss}
+        auf, erhalten wir:
+    }
+    &= \lim_{N_\to\infty} \exp{Nf\del{x_0}} \exp{\frac{\omega^2}{4a}}
+    \sqrt{\frac\piup a}\exp{-\frac{\omega^2}{4a}}\notag \\
+    &= \lim_{N_\to\infty} \exp{Nf\del{x_0}} \sqrt{\frac\piup a}\notag \\
+    &= \lim_{N_\to\infty} \exp{Nf\del{x_0}}
+    \sqrt{-\frac{2\piup}{Nf''\del{x_0}}}\notag
+    \intertext{%
+        Da die zweite Ableitung an der Maximalstelle negativ ist, folgt
+    }
+    &= \lim_{N_\to\infty} \exp{Nf\del{x_0}}
+    \sqrt{\frac{2\piup}{N\abs{f''\del{x_0}}}}\notag
 \end{align}
 \subsection{}
 
