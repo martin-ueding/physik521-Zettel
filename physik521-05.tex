@@ -1,6 +1,15 @@
 \input{header.tex}
 
-\usepackage{biblatex}
+\usepackage[
+    backend=bibtex,
+    style=authoryear-icomp,
+    hyperref=true
+]{biblatex}
+
+\addbibresource{central-bibtex/Central.bib}
+
+\newcommand\eup{\mathrm e}
+\newcommand\iup{\mathrm i}
 
 \setcounter{section}{0}
 \renewcommand\thesection{H\,5.\arabic{section}}
@@ -21,7 +30,7 @@
 \subsection{}
 Gegeben ist das Integral
 \begin{align}
-    I &= \lim_{N\to\infty}\int_a^b\!\dif x\; \exp{Nf(x)} \label{eq:integral}
+    I &= \lim_{N\to\infty}\int_a^b\!\dif x\; \exp\del{Nf(x)} \label{eq:integral}
     \intertext{$f$ hat ein globales Maximum bei $x=x_0$. Um diesen Punkt
     Taylorn wir die Funktion:}
     f(x) &= f\del{x_0} + f'\del{x_0}\del{x-x_0} +
@@ -32,46 +41,46 @@ Gegeben ist das Integral
         brechen nach dem dritten Glied ab, erhalten wir
     }
     I &= \lim_{N\to\infty}\int_a^b\!\dif x\;
-    \exp{Nf\del{x_0} + Nf'\del{x_0}x + \frac{N}2f''
+    \exp\del{Nf\del{x_0} + Nf'\del{x_0}x + \frac{N}2f''
     \del{x_0}\del{x-x_0}^2}\notag
     \intertext{%
         Die erste Ableitung verschwindet bei $x_0$, da dort das Maximum der
         Funktion ist.
     }
     &= \lim_{N\to\infty}\int_a^b\!\dif x\;
-    \exp{Nf\del{x_0}}\exp{\frac{N}2f''\del{x_0}\del{x-x_0}^2}\notag \\
-    &= \lim_{N\to\infty}\exp{Nf\del{x_0}}\int_a^b\!\dif x\;
-    \exp{\frac{N}2f''\del{x_0}\del{x-x_0}^2}\notag \\
-    &= \lim_{N\to\infty}\exp{Nf\del{x_0}}\int_a^b\!\dif x\;
-    \exp{\frac N2f''\del{x_0}x^2}\exp{Nf''\del{x_0}x_0x}
-    \exp{\frac N2f''\del{x_0}x_0^2} \notag \\
-    &= \lim_{N\to\infty}\exp{Nf\del{x_0}}\exp{\frac N2f''\del{x_0}x_0^2}
+    \exp\del{Nf\del{x_0}}\exp\del{\frac{N}2f''\del{x_0}\del{x-x_0}^2}\notag \\
+    &= \lim_{N\to\infty}\exp\del{Nf\del{x_0}}\int_a^b\!\dif x\;
+    \exp\del{\frac{N}2f''\del{x_0}\del{x-x_0}^2}\notag \\
+    &= \lim_{N\to\infty}\exp\del{Nf\del{x_0}}\int_a^b\!\dif x\;
+    \exp\del{\frac N2f''\del{x_0}x^2}\exp\del{Nf''\del{x_0}x_0x}
+    \exp\del{\frac N2f''\del{x_0}x_0^2} \notag \\
+    &= \lim_{N\to\infty}\exp\del{Nf\del{x_0}}\exp\del{\frac N2f''\del{x_0}x_0^2}
     \int_a^b\!\dif x\;
-    \exp{\frac N2f''\del{x_0}x^2}\exp{Nf''\del{x_0}x_0x} \notag
+    \exp\del{\frac N2f''\del{x_0}x^2}\exp\del{Nf''\del{x_0}x_0x} \notag
     \intertext{mit $a = -\frac N2 f''\del{x_0}$:}
-    &= \lim_{N\to\infty} \exp{Nf\del{x_0}} \exp{-ax_0^2} \int_a^b\!\dif x\;
-    \exp{2ax_0x}\exp{-ax^2} \notag
+    &= \lim_{N\to\infty} \exp\del{Nf\del{x_0}} \exp\del{-ax_0^2} \int_a^b\!\dif x\;
+    \exp\del{2ax_0x}\exp\del{-ax^2} \notag
     \intertext{mit $\ii\omega = -2ax_0$}
-    &= \lim_{N\to\infty} \exp{Nf\del{x_0}} \exp{\frac{\omega^2}{4a}} \int_a^b
-    \!\dif x\; \exp{-\ii\omega x}\exp{-ax^2} \label{eq:integral_getaylort}
+    &= \lim_{N\to\infty} \exp\del{Nf\del{x_0}} \exp\del{\frac{\omega^2}{4a}} \int_a^b
+    \!\dif x\; \exp\del{-\ii\omega x}\exp\del{-ax^2} \label{eq:integral_getaylort}
     \intertext{%
         Nun betrachten wir die Formel für Gaußsche Integrale
     }
-    \sqrt{\frac{\piup}a}\exp{-\frac{\omega^2}{4a}}&=
-    \int\!\dif t\;\exp{-\ii\omega t}\exp{-at^2}\label{eq:Gauss} 
+    \sqrt{\frac{\piup}a}\exp\del{-\frac{\omega^2}{4a}}&=
+    \int\!\dif t\;\exp\del{-\ii\omega t}\exp\del{-at^2}\label{eq:Gauss} 
     \intertext{%
         Lösen wir nun \eqref{eq:integral_getaylort} mit \eqref{eq:Gauss}
         auf, erhalten wir:
     }
-    &= \lim_{N\to\infty} \exp{Nf\del{x_0}} \exp{\frac{\omega^2}{4a}}
-    \sqrt{\frac\piup a}\exp{-\frac{\omega^2}{4a}}\notag \\
-    &= \lim_{N\to\infty} \exp{Nf\del{x_0}} \sqrt{\frac\piup a}\notag \\
-    &= \lim_{N\to\infty} \exp{Nf\del{x_0}}
+    &= \lim_{N\to\infty} \exp\del{Nf\del{x_0}} \exp\del{\frac{\omega^2}{4a}}
+    \sqrt{\frac\piup a}\exp\del{-\frac{\omega^2}{4a}}\notag \\
+    &= \lim_{N\to\infty} \exp\del{Nf\del{x_0}} \sqrt{\frac\piup a}\notag \\
+    &= \lim_{N\to\infty} \exp\del{Nf\del{x_0}}
     \sqrt{-\frac{2\piup}{Nf''\del{x_0}}}\notag
     \intertext{%
         Da die zweite Ableitung an der Maximalstelle negativ ist, folgt
     }
-    &= \lim_{N\to\infty} \exp{Nf\del{x_0}}
+    &= \lim_{N\to\infty} \exp\del{Nf\del{x_0}}
     \sqrt{\frac{2\piup}{N\abs{f''\del{x_0}}}}\label{eq:sattelpunktmethode}
 \end{align}
 \subsection{}
@@ -79,29 +88,29 @@ Gegeben ist das Integral
 \begin{align*}
     \lim_{N\to\infty} N! &= \lim_{N\to\infty} \Gamma\del{N+1} \\
                          &= \lim_{N\to\infty} \int_0^\infty \!\dif x \;
-    x^N\exp{-x} \\
+    x^N\exp\del{-x} \\
     \intertext{%
         Wir substituieren nun $x = Nz$ und $N \dif z = \dif x$:
     }
-    &=\lim_{N\to\infty} \int_0^\infty \!\dif z \; NN^Nz^N \exp{-Nz} \\
+    &=\lim_{N\to\infty} \int_0^\infty \!\dif z \; NN^Nz^N \exp\del{-Nz} \\
     &=\lim_{N\to\infty} NN^N \int_0^\infty \!\dif z \; 
-    \exp{N\log\del{z}} \exp{-Nz} \\
+    \exp\del{N\log\del{z}} \exp\del{-Nz} \\
     &=\lim_{N\to\infty} N^{N+1} \int_0^\infty \!\dif z \;
-    \exp{N\del{\log\del{z}-z}}
+    \exp\del{N\del{\log\del{z}-z}}
     \intertext{%
         Wir setzen nun $f(z) = \log\del z - z$. Diese Funktion hat ihr
         Maximum bei $z = 1$. Die zweite Ableitung an dieser Stelle ist
         $f''(1) = -\frac{1}{1^2} = -1$. Nach \eqref{eq:sattelpunktmethode}
         gilt
     }
-    &= \lim_{N\to\infty} N^{N+1}\exp{-N}\sqrt{\frac{2\piup}{N}}\\
-    &=\lim_{N\to\infty}\sqrt{2\piup N}N^N\exp{-N}
+    &= \lim_{N\to\infty} N^{N+1}\exp\del{-N}\sqrt{\frac{2\piup}{N}}\\
+    &=\lim_{N\to\infty}\sqrt{2\piup N}N^N\exp\del{-N}
 \end{align*}
 Dies ist die gesuchte Stirling-Formel.
 
 \section{Ensemble quantenmechanischer harmonischer Oszillatoren}
 
-\subsection{}
+\subsection{Anzahl der Zustände}
 
 Bei der Energie sind immer $N/2$ (in Einheiten von $\hbar\omega$ durch die $+1$ fest. Der Operator $a_j^\dagger a_j$ liefert den Eigenwert $n$. Somit müssen wir noch eine Energie von 3 auf drei Oszillatoren aufteilen. Es gibt folgende Möglichkeiten:
 \[
@@ -119,11 +128,93 @@ Bei der Energie sind immer $N/2$ (in Einheiten von $\hbar\omega$ durch die $+1$ 
 
 Es gibt also 10 Zustände.
 
+\subsection{Wahrscheinlichkeit der einzelnen Zustände}
+
+Der Zustand mit der Energie 0 kommt für jeden Oszillator viermal vor, also mit
+einer Wahrscheinlichkeit \num{.4}. Die Energie 1 kommt dreimal, die Energie 2
+zweimal und die Energie 3 einmal vor.
+
+\subsection{$\Omega(E)$}
+
+Für die Bearbeitung habe ich in \cite{Schwabl/Statistische_Mechanik} gelesen
+und bin dabei in \cite[Abschnitt~2.2.3.1]{Schwabl/Statistische_Mechanik} auf
+diese Aufgabe gestoßen.
+
+Als eine Definition von $\Omega(E)$ habe ich Folgendes gefunden: \parencite[Formel~2.2.4]{Schwabl/Statistische_Mechanik}
+\[
+    \Omega(E) = \int \dif \Gamma \, \delta(E - H(q, p))
+\]
+
+Wobei $\Gamma$ den Phasenraum bezeichnet.
+
+Der Phasenraum ist hier diskret und durch $\mathbb N^N$ gegeben. Daher brauchen wir hier anstelle vom Integral eine mehrdimensionale Summe über alle Energieniveaus:
+\[
+    \Omega(E) =
+    \sum_{n_1=0}^\infty
+    \ldots
+    \sum_{n_N=0}^\infty
+    \delta\del{
+        E - \hbar\omega \sum_j \del{a_j^\dagger a_j + \frac12}
+    }
+\]
+
+Was mich an dieser Stelle jedoch etwas verwundert ist, dass wir über alle $n_i$ jeweils summieren, obwohl diese explizit nicht in \cite[Formel~2.2.25]{Schwabl/Statistische_Mechanik} aufgeführt sind.
+
+\subsection{Umschreiben}
+
+Nun benutzen wir die Integraldarstellung der $\delta$-Distribution:\parencite[Formel~2.2.4]{Schwabl/Statistische_Mechanik}
+\[
+    \delta(y) = \int \frac{\dif k}{2 \pi} \eup^{\iup k y}
+\]
+
+Somit erhalten wir:
+\[
+    \Omega(E) =
+    \sum_{n_1=0}^\infty
+    \ldots
+    \sum_{n_N=0}^\infty
+    \int \frac{\dif k}{2 \pi}
+    \exp\sbr{
+        \iup k \del{
+            E - \hbar\omega \sum_j \del{a_j^\dagger a_j + \frac12}
+        }
+    }
+\]
+
+Die Summe in der Exponentialfunktion können wir noch als Produkt von von Exponentialfunktionen schreiben
+\[
+    \Omega(E) =
+    \sum_{n_1=0}^\infty
+    \ldots
+    \sum_{n_N=0}^\infty
+    \int \frac{\dif k}{2 \pi}
+    \eup^{\iup k E}
+    \prod_{j=1}^N
+    \eup^{-\iup k E \hbar\omega /2}
+    \exp( - \iup k E \hbar\omega n_j )
+\]
+
+Für jede Summe $\sum$ ergibt sich in der letzten Exponentialfunktion eine Geometrische Reihe mit $q = \exp( - \iup k E \hbar\omega)$. Da von 0 bis $\infty$ addiert wird, kann direkt der Grenzwert $(1 - q^\infty)/(1-q)$ eingesetzt werden:
+\[
+    \Omega(E) =
+    \int \frac{\dif k}{2 \pi}
+    \eup^{\iup k E}
+    \prod_{j=1}^N
+    \eup^{-\iup k E \hbar\omega /2}
+    \frac1{1 - \exp( - \iup k E \hbar\omega)}
+\]
+
+Da das Produkt $\prod$ nur noch gleiche Faktoren multipliziert, kann es durch
+eine Potenz ersetzt werden. Somit erhalten wir die gewünschte Form:
+\[
+    \Omega(E) =
+    \int \frac{\dif k}{2 \pi}
+    \eup^{\iup k E}
+    \del{ \frac{\eup^{-\iup k E \hbar\omega /2}}{1 - \exp( - \iup k E \hbar\omega)} }^N
+\]
+
 \subsection{}
 
-Der Zustand mit der Energie 0 kommt viermal vor, also mit einer Wahrscheinlichkeit \num{.4}. Die Energie 1 kommt dreimal, die Energie 2 zweimal und die Energie 3 einmal vor.
+\printbibliography
 
-\subsection{}
-\subsection{}
-\subsection{}
 \end{document}
