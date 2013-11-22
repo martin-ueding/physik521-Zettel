@@ -1,5 +1,16 @@
 \input{header.tex}
 
+\usepackage[
+    backend=bibtex,
+    style=authoryear-icomp,
+    hyperref=true
+]{biblatex}
+
+\addbibresource{central-bibtex/Central.bib}
+
+\newcommand\eup{\mathrm e}
+\newcommand\iup{\mathrm i}
+
 \setcounter{section}{0}
 \renewcommand\thesection{H\,5.\arabic{section}}
 \renewcommand\thesubsection{\thesection.\alph{subsection}}
@@ -99,7 +110,7 @@ Dies ist die gesuchte Stirling-Formel.
 
 \section{Ensemble quantenmechanischer harmonischer Oszillatoren}
 
-\subsection{}
+\subsection{Anzahl der Zustände}
 
 Bei der Energie sind immer $N/2$ (in Einheiten von $\hbar\omega$ durch die $+1$ fest. Der Operator $a_j^\dagger a_j$ liefert den Eigenwert $n$. Somit müssen wir noch eine Energie von 3 auf drei Oszillatoren aufteilen. Es gibt folgende Möglichkeiten:
 \[
@@ -117,11 +128,93 @@ Bei der Energie sind immer $N/2$ (in Einheiten von $\hbar\omega$ durch die $+1$ 
 
 Es gibt also 10 Zustände.
 
+\subsection{Wahrscheinlichkeit der einzelnen Zustände}
+
+Der Zustand mit der Energie 0 kommt für jeden Oszillator viermal vor, also mit
+einer Wahrscheinlichkeit \num{.4}. Die Energie 1 kommt dreimal, die Energie 2
+zweimal und die Energie 3 einmal vor.
+
+\subsection{$\Omega(E)$}
+
+Für die Bearbeitung habe ich in \cite{Schwabl/Statistische_Mechanik} gelesen
+und bin dabei in \cite[Abschnitt~2.2.3.1]{Schwabl/Statistische_Mechanik} auf
+diese Aufgabe gestoßen.
+
+Als eine Definition von $\Omega(E)$ habe ich Folgendes gefunden: \parencite[Formel~2.2.4]{Schwabl/Statistische_Mechanik}
+\[
+    \Omega(E) = \int \dif \Gamma \, \delta(E - H(q, p))
+\]
+
+Wobei $\Gamma$ den Phasenraum bezeichnet.
+
+Der Phasenraum ist hier diskret und durch $\mathbb N^N$ gegeben. Daher brauchen wir hier anstelle vom Integral eine mehrdimensionale Summe über alle Energieniveaus:
+\[
+    \Omega(E) =
+    \sum_{n_1=0}^\infty
+    \ldots
+    \sum_{n_N=0}^\infty
+    \delta\del{
+        E - \hbar\omega \sum_j \del{a_j^\dagger a_j + \frac12}
+    }
+\]
+
+Was mich an dieser Stelle jedoch etwas verwundert ist, dass wir über alle $n_i$ jeweils summieren, obwohl diese explizit nicht in \cite[Formel~2.2.25]{Schwabl/Statistische_Mechanik} aufgeführt sind.
+
+\subsection{Umschreiben}
+
+Nun benutzen wir die Integraldarstellung der $\delta$-Distribution:\parencite[Formel~2.2.4]{Schwabl/Statistische_Mechanik}
+\[
+    \delta(y) = \int \frac{\dif k}{2 \pi} \eup^{\iup k y}
+\]
+
+Somit erhalten wir:
+\[
+    \Omega(E) =
+    \sum_{n_1=0}^\infty
+    \ldots
+    \sum_{n_N=0}^\infty
+    \int \frac{\dif k}{2 \pi}
+    \exp\sbr{
+        \iup k \del{
+            E - \hbar\omega \sum_j \del{a_j^\dagger a_j + \frac12}
+        }
+    }
+\]
+
+Die Summe in der Exponentialfunktion können wir noch als Produkt von von Exponentialfunktionen schreiben
+\[
+    \Omega(E) =
+    \sum_{n_1=0}^\infty
+    \ldots
+    \sum_{n_N=0}^\infty
+    \int \frac{\dif k}{2 \pi}
+    \eup^{\iup k E}
+    \prod_{j=1}^N
+    \eup^{-\iup k E \hbar\omega /2}
+    \exp( - \iup k E \hbar\omega n_j )
+\]
+
+Für jede Summe $\sum$ ergibt sich in der letzten Exponentialfunktion eine Geometrische Reihe mit $q = \exp( - \iup k E \hbar\omega)$. Da von 0 bis $\infty$ addiert wird, kann direkt der Grenzwert $(1 - q^\infty)/(1-q)$ eingesetzt werden:
+\[
+    \Omega(E) =
+    \int \frac{\dif k}{2 \pi}
+    \eup^{\iup k E}
+    \prod_{j=1}^N
+    \eup^{-\iup k E \hbar\omega /2}
+    \frac1{1 - \exp( - \iup k E \hbar\omega)}
+\]
+
+Da das Produkt $\prod$ nur noch gleiche Faktoren multipliziert, kann es durch
+eine Potenz ersetzt werden. Somit erhalten wir die gewünschte Form:
+\[
+    \Omega(E) =
+    \int \frac{\dif k}{2 \pi}
+    \eup^{\iup k E}
+    \del{ \frac{\eup^{-\iup k E \hbar\omega /2}}{1 - \exp( - \iup k E \hbar\omega)} }^N
+\]
+
 \subsection{}
 
-Der Zustand mit der Energie 0 kommt viermal vor, also mit einer Wahrscheinlichkeit \num{.4}. Die Energie 1 kommt dreimal, die Energie 2 zweimal und die Energie 3 einmal vor.
+\printbibliography
 
-\subsection{}
-\subsection{}
-\subsection{}
 \end{document}
