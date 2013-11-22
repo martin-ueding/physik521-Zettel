@@ -61,18 +61,41 @@ Gegeben ist das Integral
         Lösen wir nun \eqref{eq:integral_getaylort} mit \eqref{eq:Gauss}
         auf, erhalten wir:
     }
-    &= \lim_{N_\to\infty} \exp{Nf\del{x_0}} \exp{\frac{\omega^2}{4a}}
+    &= \lim_{N\to\infty} \exp{Nf\del{x_0}} \exp{\frac{\omega^2}{4a}}
     \sqrt{\frac\piup a}\exp{-\frac{\omega^2}{4a}}\notag \\
-    &= \lim_{N_\to\infty} \exp{Nf\del{x_0}} \sqrt{\frac\piup a}\notag \\
-    &= \lim_{N_\to\infty} \exp{Nf\del{x_0}}
+    &= \lim_{N\to\infty} \exp{Nf\del{x_0}} \sqrt{\frac\piup a}\notag \\
+    &= \lim_{N\to\infty} \exp{Nf\del{x_0}}
     \sqrt{-\frac{2\piup}{Nf''\del{x_0}}}\notag
     \intertext{%
         Da die zweite Ableitung an der Maximalstelle negativ ist, folgt
     }
-    &= \lim_{N_\to\infty} \exp{Nf\del{x_0}}
-    \sqrt{\frac{2\piup}{N\abs{f''\del{x_0}}}}\notag
+    &= \lim_{N\to\infty} \exp{Nf\del{x_0}}
+    \sqrt{\frac{2\piup}{N\abs{f''\del{x_0}}}}\label{eq:sattelpunktmethode}
 \end{align}
 \subsection{}
+
+\begin{align*}
+    \lim_{N\to\infty} N! &= \lim_{N\to\infty} \Gamma\del{N+1} \\
+                         &= \lim_{N\to\infty} \int_0^\infty \!\dif x \;
+    x^N\exp{-x} \\
+    \intertext{%
+        Wir substituieren nun $x = Nz$ und $N \dif z = \dif x$:
+    }
+    &=\lim_{N\to\infty} \int_0^\infty \!\dif z \; NN^Nz^N \exp{-Nz} \\
+    &=\lim_{N\to\infty} NN^N \int_0^\infty \!\dif z \; 
+    \exp{N\log\del{z}} \exp{-Nz} \\
+    &=\lim_{N\to\infty} N^{N+1} \int_0^\infty \!\dif z \;
+    \exp{N\del{\log\del{z}-z}}
+    \intertext{%
+        Wir setzen nun $f(z) = \log\del z - z$. Diese Funktion hat ihr
+        Maximum bei $z = 1$. Die zweite Ableitung an dieser Stelle ist
+        $f''(1) = -\frac{1}{1^2} = -1$. Nach \eqref{eq:sattelpunktmethode}
+        gilt
+    }
+    &= \lim_{N\to\infty} N^{N+1}\exp{-N}\sqrt{\frac{2\piup}{N}}\\
+    &=\lim_{N\to\infty}\sqrt{2\piup N}N^N\exp{-N}
+\end{align*}
+Dies ist die gesuchte Stirling-Formel.
 
 \section{Ensemble quantenmechanischer harmonischer Oszillatoren}
 
