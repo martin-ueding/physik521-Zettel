@@ -190,18 +190,18 @@ Die Summe in der Exponentialfunktion können wir noch als Produkt von von Expone
     \int \frac{\dif k}{2 \pi}
     \eup^{\iup k E}
     \prod_{j=1}^N
-    \eup^{-\iup k E \hbar\omega /2}
-    \exp( - \iup k E \hbar\omega n_j )
+    \eup^{-\iup k \hbar\omega /2}
+    \exp( - \iup k \hbar\omega n_j )
 \]
 
-Für jede Summe $\sum$ ergibt sich in der letzten Exponentialfunktion eine Geometrische Reihe mit $q = \exp( - \iup k E \hbar\omega)$. Da von 0 bis $\infty$ addiert wird, kann direkt der Grenzwert $(1 - q^\infty)/(1-q)$ eingesetzt werden:
+Für jede Summe $\sum$ ergibt sich in der letzten Exponentialfunktion eine Geometrische Reihe mit $q = \exp( - \iup k \hbar\omega)$. Da von 0 bis $\infty$ addiert wird, kann direkt der Grenzwert $(1 - q^\infty)/(1-q)$ eingesetzt werden:
 \[
     \Omega(E) =
     \int \frac{\dif k}{2 \pi}
     \eup^{\iup k E}
     \prod_{j=1}^N
-    \eup^{-\iup k E \hbar\omega /2}
-    \frac1{1 - \exp( - \iup k E \hbar\omega)}
+    \eup^{-\iup k \hbar\omega /2}
+    \frac1{1 - \exp( - \iup k \hbar\omega)}
 \]
 
 Da das Produkt $\prod$ nur noch gleiche Faktoren multipliziert, kann es durch
@@ -210,10 +210,28 @@ eine Potenz ersetzt werden. Somit erhalten wir die gewünschte Form:
     \Omega(E) =
     \int \frac{\dif k}{2 \pi}
     \eup^{\iup k E}
-    \del{ \frac{\eup^{-\iup k E \hbar\omega /2}}{1 - \exp( - \iup k E \hbar\omega)} }^N
+    \del{ \frac{\eup^{-\iup k \hbar\omega /2}}{1 - \exp( - \iup k \hbar\omega)} }^N
 \]
 
-\subsection{}
+Dies sollen wir jetzt noch ein wenig umschreiben. Dazu betrachten wir nur die Klammer:
+\begin{align*}
+    \del{ \frac{\eup^{-\iup k \hbar\omega /2}}{1 - \exp( - \iup k \hbar\omega)} }^N
+    &=: \del{\frac{\eup^{-\beth/2}}{1 - \eup^{-\beth}}}^N \\
+    &= \del{\frac{1 - \eup^{-\beth}}{\eup^{-\beth/2}}}^{-N} \\
+    &= \del{\eup^{\beth/2} - \eup^{-\beth/2}}^{-N} \\
+    &= \del{2\iup \sin(-\beth/2)}^{-N} \\
+    &= \exp\del{-N \ln\del{2\iup \sin(-\beth/2)}} \\
+    &= \exp\del{-N \ln\del{2\iup \sin(-\iup k \hbar\omega/2)}}
+\end{align*}
+
+Alles zusammen ergibt den gesuchten Ausdruck:
+\[
+    \Omega(E) =
+    \int \frac{\dif k}{2 \pi}
+    \exp\del{N \del{ \iup k \frac EN - \ln\del{2\iup \sin(-\iup k \hbar\omega/2)} }}
+\]
+
+\subsection{Berechnen des Integrals}
 
 \printbibliography
 
