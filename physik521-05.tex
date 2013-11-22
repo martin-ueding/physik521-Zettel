@@ -219,19 +219,97 @@ Dies sollen wir jetzt noch ein wenig umschreiben. Dazu betrachten wir nur die Kl
     &=: \del{\frac{\eup^{-\beth/2}}{1 - \eup^{-\beth}}}^N \\
     &= \del{\frac{1 - \eup^{-\beth}}{\eup^{-\beth/2}}}^{-N} \\
     &= \del{\eup^{\beth/2} - \eup^{-\beth/2}}^{-N} \\
-    &= \del{2\iup \sin(-\beth/2)}^{-N} \\
-    &= \exp\del{-N \ln\del{2\iup \sin(-\beth/2)}} \\
-    &= \exp\del{-N \ln\del{2\iup \sin(-\iup k \hbar\omega/2)}}
+    &= \del{2\iup \sin(-\iup \beth/2)}^{-N} \\
+    &= \exp\del{-N \ln\del{2\iup \sin(-\iup \beth/2)}} \\
+    &= \exp\del{-N \ln\del{2\iup \sin(k \hbar\omega/2)}}
 \end{align*}
 
 Alles zusammen ergibt den gesuchten Ausdruck:
 \[
     \Omega(E) =
     \int \frac{\dif k}{2 \pi}
-    \exp\del{N \del{ \iup k \frac EN - \ln\del{2\iup \sin(-\iup k \hbar\omega/2)} }}
+    \exp\del{N \del{ \iup k \frac EN - \ln\del{2\iup \sin(k \hbar\omega/2)} }}
 \]
 
 \subsection{Berechnen des Integrals}
+
+Dieses Integral kann so umgeschrieben werden, dass man es mit der Sattelpunktsmethode ausrechnen kann. Dabei ist:
+\[
+    f(k) = \iup k \frac EN - \ln\del{2\iup \sin(k \hbar\omega/2)}
+\]
+
+Wir bestimmen die erste und zweite Ableitung, da wir diese im weiteren Verlauf brauchen werden.
+\[
+    f'(k) = \iup \frac EN - \cot(k \hbar\omega/2) \frac{\hbar\omega}{4}
+\]
+
+Die zweite Ableitung ist:
+\[
+    f''(k) = - \frac{\hbar^2 \omega^2}8 \csc^2\del{\frac{k \hbar\omega}2}
+\]
+
+Laut \cite[Abschnitt~2.2.3.1]{Schwabl/Statistische_Mechanik} ist es jedoch 4 anstelle von $-8$. Wir benutzen das Ergebnis aus dem Buch.
+
+Die Nullstelle der ersten Ableitung ist bei:
+\[
+    k_0 = \frac{1}{\iup\hbar\omega} \ln\del{\frac{2e + \frac{\hbar\omega}2}{2e - \frac{\hbar\omega}2}}
+\]
+
+Dabei haben wir $e := E/N$ eingesetzt und die Darstellung des $\arctan$ mit dem
+komplexen $\ln$ ausgenutzt.
+
+In \cite[Formel~2.2.28]{Schwabl/Statistische_Mechanik} ist es nicht $2e$ sondern nur $e$. Wir rechnen mit dem Ergebnis aus dem Buch weiter.
+
+Nun müssen wir die Nullstelle in die zweite Ableitung einsetzen.
+\begin{align*}
+    f''(k_0)
+    &= \frac{\hbar^2 \omega^2}4 \csc^2\del{\frac{k_0 \hbar\omega}2} \\
+    &= \frac{\hbar^2 \omega^2}4 \csc^2\sbr{\frac{\hbar\omega}2\frac{1}{\iup\hbar\omega} \ln\del{\frac{e + \frac{\hbar\omega}2}{e - \frac{\hbar\omega}2}}} \\
+    &= \frac{\hbar^2 \omega^2}4 \csc^2\sbr{\frac{1}{2\iup} \ln\del{\frac{e + \frac{\hbar\omega}2}{e - \frac{\hbar\omega}2}}} \\
+    \intertext{%
+        Jetzt können wir dies wieder als $\arctan$ schreiben:
+    }
+    &= \frac{\hbar^2 \omega^2}4 \csc^2\sbr{ \arctan\del{\frac{\hbar\omega}{\iup e}}} \\
+    \intertext{%
+        Laut Mathematica ist $\csc^2(\arctan(x))$ gerade $1 + 1/x^2$.
+    }
+    &= \frac{\hbar^2 \omega^2}4 \del{1 - \frac{e^2}{\hbar^2\omega^2}} \\
+    &= \frac{\hbar^2 \omega^2 - e^2}4
+\end{align*}
+
+Jetzt müssen wir das in die Wurzel einsetzen und erhalten:
+\[
+    \sqrt{\frac{8 \pi}{N (\hbar^2 \omega^2 - e^2}}
+\]
+
+Es fehlt noch der Rest. Alles zusammen ist dann:
+\[
+    \Omega(E) = \lim_{N \to \infty} \eup^{N f(k_0)} \sqrt{\frac{8 \pi}{N (\hbar^2 \omega^2 - e^2}}
+\]
+
+Noch $f(k_0)$ einsetzen:
+\[
+    \Omega(E) = \lim_{N \to \infty}
+    \exp\cbr{
+        N 
+        \del{
+            \iup k \frac EN - \ln\sbr{
+                2\iup \sin\del{
+                    \cbr{
+                        \frac{1}{\iup\hbar\omega}
+                        \ln\sbr{
+                            \frac{e + \frac{\hbar\omega}2}{e - \frac{\hbar\omega}2}
+                        }
+                    }
+                    \hbar\omega/2
+                }
+            }
+        }
+    }
+    \sqrt{\frac{8 \pi}{N (\hbar^2 \omega^2 - e^2)}}
+\]
+
+Da sehe ich allerdings nicht, wie das auf die gewünschte Form zu bringen ist.
 
 \printbibliography
 
