@@ -19,6 +19,31 @@
 
 \section{Kühlung durch adiabatische Entmagnetisierung}
 
+Hier ist nach der kanonischen Zustandssumme gefragt, daher betrachten wir dieses System auch im kanonischen Formalismus. Wir bestimmen $Z_\text C$:
+\begin{align*}
+    Z_\text C
+    &= \prod_{i=1}^N \sum_{s_i = -1, 0, 1} \exp\del{\frac{\mu B s_i}{k T}} \\
+    &= \del{\sum_{s_i = -1, 0, 1} \exp\del{\frac{\mu B s_i}{k T}}}^N \\
+    &= \del{1 + 2 \cosh\del{\frac{\mu B s_i}{k T}}}^N.
+\end{align*}
+
+Daraus können wir die freie Energie $F(T) = - k T \ln(Z_\text C)$ bestimmen:
+\[
+    F(T) = - N k T \ln\del{1 + 2 \cosh\del{\frac{\mu B s_i}{k T}}}.
+\]
+
+Aus der freien Energie bestimmen wir die Entropie:
+\begin{align*}
+    S(T)
+    &= - \dpd FT \\
+    &= N k \del{
+        \ln\del{1 + 2 \cosh\del{\frac{\mu B s_i}{k T}}}
+        - \frac{\mu B}{kT} \frac{2 \sinh\del{\frac{\mu B s_i}{k T}}}{1 + 2\cosh\del{\frac{\mu B s_i}{k T}}}
+    }.
+\end{align*}
+
+Dies stimmt mit dem Kontrollergebnis überein.
+
 \section{Polymer-Modell (Gummi)}
 
 \end{document}
