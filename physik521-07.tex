@@ -76,6 +76,44 @@ sein muss.
 
 Man muss $B_2 < B_1$ wählen, damit es passt.
 
+\subsection{Wärmekapazität}
+
+Die Wärmekapazität ist laut Skript definiert als:
+\[
+    c_B(T) = \tdpd QTB = T \tdpd STB.
+\]
+Diese Ableitung bestimmen wir jetzt.
+
+\begin{align*}
+    c_B(T) 
+    &= T \tdpd{}TB N k \del{
+        \ln\del{1 + 2 \cosh\del{\frac{\mu B s_i}{k T}}}
+        - \frac{\mu B}{kT} \frac{2 \sinh\del{\frac{\mu B s_i}{k T}}}{1 + 2\cosh\del{\frac{\mu B s_i}{k T}}}
+    } \\
+    \intertext{%
+        Die beiden ersten Terme, die durch den Logarithmus und durch den Bruch
+        vor dem Bruch entstehen, sind zusammen gerade 0. Es bleibt die
+        Ableitung nach $T$ im zweiten Bruch, die sich mit der Quotientenregel
+        gerade zu dem angegeben Zwischenergebnis umformen lässt.
+    }
+    &= Nk \del{\frac{\mu B}{kT}}^2 \frac{2 \cosh \cdot (1 + 2 \cosh) - 4 \sinh^2}{(1 + 2 \cosh)^2} \\
+    &= Nk \del{\frac{\mu B}{kT}}^2 \frac{2 \cosh + 4}{(1 + 2 \cosh)^2}
+\end{align*}
+
+Die Energie, die das Spinsystem verliert, geht in das andere. Die Differenz ist:
+\[
+    \Deltaup Q = \int_{T_1}^{T_2} \dif T \, c_B(T).
+\]
+Im anderen System wird dies eine Temperaturänderung von $\Deltaup T = \Deltaup Q / c_V^p$ verursachen. Das Integral sieht schwer aus, allerdings dürfen wir den Integranden nähern zu:
+\[
+    c_B(T) \approx 4 Nk \del{\frac{\mu B}{kT}}^2.
+\]
+
+Somit wird das Integral lösbar und wir erhalten:
+\[
+    \Deltaup T = 4 N \frac{\mu^2 B^2}{k} \del{\frac 1{T_1} - \frac 1{T_2}}.
+\]
+
 \section{Polymer-Modell (Gummi)}
 
 \end{document}
