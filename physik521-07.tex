@@ -19,6 +19,8 @@
 
 \section{Kühlung durch adiabatische Entmagnetisierung}
 
+\subsection{Entropie}
+
 Hier ist nach der kanonischen Zustandssumme gefragt, daher betrachten wir dieses System auch im kanonischen Formalismus. Wir bestimmen $Z_\text C$:
 \begin{align*}
     Z_\text C
@@ -43,6 +45,36 @@ Aus der freien Energie bestimmen wir die Entropie:
 \end{align*}
 
 Dies stimmt mit dem Kontrollergebnis überein.
+
+\subsection{Abkühlung}
+
+Die Temperatur wird auf $T_1$ fixiert. Wenn es adiabatisch geändert wird, ist
+$\deltaup Q = 0$. Außerdem geht es so schnell, dass die Teilsysteme sich nicht
+verändern können. $W_\text C$ bleibt also fest. Daher muss auch $Z_\text C$
+sowie $F$ und $S$ konstant bleiben.
+
+\subsection{Neue Temperatur}
+
+Wir haben es nicht geschafft, analytisch zu zeigen, dass $S(T)$ injektiv ist.
+Dies bedeutet, dass zwei verschiedene Entropien durch zwei verschiedene $B/T$
+kommen muss. Als Anschauung haben wir zwei Plots erstellt, in denen Qualitativ
+$S(B/T)$ und die Ableitung $S'(B/T)$ geplottet worden sind:
+
+\includegraphics[width=.45\textwidth]{2b-S.pdf}
+\hfill
+\includegraphics[width=.45\textwidth]{2b-dS.pdf}
+
+Es ist zu sehen, dass die Funktion streng monoton falled ist, die Ableitung ist
+immer negativ. Daher ist die Funktion sogar bijektiv, also auch injektiv.
+
+Es muss
+\[
+    \frac{B_1}{T_1} = \frac{B_2}{T_2}
+\]
+gelten, da $S$ konstant ist, $S$ injektiv ist und daher $\mu B/kT$ konstant
+sein muss.
+
+Man muss $B_2 < B_1$ wählen, damit es passt.
 
 \section{Polymer-Modell (Gummi)}
 
