@@ -116,4 +116,70 @@ Somit wird das Integral lösbar und wir erhalten:
 
 \section{Polymer-Modell (Gummi)}
 
+\subsection{Wahrscheinlichkeitsverteilung}
+
+Es soll wohl der großkanonische Formalismus verwendet werden. Die Randbedinungen sind, dass die Wahrscheinlichkeit normiert ist,
+\[
+    \sum_n W(n) - 1 = 0,
+\]
+der Energiemittelwert fest ist,
+\[
+    \sum_n E_n W(n) - \mw E = 0,
+\]
+sowie eine festlegung des Längenmittelwerts:
+\[
+    \sum_n L_n W(n) - \mw L = 0.
+\]
+
+Mit diesen Bedinungen maximieren wir die Entropie
+\[
+    S = - k \sum_n W(n) \ln\del{W(n)}.
+\]
+So erhalten wir:
+\[
+    S_\text G = - k \sum_n W(n) \ln\del{W(n)}
+    + \lambda \del{\sum_n E_n W(n) - \mw E}
+    + \eta \del{\sum_n L_n W(n) - \mw L}
+    + \xi \del{\sum_n W(n) - 1}.
+\]
+
+Jetzt muss
+\[
+    \dpd{S_\text G}{W(n)} = 0
+\]
+sein. Da wir nach einem speziellen $n$ in $W(n)$ ableiten, fallen die ganzen Summen weg. Wir erhalten daher folgende Gleichung:
+\[
+    - k \ln\del{W(n)} - k + \lambda E_n + \eta L_n + \xi = 0.
+\]
+
+Diese stellen wir nach $W(n)$ um:
+\[
+    W(n) = \exp\del{-1 + \frac \xi k + \frac{\lambda E_n + \eta L_n}{k}}
+\]
+
+Mit der Definition
+\[
+    \frac 1{Z_\text G} := \exp\del{-1 + \frac \xi k}
+\]
+erhalten wir schon fast die gesuchte Form:
+\[
+    W(n) = \frac 1{Z_\text G} \exp\del{\frac{\lambda E_n + \eta L_n}{k}}.
+\]
+
+Jetzt muss noch hergeleitet werden, dass $n/k$ gerade $K$ ist. Dazu muss die
+Verbindung zur Thermodynaim benutzt werden. Eine Zustandsänderung mit $\tilde K
+\mapsto \tilde K + \dif \tilde K$ verändert $\tilde K \dif L$ nicht, da dies
+eine quadratisch infinitesemale Änderung ist, die keine Auswirkung hat. Im
+Skript ist auf Seite~66 eine ähnliche Aufgabe gerechnet, jedoch haben wir dies
+nicht nachvollziehen können. Jedenfalls sollte es möglich sein, zu zeigen, dass
+sich das $\tilde K$ hier genauso verhält wie das thermodynamische $K$ und diese
+daher identisch sind.
+
+Für die Relation zwischen $Z_\text G$ und G gilt:
+\begin{align*}
+    \ln(Z_\text G) &= - \frac{E_r}{kT} + \frac{KL}{kT} \\
+    - kT \ln(Z_\text G) &= E - KL
+\end{align*}
+Mit $E = TS + \mu N$ ist dies gerade $G$.
+
 \end{document}
