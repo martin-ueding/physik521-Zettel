@@ -6,7 +6,7 @@
 
 \title{physik521: Übungsblatt 07}
 \author{%
-    Lino Lemmer \\ \small{\texttt{s6lilemm@uni-bonn.de}}
+    Lino Lemmer \\ \small{\texttt{lino.lemmer@uni-bonn.de}}
     \and
     Martin Ueding \\ \small{\texttt{mu@martin-ueding.de}}
     \and
@@ -17,8 +17,72 @@
 \maketitle
 \section{Zweiatomiges Molekül}
 
+\subsection{Schwingung}
+
+Die möglichen Energien eines harmonischen Oszillators sind gegeben durch
+\begin{align*}
+    E_n^\text{Ozs} &= \hbar\omega\del{n+\half}.
+    \intertext{%
+        Die kanonische Zustandssumme für $N$ unabhängige Oszillatoren ist das
+        Produkt aller einzelnen, wegen der Unabhängigkeit gleichen,
+        Zustandssummen. Mit $\beta = \del{k_\text{B}T}^{-1}$ erhält man
+    }
+    \del{Z_\text{C}^\text{Ozs}}^N &= \del{\sum_n^N\dexp{-\beta
+    E_n^\text{Osz}}}^N \\
+    &= \del{\sum_n^N \dexp{-\beta\hbar\omega \del{n+\half}}}^N \\
+    &= \del{\dexp{-\half\hbar\omega\beta}\sum_n^N\dexp{-\hbar\omega\beta n}}^N
+    \intertext{%
+        Die Summe kann man mit einer geometrischen Reihe Umschreiben.
+    }
+    &= \del{\frac{\dexp{-\half\hbar\omega\beta}}
+    {1-\dexp{-\hbar\omega\beta}}}^N\\
+    &= \del{\frac{1}{2\sinh\del{-\half\hbar\omega\beta}}}^N
+    \intertext{%
+        Die innere Energie des Systems ist, auch hier wegen der Unabhängigkeit,
+        die Summe aller mittleren Energien. Bei $N$ Molekülen erhalten wir daher
+    }
+    U^\text{Osz} &= N \mw{E} \\
+    &= \frac{N}{Z_\text{C}^\text{Osz}}\sum_n E_n^\text{Osz} \dexp{-\beta E_n} \\
+    &= -\frac{N}{Z_\text{C}^\text{Osz}} \dpd{}{\beta}
+    \underbrace{ \sum_n \dexp{-\beta E_n}}_{=Z_\text{C}^\text{Osz}} \\
+    &= -N \dpd{}{\beta}\log\del{Z_\text{C}^\text{Osz}} \\
+    &= -N \dpd{}{\beta}\log\del{\frac{1}{2\sinh\del{\half\hbar\omega\beta}}} \\
+    &= N\dpd{}{\beta}\log\del{2\sinh\del{\half\hbar\omega\beta}} \\
+    &= N\frac{\hbar\omega}{2}\coth\del{\half\hbar\omega\beta}.
+    \intertext{%
+        Die spezifische Wärme ist definiert als
+    }
+    C_V^\text{Osz} &= \dpd{U^\text{Osz}}{T} \\
+    &= N\frac{\hbar\omega}{2} \dpd{}{T} \coth\del{\half\hbar\omega\beta} \\
+    &= N\frac{\hbar\omega}{2} \dpd{}{T}
+    \coth\del{\frac{\hbar\omega}{2k_\text{B}T}} \\
+    &= N\frac{\del{\hbar\omega}^2}{4k_\text{B}}
+    \frac{1}{T^2\sinh^2\del{\frac{\hbar\omega}{2k_\text{B}T}}} \\
+    &= Nk_\text{B}\del{\frac{\hbar\omega}{2k_\text{B}T}}^2
+    \frac{1}{\sinh^2\del{\frac{\hbar\omega}{2k_\text{B}T}}} \\
+\end{align*}
+Das Verhalten der spezifischen Wärme für $k_\text{B}T\ll\hbar\omega$ ist in
+Abbildung~\ref{fig:C_V_Osz_ll} und für $k_\text{B}T\gg\hbar\omega$ in
+Abbildung~\ref{fig:C_V_Osz_gg} gezeigt.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{C_V_Osz_ll.pdf}
+    \caption{Verhalten der spezifischen Wärme}
+    \label{fig:C_V_Osz_ll}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{C_V_Osz_gg.pdf}
+    \caption{Verhalten der spezifischen Wärme}
+    \label{fig:C_V_Osz_gg}
+\end{figure}
+
 \section{Kühlung durch adiabatische Entmagnetisierung}
 
 \section{Polymer-Modell (Gummi)}
 
 \end{document}
+
+%vim: tw=79 spell spelllang=de
