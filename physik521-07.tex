@@ -79,7 +79,52 @@ Abbildung~\ref{fig:C_V_Osz_gg} gezeigt.
     \label{fig:C_V_Osz_gg}
 \end{figure}
 
+\subsection{Rotation}
+
+\begin{align*}
+    E_l^\text{Rot} &= \frac{J^2}{2I} \\
+                   &= \frac{\hbar l\del{l+1}}{2I}
+    \intertext{%
+        Die kanonische Zustandssumme ist auch die eines einzelnen Moleküls in
+        $N$-ter Potenz. Wir berechnen zunächst für ein Molekül. Da wir hier
+        eigentlich über $m_l$ summieren müssten, nehmen wir für die Entartung
+        einen Faktor $2l+1$ hinzu:
+    }
+    Z_C^\text{Rot} &= \sum_l^N \del{2l+1}\dexp{-\beta E_l^\text{Rot}} \\
+    &= \sum_l^N \del{2l+1}\dexp{-\beta \frac{\hbar l\del{l+1}}{2I}}
+    \intertext{%
+        Wir schauen uns nun zwei Näherungen an. Für niedrige Temperaturen kann
+        nach Euler-MacLaurin folgendes geschrieben werden
+    }
+    Z_C^\text{Rot} &= \num{0.5} + \int_0^\infty\!\dif l \del{2l+1}\dexp{-\beta
+    \frac{\hbar l\del{l+1}}{2I}} \\
+    &= \num{0.5} -\frac{2I}{\beta\hbar}\sbr{\dexp{-\beta\frac{\hbar
+    l\del{l+1}}{2I}}}_0^\infty \\
+    &= \num{0.5} + \frac{2I}{\beta\hbar}
+    \intertext{%
+        Für hohe Temperaturen benötigt man zwei Terme zusätzlich:
+    }
+    Z_C^\text{Rot} &= \num{0.5} + \frac{2I}{\beta\hbar} -
+    \frac1{12}\dpd{}{l} \left.\del{2l+1}\dexp{-\beta \frac{\hbar
+    l\del{l+1}}{2I}}\right|_{l=0} + \frac1{720}\dpd[3]{}{l}
+    \left.\del{2l+1}\dexp{-\beta \frac{\hbar l\del{l+1}}{2I}}\right|_{l=0} \\
+    &= \num{0.5} + \frac{2I}{\beta\hbar} -
+    \frac1{12}\del{2-\frac{\beta\hbar}{2I}} + \frac
+    1{720}\del{\del{\frac{\beta\hbar}{2I}}^3 -
+    12\del{\frac{\beta\hbar}{2I}}^2 + 12 \frac{\beta\hbar}{2I}} \\
+    &= \frac13 + \frac{2I}{\beta\hbar} + \frac1{10} \frac{\beta\hbar}{2I} -
+    \frac1{60}\del{\frac{\beta\hbar}{2I}}^2 +
+    \frac1{720}\del{\frac{\beta\hbar}{2I}}^3
+    \intertext{%
+        Analog zur inneren Energie für die Schwingung erhalten wir
+    }
+    U^\text{Rot} &= -N\dpd{}{\beta}\log\del{\frac13 + \frac{2I}{\beta\hbar} +
+    \frac1{10} \frac{\beta\hbar}{2I} - \frac1{60}\del{\frac{\beta\hbar}{2I}}^2 +
+    \frac1{720}\del{\frac{\beta\hbar}{2I}}^3 }
+\end{align*}
+
 \section{Kühlung durch adiabatische Entmagnetisierung}
+
 
 \section{Polymer-Modell (Gummi)}
 
