@@ -125,8 +125,168 @@ Abbildung~\ref{fig:C_V_Osz_gg} gezeigt.
 
 \section{Kühlung durch adiabatische Entmagnetisierung}
 
+\subsection{Entropie}
+
+Hier ist nach der kanonischen Zustandssumme gefragt, daher betrachten wir dieses System auch im kanonischen Formalismus. Wir bestimmen $Z_\text C$:
+\begin{align*}
+    Z_\text C
+    &= \prod_{i=1}^N \sum_{s_i = -1, 0, 1} \exp\del{\frac{\mu B s_i}{k T}} \\
+    &= \del{\sum_{s_i = -1, 0, 1} \exp\del{\frac{\mu B s_i}{k T}}}^N \\
+    &= \del{1 + 2 \cosh\del{\frac{\mu B s_i}{k T}}}^N.
+\end{align*}
+
+Daraus können wir die freie Energie $F(T) = - k T \ln(Z_\text C)$ bestimmen:
+\[
+    F(T) = - N k T \ln\del{1 + 2 \cosh\del{\frac{\mu B s_i}{k T}}}.
+\]
+
+Aus der freien Energie bestimmen wir die Entropie:
+\begin{align*}
+    S(T)
+    &= - \dpd FT \\
+    &= N k \del{
+        \ln\del{1 + 2 \cosh\del{\frac{\mu B s_i}{k T}}}
+        - \frac{\mu B}{kT} \frac{2 \sinh\del{\frac{\mu B s_i}{k T}}}{1 + 2\cosh\del{\frac{\mu B s_i}{k T}}}
+    }.
+\end{align*}
+
+Dies stimmt mit dem Kontrollergebnis überein.
+
+\subsection{Abkühlung}
+
+Die Temperatur wird auf $T_1$ fixiert. Wenn es adiabatisch geändert wird, ist
+$\deltaup Q = 0$. Außerdem geht es so schnell, dass die Teilsysteme sich nicht
+verändern können. $W_\text C$ bleibt also fest. Daher muss auch $Z_\text C$
+sowie $F$ und $S$ konstant bleiben.
+
+\subsection{Neue Temperatur}
+
+Wir haben es nicht geschafft, analytisch zu zeigen, dass $S(T)$ injektiv ist.
+Dies bedeutet, dass zwei verschiedene Entropien durch zwei verschiedene $B/T$
+kommen muss. Als Anschauung haben wir zwei Plots erstellt, in denen Qualitativ
+$S(B/T)$ und die Ableitung $S'(B/T)$ geplottet worden sind:
+
+\includegraphics[width=.45\textwidth]{2b-S.pdf}
+\hfill
+\includegraphics[width=.45\textwidth]{2b-dS.pdf}
+
+Es ist zu sehen, dass die Funktion streng monoton falled ist, die Ableitung ist
+immer negativ. Daher ist die Funktion sogar bijektiv, also auch injektiv.
+
+Es muss
+\[
+    \frac{B_1}{T_1} = \frac{B_2}{T_2}
+\]
+gelten, da $S$ konstant ist, $S$ injektiv ist und daher $\mu B/kT$ konstant
+sein muss.
+
+Man muss $B_2 < B_1$ wählen, damit es passt.
+
+\subsection{Wärmekapazität}
+
+Die Wärmekapazität ist laut Skript definiert als:
+\[
+    c_B(T) = \tdpd QTB = T \tdpd STB.
+\]
+Diese Ableitung bestimmen wir jetzt.
+
+\begin{align*}
+    c_B(T) 
+    &= T \tdpd{}TB N k \del{
+        \ln\del{1 + 2 \cosh\del{\frac{\mu B s_i}{k T}}}
+        - \frac{\mu B}{kT} \frac{2 \sinh\del{\frac{\mu B s_i}{k T}}}{1 + 2\cosh\del{\frac{\mu B s_i}{k T}}}
+    } \\
+    \intertext{%
+        Die beiden ersten Terme, die durch den Logarithmus und durch den Bruch
+        vor dem Bruch entstehen, sind zusammen gerade 0. Es bleibt die
+        Ableitung nach $T$ im zweiten Bruch, die sich mit der Quotientenregel
+        gerade zu dem angegeben Zwischenergebnis umformen lässt.
+    }
+    &= Nk \del{\frac{\mu B}{kT}}^2 \frac{2 \cosh \cdot (1 + 2 \cosh) - 4 \sinh^2}{(1 + 2 \cosh)^2} \\
+    &= Nk \del{\frac{\mu B}{kT}}^2 \frac{2 \cosh + 4}{(1 + 2 \cosh)^2}
+\end{align*}
+
+Die Energie, die das Spinsystem verliert, geht in das andere. Die Differenz ist:
+\[
+    \Deltaup Q = \int_{T_1}^{T_2} \dif T \, c_B(T).
+\]
+Im anderen System wird dies eine Temperaturänderung von $\Deltaup T = \Deltaup Q / c_V^p$ verursachen. Das Integral sieht schwer aus, allerdings dürfen wir den Integranden nähern zu:
+\[
+    c_B(T) \approx 4 Nk \del{\frac{\mu B}{kT}}^2.
+\]
+
+Somit wird das Integral lösbar und wir erhalten:
+\[
+    \Deltaup T = 4 N \frac{\mu^2 B^2}{k} \del{\frac 1{T_1} - \frac 1{T_2}}.
+\]
 
 \section{Polymer-Modell (Gummi)}
+
+\subsection{Wahrscheinlichkeitsverteilung}
+
+Es soll wohl der großkanonische Formalismus verwendet werden. Die Randbedinungen sind, dass die Wahrscheinlichkeit normiert ist,
+\[
+    \sum_n W(n) - 1 = 0,
+\]
+der Energiemittelwert fest ist,
+\[
+    \sum_n E_n W(n) - \mw E = 0,
+\]
+sowie eine festlegung des Längenmittelwerts:
+\[
+    \sum_n L_n W(n) - \mw L = 0.
+\]
+
+Mit diesen Bedinungen maximieren wir die Entropie
+\[
+    S = - k \sum_n W(n) \ln\del{W(n)}.
+\]
+So erhalten wir:
+\[
+    S_\text G = - k \sum_n W(n) \ln\del{W(n)}
+    + \lambda \del{\sum_n E_n W(n) - \mw E}
+    + \eta \del{\sum_n L_n W(n) - \mw L}
+    + \xi \del{\sum_n W(n) - 1}.
+\]
+
+Jetzt muss
+\[
+    \dpd{S_\text G}{W(n)} = 0
+\]
+sein. Da wir nach einem speziellen $n$ in $W(n)$ ableiten, fallen die ganzen Summen weg. Wir erhalten daher folgende Gleichung:
+\[
+    - k \ln\del{W(n)} - k + \lambda E_n + \eta L_n + \xi = 0.
+\]
+
+Diese stellen wir nach $W(n)$ um:
+\[
+    W(n) = \exp\del{-1 + \frac \xi k + \frac{\lambda E_n + \eta L_n}{k}}
+\]
+
+Mit der Definition
+\[
+    \frac 1{Z_\text G} := \exp\del{-1 + \frac \xi k}
+\]
+erhalten wir schon fast die gesuchte Form:
+\[
+    W(n) = \frac 1{Z_\text G} \exp\del{\frac{\lambda E_n + \eta L_n}{k}}.
+\]
+
+Jetzt muss noch hergeleitet werden, dass $n/k$ gerade $K$ ist. Dazu muss die
+Verbindung zur Thermodynaim benutzt werden. Eine Zustandsänderung mit $\tilde K
+\mapsto \tilde K + \dif \tilde K$ verändert $\tilde K \dif L$ nicht, da dies
+eine quadratisch infinitesemale Änderung ist, die keine Auswirkung hat. Im
+Skript ist auf Seite~66 eine ähnliche Aufgabe gerechnet, jedoch haben wir dies
+nicht nachvollziehen können. Jedenfalls sollte es möglich sein, zu zeigen, dass
+sich das $\tilde K$ hier genauso verhält wie das thermodynamische $K$ und diese
+daher identisch sind.
+
+Für die Relation zwischen $Z_\text G$ und G gilt:
+\begin{align*}
+    \ln(Z_\text G) &= - \frac{E_r}{kT} + \frac{KL}{kT} \\
+    - kT \ln(Z_\text G) &= E - KL
+\end{align*}
+Mit $E = TS + \mu N$ ist dies gerade $G$.
 
 \end{document}
 
