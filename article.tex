@@ -19,6 +19,16 @@
 
 \subsection{Kanonische Zustandssumme}
 
+Zuerst berechnen wir $Z_C$:
+\begin{align*}
+    Z_\text C
+    &= \sum_{n_i=1}^\infty \exp\del{- \frac{\hbar\omega \del{n_i + \frac 12}}{kT}} \\
+    &= \sum_{n_i=1}^\infty \exp\del{- \frac{\hbar\omega}{2kT}} \exp\del{- \frac{\hbar\omega n_i}{kT}} \\
+    &= \exp\del{- \frac{\hbar\omega}{2kT}} \sum_{n_i=1}^\infty \sbr{\exp\del{- \frac{\hbar\omega}{kT}}}^{n_i} \\
+    &= \exp\del{- \frac{\hbar\omega}{2kT}} \frac1{1 - \exp\del{- \frac{\hbar\omega}{kT}}} \\
+    &= \frac 12 \csch\del{- \frac{\hbar\omega}{kT}} \\
+\end{align*}
+
 \subsection{Innere Energie}
 
 \subsection{Freie Energie}
@@ -41,6 +51,21 @@ In Abbildung~\ref{fig:1d-c} ist dieses Verhalten dargestellt.
 \section{Gibb'sches Paradoxon}
 
 \subsection{Druck- und Temperaturausgleich}
+
+Gegeben sind:
+\[
+    N_1
+    \eqnsep
+    N_2
+    \eqnsep
+    p_1
+    \eqnsep
+    p_2
+    \eqnsep
+    T_1
+    \eqnsep
+    T_2
+\]
 
 \subsection{Änderung der Entropie}
 
