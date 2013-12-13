@@ -15,6 +15,8 @@
 
 \maketitle
 
+\newcommand\ZC{Z_\text C}
+
 \section{System von unabhängigen harmonischen Ozsillatoren}
 
 \subsection{Kanonische Zustandssumme}
@@ -22,18 +24,132 @@
 Zuerst berechnen wir $Z_C$:
 \begin{align*}
     Z_\text C
-    &= \sum_{n_i=1}^\infty \exp\del{- \frac{\hbar\omega \del{n_i + \frac 12}}{kT}} \\
-    &= \sum_{n_i=1}^\infty \exp\del{- \frac{\hbar\omega}{2kT}} \exp\del{- \frac{\hbar\omega n_i}{kT}} \\
-    &= \exp\del{- \frac{\hbar\omega}{2kT}} \sum_{n_i=1}^\infty \sbr{\exp\del{- \frac{\hbar\omega}{kT}}}^{n_i} \\
-    &= \exp\del{- \frac{\hbar\omega}{2kT}} \frac1{1 - \exp\del{- \frac{\hbar\omega}{kT}}} \\
-    &= \frac 12 \csch\del{- \frac{\hbar\omega}{kT}} \\
+    &= \prod_{n=1}^N \sum_{n_i=0}^\infty \exp\del{- \frac{\hbar\omega \del{n_i + \frac 12}}{kT}} \\
+    &= \prod_{n=1}^N \sum_{n_i=0}^\infty \exp\del{- \frac{\hbar\omega}{2kT}} \exp\del{- \frac{\hbar\omega n_i}{kT}} \\
+    &= \prod_{n=1}^N \exp\del{- \frac{\hbar\omega}{2kT}} \sum_{n_i=1}^\infty \sbr{\exp\del{- \frac{\hbar\omega}{kT}}}^{n_i} \\
+    &= \prod_{n=1}^N \exp\del{- \frac{\hbar\omega}{2kT}} \frac1{1 - \exp\del{- \frac{\hbar\omega}{kT}}} \\
+    &= \del{\frac 12 \csch\del{\frac{\hbar\omega}{2kT}}}^N
 \end{align*}
 
 Die Energieeigenwerte eines Mikrozustandes $\ket n$ sind einfach die Summen der einzelnen Energieeigenwerte. Und die sind $\hbar\omega\cdot(n + 1/2)$. Oder ist mit $\ket n$ gemeint, dass alle $N$ Oszillatoren den Zustand $n$ haben? Dann ist die Energie einfach $N E_n$.
 
 \subsection{Innere Energie}
 
+Die innere Energie ist der Erwartungswert der Energie:
+\begin{align*}
+    U
+    &= \braket E \\
+    &= \sum_{n=0}^\infty W(n) E_n \\
+    &= \frac1\ZC \sum_{n=0}^\infty \exp\del{-\frac{E_n}{kT}} E_n \\
+    \intertext{%
+        Dies schreiben wir jetzt als Ableitung von $\ZC$:
+    }
+    &= -\frac1\ZC \dpd{}{\frac1{kT}} \sum_{n=0}^\infty \exp\del{-\frac{E_n}{kT}} \\
+    \intertext{%
+        Das hinter der Ableitung ist gerade $\ZC$. Den Faktor $\frac1\ZC$ ganz
+        vorne werden wir noch durch den natürlichen Logarithmus los.
+    }
+    &= -\dpd{}{\frac1{kT}} \ln(\ZC) \\
+    \intertext{%
+        Wir transformieren noch:
+        \[
+            \dpd{}T = \dpd{\frac1{kT}}T \dpd{}{\frac1{kT}} = - \frac1{kT^2} \dpd{}{\frac1{kT}}
+            \implies
+            \dpd{}{\frac1{kT}} = - kT^2 \dpd{}T
+        \]
+    }
+    &= kT^2 \dpd{}T \ln(\ZC) \\
+    \intertext{%
+        Nun setzen wir $\ZC$ ein und führen die Ableitung aus.
+    }
+    &= NkT^2 \frac{\frac 12 \frac{\hbar\omega}{2 k T^2} \csch\del{\frac{\hbar\omega}{2kT}}\coth\del{\frac{\hbar\omega}{2kT}}}{\frac 12 \csch\del{\frac{\hbar\omega}{2kT}}} \\
+    &= N\frac{\hbar\omega}2 \coth\del{\frac{\hbar\omega}{2kT}}
+\end{align*}
+
+Wir berechnen den Erwartungswert für die Phononenzahl $n$:
+\begin{align*}
+    \bracket n
+    &= \sum_n W(n) n \\
+    &= \frac1\ZC \sum_n \exp\del{-\frac{\hbar \omega \del{n + \frac12}}{kT}} n \\
+    \intertext{%
+        Wir ziehen $\ZC$ unter alles.
+    }
+    &= \frac{\sum_n \exp\del{-\frac{\hbar \omega \del{n + \frac12}}{kT}} n}{\ZC} \\
+    \intertext{%
+        Wir schreiben $\ZC$ aus.
+    }
+    &= \frac{\sum_n \exp\del{-\frac{\hbar \omega \del{n + \frac12}}{kT}} n}{\sum_n \exp\del{-\frac{\hbar \omega \del{n + \frac12}}{kT}}} \\
+    \intertext{%
+        Nun addieren wir null.
+    }
+    &= \frac{\sum_n \exp\del{-\frac{\hbar \omega \del{n + \frac12}}{kT}} n}{\sum_n \exp\del{-\frac{\hbar \omega \del{n + \frac12}}{kT}}} + \frac12 - \frac12 \\
+    \intertext{%
+        Die $+\frac 12$ werden in den Zähler integriert.
+    }
+    &= \frac{\sum_n \exp\del{-\frac{\hbar \omega \del{n + \frac12}}{kT}} \del{n + \frac12}}{\sum_n \exp\del{-\frac{\hbar \omega \del{n + \frac12}}{kT}}} - \frac12 \\
+    \intertext{%
+        Wir wenden den Trick mit der Ableitung an und ziehen somit das $(n +
+        \frac 12)$ in die Ableitung rein.
+    }
+    &= - \frac{\dpd{}{\frac{\hbar\omega}{kT}} \sum_n \exp\del{-\frac{\hbar \omega \del{n + \frac12} }{kT}}}{\sum_n \exp\del{-\frac{\hbar \omega \del{n + \frac12}}{kT}}} - \frac12 \\
+    \intertext{%
+        Das ganze können wir auch als Ableitung einer Logarithmusfunktion
+        schreiben.
+    }
+    &= - \dpd{}{\frac{\hbar\omega}{kT}} \ln\del{\sum_n \exp\del{-\frac{\hbar \omega \del{n + \frac12}}{kT}}} - \frac12 \\
+    \intertext{%
+        Dies ist gerade $Z_{\text C,1}$.
+    }
+    &= -\dpd{}{\frac{\hbar\omega}{kT}} \ln(Z_{\text C,1}) - \frac12 \\
+    \intertext{%
+        Wir setzen unser vorheriges Ergebnis für $Z_{\text C,1}$ ein.
+    }
+    &= \dpd{}{\frac{\hbar\omega}{kT}} \ln\del{2 \sinh\del{\frac{\hbar\omega}{2kT}}} - \frac12 \\
+    \intertext{%
+        Die Ableitung führen wir aus:
+    }
+    &= \frac{2 \cosh(\ldots)}{2 \sinh(\ldots)} \frac 12 - \frac 12 \\
+    \intertext{%
+        Wir benutzen die Exponentialdarstellung der Funktionen.
+    }
+    &= \frac 12\del{\frac{\eup^{\ldots} + \eup^{-\ldots}}{\eup^{\ldots} - \eup^{-\ldots}} - \frac 12} \\
+    \intertext{%
+        Nach etwas umstellen erhalten wir:
+    }
+    &= \frac1{\exp\del{\frac{\hbar\omega}{kT}} - 1}
+\end{align*}
+
+Dies ist der gesuchte Erwartungswert.
+
+Wir können nun das Zwischenergebnis benutzen, um die innere Energie noch etwas kompakter auszudrücken. Dieses Ergebnis ist:
+\[
+    \braket n = \frac12 \coth\del{\frac{\hbar\omega}{2kT}} - \frac 12
+\]
+
+Unsere bisherige Form für die innere Energie ist:
+\[
+    U = N \frac{\hbar\omega}2 \coth\del{\frac{\hbar\omega}{2kT}}
+\]
+
+Dies kann jetzt benutzen, um zu schreiben:
+\[
+    U = N \hbar \omega \del{\bracket n + \frac12}
+\]
+
 \subsection{Freie Energie}
+
+Die freie Energie errechnen wir aus der Zustandssumme:
+\begin{align*}
+    F
+    &= - k T \ln(\ZC) \\
+    &= - N k T \ln\del{\frac 12 \csch\del{\frac{\hbar\omega}{2kT}}} \\
+    &= N k T \ln\del{2 \sinh\del{\frac{\hbar\omega}{2kT}}} \\
+    \intertext{%
+        Im Skript ist jetzt noch mit Formel (4.77) eine weitere Umformung
+        gemacht:
+    }
+    &= N \del{kT \ln\del{1 - \exp\del{-\frac{\hbar\omega}{kT}}} + \frac{\hbar\omega}2}
+\end{align*}
 
 \subsection{Ausdruck für die Wärmekapazität}
 
