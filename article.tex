@@ -51,12 +51,13 @@ Die innere Energie ist der Erwartungswert der Energie:
     }
     &= -\dpd{}{\frac1{kT}} \ln(\ZC) \\
     \intertext{%
-        Wir transformieren noch:
+        Wir transformieren die partielle Ableitung noch mit
         \[
             \dpd{}T = \dpd{\frac1{kT}}T \dpd{}{\frac1{kT}} = - \frac1{kT^2} \dpd{}{\frac1{kT}}
             \implies
             \dpd{}{\frac1{kT}} = - kT^2 \dpd{}T
         \]
+        und erhalten so:
     }
     &= kT^2 \dpd{}T \ln(\ZC) \\
     \intertext{%
@@ -127,14 +128,26 @@ Wir können nun das Zwischenergebnis benutzen, um die innere Energie noch etwas 
 \]
 
 Unsere bisherige Form für die innere Energie ist:
-\[
+\begin{equation}
+    \label{eq:U}
     U = N \frac{\hbar\omega}2 \coth\del{\frac{\hbar\omega}{2kT}}
-\]
+\end{equation}
 
-Dies kann jetzt benutzen, um zu schreiben:
+Dies können wir jetzt benutzen, um zu schreiben:
 \[
     U = N \hbar \omega \del{\bracket n + \frac12}
 \]
+
+Wir benutzen die Form \eqref{eq:U}, um die Abhängigkeit der inneren Energie von $kT/\hbar\omega$ zu plotten. Dies ist in Abbildung~\ref{fig:U} dargestellt.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=.6\linewidth]{2b.png}
+    \caption{%
+        Abhängigkeit der inneren Energie von $kT/\hbar\omega$.
+    }
+    \label{fig:U}
+\end{figure}
 
 \subsection{Freie Energie}
 
