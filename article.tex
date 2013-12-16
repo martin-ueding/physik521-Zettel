@@ -69,10 +69,49 @@ Gegeben sind:
     T_2
 \]
 
+
 \subsection{Änderung der Entropie}
 
 \section{Maxwell'sche Geschwindigkeitsverteilung}
 
+\subsection{Wahrscheinlichkeitsdichte}
+Gesucht ist die Wahrscheinlichkeitsdichte des Geschwindigkeitsbetrags eines Teilchens. Die kinetische Energie ist gegeben durch
+\[T=\frac{mv^2}{2}.\]
+Damit ergibt sich im kanonischen Formalismus eine Wahrscheinlichkeitsdichte von
+\[W(v) \dif v = \frac{4\pi v^2}{Z_\text c} \exp\del{-\frac{\beta mv^2}{2}} \dif v, \]
+wobei sich der Faktor $4\pi v^2$ durch die Jacobideterminante bei der Betrachtung
+Für die Normierung muss die Dichte über alle Geschwindigkeiten integriert werden:
+\begin{align*}
+Z_\text c &= \int \dif{}^3v \exp\del{-\frac{\beta m\vec{v}^2}{2}} \\
+&= \int\dif v_1 \int\dif v_2 \int\dif v_3 \exp\del{-\frac{\beta m \del{ v_1^2+v_2^2+v_3^2}}{2}} \\
+&= \del{\int \dif v \exp\del{-\frac{\beta m{v}^2}{2}}}^3 \\
+&= \del{\sqrt{\frac{2\pi}{\beta m}}}^3
+\end{align*}
+Daraus folgt also:
+\[W(v) \dif v = \sqrt{\frac{2}{\pi}} \del{\frac{m}{k_\text B T}}^{3/2} v^2 \exp\del{-\frac{mv^2}{2k_\text BT}} \dif v \]
+
+\subsection{Mittlere und wahrscheinlichste Geschwindigkeit}
+Berechne die mittlere Geschwindigkeit:
+\begin{align*}
+\bar{v} &= \int \dif v \ \rho(v) v \\
+&= \int_0^\infty \dif v \ \frac{4\pi v^3}{Z_\text C} \exp\del{-\frac{mv^2}{2k_\text B T}} \\
+&= \int_0^\infty \dif q \ \frac{q}{2Z_\text C} \exp\del{-\frac{mq}{2k_\text B T}} \\
+&= \int_0^\infty \dif q \ \frac{1}{2Z_\text C} \exp\del{-\frac{mq}{2k_\text B T}}\del{-\frac{-2k_\text B T}{m}} \\
+&= \frac{1}{2Z_\text C}\del{\frac{-2k_\text B T}{m}}^2 \\
+&= \sqrt{\frac{8k_\text B T}{\pi m}}
+\end{align*}
+
+Berechne die wahrscheinlichste Geschwindigkeit. Diese ist durch das Maximum der Wahscheinlichkeitsdichte gegeben, es muss also gelten:
+\[\frac{\dif}{\dif v}W(v)\bigg|_{v=v_W}=0\]
+\begin{align*}
+\frac{\dif}{\dif v}W(v) &= \frac{1}{Z_\text C}\del{2v\exp\del{-\frac{mv^2}{2k_\text BT}}-\frac{2v^3m}{2k_\text BT}\exp\del{-\frac{mv^2}{2k_\text BT}}} \\
+&= \frac{v}{Z_\text C}\exp\del{-\frac{mv^2}{2k_\text BT}} \del{2-\frac{v^2m}{k_\text B T}} \stackrel{!}{=} 0 \\
+\end{align*}
+$W(v)$ ist nur für positive $v$ definiert und $W(0)=0$. Für die wahrscheinlichste Geschwindigkeit bleibt also nur noch übrig:
+\[v_\text W=\sqrt{\frac{2k_\text BT}{m}}\]
+
+\subsection{Weitere Freiheitsgrade}
+Da Rotations- und Vibrationsfreiheitsgrade nicht mit der Schwerpunktsbewegung der Teilchen wechselwirken können wir die Geschwindigkeitsverteilung für festgehaltene Rotations- bzw Vibrationsenergie betrachten. Sie unterscheidet sich bei zweiatomigen Molekülen also nicht von der Geschwindigkeitsverteilung für Einzelatome.
 
 \IfFileExists{\bibliographyfile}{
     \printbibliography
