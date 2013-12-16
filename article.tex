@@ -215,11 +215,77 @@ Gegeben sind:
     \eqnsep
     T_2
 \]
+Da wir ideale Gase betrachten gilt zunächst:
+\begin{align*}
+p_1V_1 &= N_1k_\text B T_1 \\
+p_2V_2 &= N_2k_\text B T_2 \\
+U &= \frac{3}{2}N_1 k_\text B T_1 + \frac{3}{2} N_2 k_\text BT_2
+\end{align*}
+
+Die innere Energie bleibt beim Gesamtprozess erhalten:
+\begin{align*}
+U = \frac{3}{2} N_1 k_\text B T_1 + \frac{3}{2}N_2 k_\text B T_2 &= \frac{3}{2}(N_1+N_2) k_\text B T \\
+\implies \del{N_1+N_2} k_\text BT &= N_1 k_\text B T_1 + N_2 k_\text B T_2 \\
+\end{align*}
+Gemäß idealer Gasgleichung gilt im Endzustand aber:
+\[p\del{V_1+V_2}=\del{N_1+N_2}k_\text BT \]
+Setzt man ein, erhält man:
+\begin{align*}
+p\del{V_1+V_2} &= N_1k_\text BT_1+N_2k_\text BT_2 \\
+\implies p &= \frac{N_1k_\text BT_1 + N_2k_\text BT_2}{V_1+V_2} \\
+\implies T &= \frac{p}{\del{N_1+N_2}k_\text B}=\frac{N_1T_1 + N_2T_2}{\del{V_1+V_2}\del{N_1+N_2}}
+\end{align*}
+
 
 \subsection{Änderung der Entropie}
+Die Entropie vor Entfernen der Trennwand ist:
+\[ S = N_1 k_\text B \del{\ln V_1 +\frac{3}{2}\del{1+\ln\del{2\pi m_1 k_\text B T /h^2}}}  + N_2 k_\text B \del{\ln V_2 +\frac{3}{2}\del{1+\ln\del{2\pi m_2 k_\text B T /h^2}}} \]
+Nach Entfernen der Trennwand sind die Gasteilchen beider Sorten auf das Gesamtvolumen verteilt, für die Entropie ergibt sich:
+\[ S' = N_1 k_\text B \del{\ln V +\frac{3}{2}\del{1+\ln\del{2\pi m_1 k_\text B T /h^2}}}  + N_2 k_\text B \del{\ln V +\frac{3}{2}\del{1+\ln\del{2\pi m_2 k_\text B T /h^2}}} \]
+Die Differenz der beiden Ausdrücke ergibt:
+\[\Delta S = N_1 k_\text B \ln V - N_1 k_\text B \ln V_1 + N_2 k_\text B \ln V - N_2 k_\text B \ln V_2 = N_1 k_\text B \ln\del{\frac{V_1+V_2}{V_1}} + N_2 k_\text B \ln\del{\frac{V_1+V_2}{V_2}} > 0 \]
+Auch im Falle identischer Teilchen würde sich dabei die Entropie erhöhen, obwohl es zu keiner Zustandsänderung gekommen ist. Das steht im Widerspruch zur Tatsache, dass die Entropie eine Zustandsvariable ist und damit für einen bestimmten Zustand eindeutig ist.
 
 \section{Maxwell'sche Geschwindigkeitsverteilung}
 
+\subsection{Wahrscheinlichkeitsdichte}
+Gesucht ist die Wahrscheinlichkeitsdichte des Geschwindigkeitsbetrags eines Teilchens. Die kinetische Energie ist gegeben durch
+\[T=\frac{mv^2}{2}.\]
+Damit ergibt sich im kanonischen Formalismus eine Wahrscheinlichkeitsdichte von
+\[W(v) \dif v = \frac{4\pi v^2}{Z_\text c} \exp\del{-\frac{\beta mv^2}{2}} \dif v, \]
+wobei sich der Faktor $4\pi v^2$ durch die Jacobideterminante bei der Betrachtung
+Für die Normierung muss die Dichte über alle Geschwindigkeiten integriert werden:
+\begin{align*}
+Z_\text c &= \int \dif{}^3v \exp\del{-\frac{\beta m\vec{v}^2}{2}} \\
+&= \int\dif v_1 \int\dif v_2 \int\dif v_3 \exp\del{-\frac{\beta m \del{ v_1^2+v_2^2+v_3^2}}{2}} \\
+&= \del{\int \dif v \exp\del{-\frac{\beta m{v}^2}{2}}}^3 \\
+&= \del{\sqrt{\frac{2\pi}{\beta m}}}^3
+\end{align*}
+Daraus folgt also:
+\[W(v) \dif v = \sqrt{\frac{2}{\pi}} \del{\frac{m}{k_\text B T}}^{3/2} v^2 \exp\del{-\frac{mv^2}{2k_\text BT}} \dif v \]
+
+\subsection{Mittlere und wahrscheinlichste Geschwindigkeit}
+Berechne die mittlere Geschwindigkeit:
+\begin{align*}
+\bar{v} &= \int \dif v \ \rho(v) v \\
+&= \int_0^\infty \dif v \ \frac{4\pi v^3}{Z_\text C} \exp\del{-\frac{mv^2}{2k_\text B T}} \\
+&= \int_0^\infty \dif q \ \frac{q}{2Z_\text C} \exp\del{-\frac{mq}{2k_\text B T}} \\
+&= \int_0^\infty \dif q \ \frac{1}{2Z_\text C} \exp\del{-\frac{mq}{2k_\text B T}}\del{-\frac{-2k_\text B T}{m}} \\
+&= \frac{1}{2Z_\text C}\del{\frac{-2k_\text B T}{m}}^2 \\
+&= \sqrt{\frac{8k_\text B T}{\pi m}}
+\end{align*}
+
+Berechne die wahrscheinlichste Geschwindigkeit. Diese ist durch das Maximum der Wahscheinlichkeitsdichte gegeben, es muss also gelten:
+\[\frac{\dif}{\dif v}W(v)\bigg|_{v=v_W}=0\]
+\begin{align*}
+\frac{\dif}{\dif v}W(v) &= \frac{1}{Z_\text C}\del{2v\exp\del{-\frac{mv^2}{2k_\text BT}}-\frac{2v^3m}{2k_\text BT}\exp\del{-\frac{mv^2}{2k_\text BT}}} \\
+&= \frac{v}{Z_\text C}\exp\del{-\frac{mv^2}{2k_\text BT}} \del{2-\frac{v^2m}{k_\text B T}} \stackrel{!}{=} 0 \\
+\end{align*}
+$W(v)$ ist nur für positive $v$ definiert und $W(0)=0$. Für die wahrscheinlichste Geschwindigkeit bleibt also nur noch übrig:
+\[v_\text W=\sqrt{\frac{2k_\text BT}{m}}\]
+
+\subsection{Weitere Freiheitsgrade}
+Da Rotations- und Vibrationsfreiheitsgrade nicht mit der Schwerpunktsbewegung der Teilchen wechselwirken können wir die Geschwindigkeitsverteilung für festgehaltene Rotations- bzw Vibrationsenergie betrachten. Sie unterscheidet sich bei zweiatomigen Molekülen also nicht von der Geschwindigkeitsverteilung für Einzelatome.
 
 \IfFileExists{\bibliographyfile}{
     \printbibliography
