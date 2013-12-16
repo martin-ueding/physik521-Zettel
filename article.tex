@@ -164,6 +164,24 @@ Die freie Energie errechnen wir aus der Zustandssumme:
     &= N \del{kT \ln\del{1 - \exp\del{-\frac{\hbar\omega}{kT}}} + \frac{\hbar\omega}2}
 \end{align*}
 
+Aus der zweiten Zeile berechnen die Entropie durch Ableitung nach der Temperatur:
+\begin{align*}
+    S
+    &= - \dpd FT \\
+    &= - N \frac{\hbar\omega}{2T} \coth\del{-\frac{\hbar\omega}{kT}} + N k \ln\del{\frac 12 \csch\del{-\frac{\hbar\omega}{kT}}}
+\end{align*}
+
+Somit erhalten wir:
+\[
+    TS = - N \frac{\hbar\omega}{2} \coth\del{-\frac{\hbar\omega}{kT}} + N k T \ln\del{\frac 12 \csch\del{-\frac{\hbar\omega}{kT}}}
+\]
+
+Mit $U = F + TS$ erhalten wir dann als innere Energie
+\[
+    U = N \frac{\hbar\omega}{2} \coth\del{\frac{\hbar\omega}{kT}},
+\]
+in Übereinstimmung mit \eqref{eq:U}.
+
 \subsection{Ausdruck für die Wärmekapazität}
 
 In Abbildung~\ref{fig:1d-c} ist dieses Verhalten dargestellt.
