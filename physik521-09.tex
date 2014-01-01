@@ -219,6 +219,51 @@ Fermiverteilung jenseits des chemischen Potentials annähernd konstant ist.
 $b(\mu)$ ist die Anzahl der Zustände, die bis zum chemischen Potential besetzt
 sind.
 
+\subsubsection{Entropie}
+
+Im Skript wird eine analoge Näherung des kanonischen Potentials gemacht. Da im
+kanonischen Potential zuerst der Logarithmus der Zustandssumme steht, braucht
+man eine weitere partielle Integration, um die Ableitung der Fermiverteilung
+zu erhalten. Der Ausdruck ist gegeben als:
+\[
+    \Omega = -2 b(\mu) - \frac{\pi^2}3 p(\mu) (\kB T)^2 + \mathcal O(T^4).
+\]
+
+Die Entropie ist die negative Ableitung nach der Temperatur, also:
+\[
+    S = - \dpd \Omega T = \frac 23 \pi^2 \rho(\mu) \kB^2 T.
+\]
+
+\subsubsection{Innere Energie}
+
+Die innere Energie ist $U = \Omega + TS + \mu N$. Mit den Ergebnissen der
+vorherigen Teilaufgaben:
+\[
+    U = - 2 b(\mu) + \frac{\pi^2}3 \rho(\mu) (\kB T)^2 + \mu N.
+\]
+
+Wenn man $b(\mu) = N$ annimmt, das allerdings nicht exakt sein kann, weil wir
+in der vorherigen Aufgabe etwas anderes für $\bracket N$ erhalten haben,
+könnte man dies vielleicht noch weiter vereinfachen.
+
+\subsubsection{Freie Energie}
+
+Die freie Energie ist, wie zuvor auch, $\Omega + \mu N$ und lässt sich nicht
+sonderlich vereinfachen.
+
+\subsubsection{Druck}
+
+Der Druck ist weiterhin
+\[
+    p = - \dpd \Omega V,
+\]
+wobei das $\Omega$ jetzt das genäherte ist. Da $\rho(\omega)$ wieder
+proportional von $V$ ist und der erste Summand in $\Omega$ gar nicht von $V$
+abhängt, ist der Druck gegeben durch:
+\[
+    p = \frac{\piup^2}6 \frac{\rho(\mu)}V (\kB T)^2.
+\]
+
 \IfFileExists{\bibliographyfile}{
     \printbibliography
 }{}
