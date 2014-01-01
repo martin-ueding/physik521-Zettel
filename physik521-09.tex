@@ -19,9 +19,38 @@
 
 \maketitle
 
-%\newpage
-%\tableofcontents
-%\newpage
+\section{Das ideale Fermi-Gas}
+
+\newcommand\kB{k_\text B}
+\newcommand\ZG{Z_\text G}
+\newcommand\ZGe{Z_{\text G, 1}}
+\newcommand\Eai{E_{\alpha_i}}
+\newcommand\isum{\sum_{i=1}^\infty }
+
+Wir übernehmen folgende Formel aus dem Skript:
+\begin{gather*}
+    \ZG = \prod_{i=1}^\infty \del{1 + \exp\del{- \frac{\Eai - \mu}{\kB T}}} \\
+    \Omega = - \kB T \isum \ln \del{\ZGe(\alpha_i, \mu, T)} \\
+    \rho(E) = \isum \delta(E - \Eai)
+\end{gather*}
+
+\subsection{Allgemeine Ausdrücke}
+
+\subsubsection{Mittlere Teilchenzahl}
+
+Die Funktion $f(\Eai)$ gibt die Anzahl der Besetzungen des Zustandes $\alpha_i$ an. Somit wie im Skript:
+\[
+    \bracket N = \isum f(\Eai).
+\]
+
+Wenn man jetzt $\rho$ dazunimmt, geht dies so:
+\[
+    \bracket N = \int \dif E \, \rho(E) f(E).
+\]
+
+Dies funktioniert, da $\rho$ im Integral über $E$ an jedem Energiewert $E$ die
+Anzahl der Zustände $\alpha_i$, die diese Energie haben, gibt. Somit wird die
+Multiplizität der Energiezustände von der Summe in das $\rho$ verlagert.
 
 \IfFileExists{\bibliographyfile}{
     \printbibliography
