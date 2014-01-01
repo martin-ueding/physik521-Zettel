@@ -92,6 +92,29 @@ vereinfacht.
 
 \subsection{Druck des Gases}
 
+Im Skript wird folgendes vorgerechnet. In Formel (5.47) ist das großkanonische Potential gegeben:
+\[
+    \Omega = - \kB T \sum_\sigma \dif E_\alpha \rho_\sigma(E_\alpha) \ln\del{1 + \exp\del{- \frac{E_\alpha - \mu}{\kB T}}}.
+\]
+
+Dabei stehen die $\sigma$ wahrscheinlich für alle Spins, über die Summiert wird. Allerdings ist der Index $\alpha$ frei, sollte aber wegsummiert werden, da er auf der linken Seite nicht steht. Fehlt somit noch eine Summe über $\alpha$, oder bezieht die Summe über die $\sigma$ dies noch ein?
+
+\newcommand\EF{\epsilon_\text F}
+
+In Formel (5.28) ist die Zustandsdichte pro Volumen gegeben:
+\[
+    \frac{\rho_\sigma(E)} V = \frac 34 n \frac1\EF \sqrt{\frac E\EF}.
+\]
+
+Wenn man dies jetzt nach $\rho_\sigma$ umstellt und in die obige Formel für $\Omega$ einsetzt, und noch annimmt, dass die Abhängigkeit vom Volumen jetzt alleine in dem $V$ steckt, das durch die Umformung entstanden ist, führt eine Ableitung nach $V$ nur dazu, dass dieses $V$ wieder verschwindet. Somit erhalten wir das in Skript gegebene Ergebnis von:
+\[
+    p = - \dpd \omega V = - \frac \Omega V.
+\]
+
+Jetzt haben wir dabei wohl angenommen, dass die Teilchendichte $n = N/V$ konstant bleibt, weil $\rho_\sigma/V$ diese enthält und wir nur so diese proportionale Volumenabhängigkeit erhalten. Allerdings wurde das $\mu$ in der Darstellung von $\Omega$ als konstant angenommen, damit die Ableitung derart einfach ist.
+
+Von daher scheint die Herleitung im Skript beide Annahmen gemacht zu haben.
+
 \subsubsection{Bei festem chemischen Potential}
 
 \fehlt
