@@ -67,7 +67,9 @@ Mit $\Omega = U - TS - \mu N$ kann man die Entropie $S$ als Ableitung schreiben:
 
 Diese rechnen wir jetzt konkret aus:
 \begin{align*}
-    S &= \kB \isum \ln(\ldots) + \kB T \isum \frac{\exp(\ldots)}{1 + \exp(\ldots)} \frac{\Eai - \mu}{\kB T^2} \\
+    S &= \kB \isum \ln\del{- \frac{\Eai - \mu}{\kB T}} + \kB T \isum
+    \frac{\exp\del{- \frac{\Eai - \mu}{\kB T}}}{1 + \exp\del{- \frac{\Eai -
+    \mu}{\kB T}}} \frac{\Eai - \mu}{\kB T^2} \\
       &= - \frac\Omega T + \isum f(\Eai) \frac{\Eai - \mu}T.
 \end{align*}
 
