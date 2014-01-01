@@ -177,6 +177,8 @@ Für die weiteren Teilaufgaben muss das großkanonische Potential genähert
 werden. Dabei wird ausgenutzt, dass bei kleinen Temperaturen die
 Fermiverteilung jenseits des chemischen Potentials annähernd konstant ist.
 
+\subsubsection{Mittlere Teilchenzahl}
+
 \begin{align*}
     N &= 2 \int \dif E \, \rho(E) f(E) \\
     \intertext{%
@@ -206,10 +208,16 @@ Fermiverteilung jenseits des chemischen Potentials annähernd konstant ist.
         Wir setzen diese Entwicklung für $b$ ein und erhalten:
     }
     &= - 2 b(\mu) \int \dif E \, f'(E) - 2 b'(\mu) \int \dif E \, (E-\mu)
-    f'(E) - b''(\mu) \int \dif E \, (E-\mu)^2 f'(E) \\
+    f'(E) - b''(\mu) \int \dif E \, (E-\mu)^2 f'(E). \\
+    \intertext{%
+        Im Skript sind die Lösungen zu diesen sogenannten Fermiintegralen
+        angeben. Diese setzen wir hier ein.
+    }
+    &= 2 b(\mu) + p'(\mu) \frac{\pi^2}{3} (\kB T)^2
 \end{align*}
 
-\subsubsection{Mittlere Teilchenzahl}
+$b(\mu)$ ist die Anzahl der Zustände, die bis zum chemischen Potential besetzt
+sind.
 
 \IfFileExists{\bibliographyfile}{
     \printbibliography
