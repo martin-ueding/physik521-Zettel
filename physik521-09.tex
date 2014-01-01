@@ -115,7 +115,38 @@ Hier ist die Variante mit
 \[
     c_V = - T \tdpd ST{V,\mu}
 \]
-nützlich.
+nützlich. Dort setzen wir jetzt die Entropie, die wir vorher berechnet haben, ein:
+\begin{align*}
+    c_V &= -T \sbr{
+    \frac{\Omega}{T^2} - \isum f(\Eai) \frac{\Eai - \mu}{T^2} - \frac 1T \tdpd \Omega T {V,\mu} - \isum \tdpd{f(\Eai)}T{V,\mu} \frac{\Eai - \mu}T
+    } \\
+    &= - \frac\Omega T + \isum f(\Eai) \frac{\Eai - \mu}T - \tdpd\Omega T{V,\mu} + \isum \tdpd{f(\Eai)}T{V,\mu} (\Eai - \mu). \\
+    \intertext{%
+        Die ersten beiden Summanden sind gerade die Entropie. Der dritte
+        Summand ist $-S$. Somit erhalten wir:
+    }
+    &= \isum \tdpd{f(\Eai)}T{V,\mu} (\Eai - \mu). \\
+    \intertext{%
+        Wir ziehen die Ableitung nach vorne, da die restlichen Größen als
+        unabhängig von der Temperatur angenommen werden.
+    }
+    &= \tdpd{}T{V,\mu} \isum f(\Eai) \cdot (\Eai - \mu) \\
+    \intertext{%
+        Es bleibt der Mittelwert von $\Eai - \mu$ übrig. Somit schreiben wir:
+    }
+    &= \tdpd{}T{V,\mu} \bracket{\Eai - \mu} \\
+    \intertext{%
+        Dies ist der Mittelwert der Abweichung der Energiewerte vom chemischen
+        Potential. In der zeitlichen Ableitung spielt $\mu$ jedoch keine Rolle
+        mehr, da es als konstant angenommen wird. Somit ist es nur der
+        Mittelwert der Energie.
+    }
+    &= \tdpd{\bracket\Eai}T{V,\mu} \\
+    \intertext{%
+        Dies identifizieren wir mit der inneren Energie:
+    }
+    &= \tdpd{U}T{V,\mu}.
+\end{align*}
 
 \subsection{Tieftemperaturentwicklung}
 
