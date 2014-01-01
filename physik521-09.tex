@@ -173,7 +173,43 @@ nützlich. Dort setzen wir jetzt die Entropie, die wir vorher berechnet haben, e
 
 \subsection{Tieftemperaturentwicklung}
 
-\fehlt
+Für die weiteren Teilaufgaben muss das großkanonische Potential genähert
+werden. Dabei wird ausgenutzt, dass bei kleinen Temperaturen die
+Fermiverteilung jenseits des chemischen Potentials annähernd konstant ist.
+
+\begin{align*}
+    N &= 2 \int \dif E \, \rho(E) f(E) \\
+    \intertext{%
+        Nun führen wir eine partielle Integration durch, um die Ableitung der
+        Fermiverteilung zu erhalten. Dazu müssen wir dann eine Funktion
+        \[
+            b(E) := \int_{-\infty}^E \dif E' \, \rho(E')
+        \]
+        einführen, die die Stammfunktion zu $\rho$ ist.
+    }
+    &= 2 \eval{b(E) f(E)}_{E=-\infty}^\infty - 2 \int \dif E \, b(E) f'(E) \\
+    \intertext{%
+        Der erste Summand verschwindet, da $b(-\infty)$ per Definition
+        verschwindet. $f(\infty)$ verschwindet auch, da große Energien immer
+        weniger dicht besetzt sind.
+    }
+    &= - 2 \int \dif E \, b(E) f'(E) \\
+    \intertext{%
+        Da $f'(E)$ an einer recht schmalen Stelle bei $E = \mu$ von null
+        verschieden ist, und $b$ innerhalb des relevanten Intervalls nicht
+        stark variiert, kann es durch eine Taylorentwicklung angenähert werden.
+        Diese ist:
+        \[
+            b(E) = b(\mu) + b'(\mu) (E-\mu) + \frac 12 b''(\mu) (E-\mu)^2 +
+            \mathcal O (E^3).
+        \]
+        Wir setzen diese Entwicklung für $b$ ein und erhalten:
+    }
+    &= - 2 b(\mu) \int \dif E \, f'(E) - 2 b'(\mu) \int \dif E \, (E-\mu)
+    f'(E) - b''(\mu) \int \dif E \, (E-\mu)^2 f'(E) \\
+\end{align*}
+
+\subsubsection{Mittlere Teilchenzahl}
 
 \IfFileExists{\bibliographyfile}{
     \printbibliography
