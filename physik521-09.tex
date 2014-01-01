@@ -27,12 +27,16 @@
 \newcommand\Eai{E_{\alpha_i}}
 \newcommand\isum{\sum_{i=1}^\infty }
 
-Wir übernehmen folgende Formel aus dem Skript:
+Wir übernehmen folgende Formeln aus dem Skript:
 \begin{gather*}
     \ZG = \prod_{i=1}^\infty \del{1 + \exp\del{- \frac{\Eai - \mu}{\kB T}}} \\
     \Omega = - \kB T \isum \ln \del{\ZGe(\alpha_i, \mu, T)} \\
     \rho(E) = \isum \delta(E - \Eai)
 \end{gather*}
+
+Alle diese Aufgaben stehen so im Skript vorgerechnet. Wir haben uns bei
+unseren Rechnungen an das Skript gehalten, jedoch wieder versucht jeden
+Schritt hier zur erklären.
 
 \subsection{Allgemeine Ausdrücke}
 
@@ -50,7 +54,35 @@ Wenn man jetzt $\rho$ dazunimmt, geht dies so:
 
 Dies funktioniert, da $\rho$ im Integral über $E$ an jedem Energiewert $E$ die
 Anzahl der Zustände $\alpha_i$, die diese Energie haben, gibt. Somit wird die
-Multiplizität der Energiezustände von der Summe in das $\rho$ verlagert.
+Vielfachheit der Energiezustände von der Summe in das $\rho$ verlagert.
+
+\subsubsection{Entropie}
+
+Mit $\Omega = U - TS - \mu N$ kann man die Entropie $S$ als Ableitung schreiben:
+\[
+    S = - \tdpd\Omega T{\mu, V}.
+\]
+
+Diese rechnen wir jetzt konkret aus:
+\begin{align*}
+    S &= \kB \isum \ln(\ldots) + \kB T \isum \frac{\exp(\ldots)}{1 + \exp(\ldots)} \frac{\Eai - \mu}{\kB T^2} \\
+      &= - \frac\Omega T + \isum f(\Eai) \frac{\Eai - \mu}T.
+\end{align*}
+
+\subsubsection{Innere Energie}
+
+Mit der am Anfang der vorherigen Teilaufgabe genannten Relation können wir die innere Energie als $U = \Omega + TS + \mu N$ schreiben. Wir rechnen weiter:
+\begin{align*}
+    U &= \Omega + TS + \mu N \\
+      &= \Omega - \Omega + \isum f(\Eai) \cdot (\Eai - \mu) + \mu N \\
+      &= \isum f(\Eai) \cdot \Eai + \isum f(\Eai) \cdot \Eai + \mu N \\
+      &= \bracket E - \bracket N \mu + \mu N. \\
+    \intertext{%
+        Wenn man das Limit $N \to \infty$ annimmt, kann man $\lim_{N\to\infty}
+        \bracket N = N$ annehmen und weiter vereinfachen:
+    }
+      &= \bracket E.
+\end{align*}
 
 \IfFileExists{\bibliographyfile}{
     \printbibliography
