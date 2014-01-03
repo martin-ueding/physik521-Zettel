@@ -268,6 +268,43 @@ abhängt, ist der Druck gegeben durch:
     p = \frac{\piup^2}6 \frac{\rho(\mu)}V (\kB T)^2.
 \]
 
+\section{Modell für weiße Zwerge}
+
+\subsection{Fermiimpuls}
+Für ein ideales Fermigas gilt die Gleichung 
+\[ \bracket N = \int \dif E \ \rho(E) f_\mu(E) \]
+Wir wissen, dass bei $T=0$ alle Zustände bis zur Fermienergie besetzt sind. Um diese und damit den Fermiimpuls zu erhalten brauchen wir die Gleichung lediglich bei $T=0 \implies f_\mu=\Theta(\epsilon_{\text F})$ auszuwerten.
+\begin{align*}
+N &= \int_0^{\epsilon_{\text F}} \dif E \ \rho(E) \\
+&= \int_0^{\epsilon_{\text F}} \dif E \ \frac{VE \sqrt{E^2-(mc^2)^2}}{2\pi^2\hbar^3c^3} \\
+&= \frac{V}{2\pi^2\hbar^3c^3} \int_0^{p_{\text F}} \dif p \ \frac{Ep^2c^3}{2E} \\
+&= \frac{V}{4\pi^2\hbar^3c} \int_0^{p_{\text F}} \dif p \ p^2 \\
+&= \frac{Vp_{\text F}^3}{12\pi^2\hbar^3} \\
+\implies p_{\text F} &= \hbar \ \sqrt[3]{12\pi^2 n}
+\end{align*}
+
+Damit Elektronen sich an der Fermikante relativistisch bewegen muss $p_{\text F} > mc$ gelten:
+\begin{align*}
+p_{\text F} &> mc \\
+\implies \hbar \ \sqrt[3]{12\pi^2 n} &> mc \\
+\implies n &> \frac{(mc)^3}{12\pi^2\hbar^3} \\
+n &> \SI{1.49e29}{\centi \meter}^{-3}
+\end{align*}
+
+\subsection{Temperatur}
+Berechne die Fermienergie mithilfe der relativistischen Energie-Impuls-Beziehung.
+\begin{align*}
+\epsilon_{\text F} &= c \sqrt{m^2c^2+p_{\text F}^2} \\
+&= c \sqrt{m^2c^2+\hbar^2 (12\pi^2 n)^{2/3}} \\
+&= \SI{1.75e-13}{\joule}
+\end{align*}
+Für $k_{\text B}T$ erhalten wir:
+\begin{align*}
+k_{\text B}T = \SI{1.38e-16}{\joule} \ll \epsilon_{\text F}
+\end{align*}
+
+\subsection{Innere Energie}
+
 \IfFileExists{\bibliographyfile}{
     \printbibliography
 }{}
