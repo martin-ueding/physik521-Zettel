@@ -49,7 +49,44 @@
 
 \subsection{Unabhängigkeit der Zustandssumme von Magnetfeld}
 
-\fehlt
+Es gibt eine feste Anzahl Teilchen und verschiedene Energien, daher muss ich
+den kanonischen Formalismus benutzen.
+
+Meine Zustände sind alle Impulse $\vec p \in \R^3$. Daher muss ich für die
+Zustandssumme integrieren.
+\begin{align*}
+    Z_{\text C, 1}
+    &= \int\limits_{\R^3} \dif{^3 p} \, \exp(-\beta H(\vec p)) \\
+    &= \int\limits_{\R^3} \dif{^3 p} \, \exp\del{-\beta \frac1{2m} \del{\vec p + \frac ea \vec A}^2} \\
+    \intertext{%
+        Jetzt ist zu zeigen, dass dies unabhängig von $\vec B$ ist. Wir werden
+        sogar zeigen, dass dies unabhängig von $\vec A$ ist. Dazu führen wir
+        eine Substitution durch:
+        \[
+            \vec q := \vec p + \frac ec \vec A.
+        \]
+        Diese Substitution ist für alle Impulsunabhängigen $\vec A$ definiert
+        und es gilt vor allem $\dif{\vec q} = \dif{\vec p}$, da $\vec A$ nicht
+        vom Impuls abhängt. Somit erhalten wir:
+    }
+    &= \int\limits_{\R^3} \dif{^3 q} \, \exp\del{-\beta \frac1{2m} \vec q^2} \\
+    \intertext{%
+        An dieser Stelle ist schon gezeigt, dass die Zustandssumme nicht von
+        $\vec A$ abhängt. Jedoch können wir dieses Integral auch analytisch
+        lösen. Wir wählen Kugelkoordinaten für den Impuls und können aufgrund
+        der Isotropie den Winkelanteil schon integrieren. Es bleibt: 
+    }
+    &= 4 \piup \int_0^\infty \dif q \, q^2 \exp\del{-\beta \frac1{2m} q^2} \\
+    \intertext{%
+        Dieses Integral können wir mit partieller Integration lösen. Dabei ist
+        die erste Stammfunktion zur Exponentialfunktion die Gauß'sche
+        Fehlerfunktion. Die zweite Stammfunktion dazu ist beinhaltet wieder die
+        Fehlerfunktion, jedoch haben wir dies nur mit Mathematica
+        herausbekommen. Nach weiteren Rechnungen und weiteren Substitutionen
+        erhalten wir:
+    }
+    &= \del{\frac{2 m \piup}\beta}^{3/2}.
+\end{align*}
 
 \subsection{Entartungsgrad von Landau-Niveaus}
 
