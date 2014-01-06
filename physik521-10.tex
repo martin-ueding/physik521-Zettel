@@ -53,11 +53,11 @@ Es gibt eine feste Anzahl Teilchen und verschiedene Energien, daher muss ich
 den kanonischen Formalismus benutzen.
 
 Meine Zustände sind alle Impulse $\vec p \in \R^3$. Daher muss ich für die
-Zustandssumme integrieren.
+Zustandssumme im Impulsraum, in dem $\hat{\vec p} = \vec p$ gilt, integrieren.
 \begin{align*}
     Z_{\text C, 1}
-    &= \int\limits_{\R^3} \dif{^3 p} \, \exp(-\beta H(\vec p)) \\
-    &= \int\limits_{\R^3} \dif{^3 p} \, \exp\del{-\beta \frac1{2m} \del{\vec p + \frac ea \vec A}^2} \\
+    &= \int\limits_{\R^3} \dif{^3 p} \, \exp(-\beta \hat H(\vec p)) \\
+    &= \int\limits_{\R^3} \dif{^3 p} \, \exp\del{-\beta \frac1{2m} \del{\vec p + \frac ec \vec A}^2} \\
     \intertext{%
         Jetzt ist zu zeigen, dass dies unabhängig von $\vec B$ ist. Wir werden
         sogar zeigen, dass dies unabhängig von $\vec A$ ist. Dazu führen wir
@@ -89,6 +89,23 @@ Zustandssumme integrieren.
 \end{align*}
 
 \subsection{Entartungsgrad von Landau-Niveaus}
+
+Der Hamiltonoperator ist gegeben als:
+\[
+    \hat H = \frac1{2m} \del{\hat{\vec p} + \frac ec \vec A}^2
+    = \frac1{2m} \del{\hat{\vec p} + \frac ec \hat x B \ev_y}^2,
+\]
+wobei $\ev_y$ den Einheitsvektor in $y$-Richtung bezeichnet.
+
+Die Zeitentwicklung von $\vec p$ ist gegeben durch:
+\[
+    \dod{}t \hat{\vec p} = \frac1{\iup\hbar} [\hat{\vec p}, \hat H] + \dpd{}t \hat{\vec p}.
+\]
+
+Wir setzen den Hamiltonoperator ein und benutzen die Darstellung im Impulsraum,
+so dass $\hat p = p$ und $\hat x = \iup\hbar \partial/\partial p_x$ ist. Der
+Impulsoperator ist nicht explizit zeitabhängig, so dass wir nur den Kommutator
+ausrechnen müssen, um die Zeitentwicklung zu erhalten.
 
 \fehlt
 
