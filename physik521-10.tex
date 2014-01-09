@@ -11,6 +11,8 @@
 
 \pagestyle{plain}
 
+\newcommand\kB{k_\text B}
+
 \begin{document}
 
 \maketitle
@@ -96,6 +98,23 @@ Zustandssumme im Impulsraum, in dem $\hat{\vec p} = \vec p$ gilt, integrieren.
     }
     &= \del{\frac{2 m \piup}\beta}^{3/2}.
 \end{align*}
+
+Wir versuchen noch, die großkanonische Zustandssumme aufzustellen:
+\begin{align*}
+    Z_\text{GC}
+    &= \prod_p \prod_\sigma \del{1 + \exp\del{- \frac{E(p, \sigma) - \mu}{\kB
+    T}}} \\
+    &= \prod_p \prod_\sigma \del{1 + \exp\del{- \frac{\frac1{2m} \del{\vec p -
+\frac ec \vec A}^2- \mu}{\kB
+    T}}}
+\end{align*}
+
+Wenn man daraus jetzt
+\[
+    \exp\del{\sum_p \sum_\sigma \ln(1 + \exp(-\ldots))}
+\]
+formt, kann man wieder die gleiche Substitution im Integral vornehmen. Dadurch
+sollte auch gezeigt sind, dass $Z_\text{GC}$ nicht von $\vec A$ abhängt.
 
 \subsection{Entartungsgrad von Landau-Niveaus}
 
@@ -229,7 +248,35 @@ Zustände, $\Deltaup m_y$, errechnen und erhalten so:
 
 \subsection{Großkanonisches Potenzial}
 
-\fehlt
+Das großkanonische Potential können wir aus der Zustandssumme der ersten
+Teilaufgabe errechnen, wobei wir die Summe über die beiden entarteten Spins
+direkt ausführen:
+\[
+    \Omega = - 2 \kB T \sum_\alpha \ln\del{1 + \frac{E_\alpha - \mu}{\kB T}}.
+\]
+
+In $\sum_\alpha$ werden auch entartete Zustände gemäß ihrem Entartungsgrad
+mehrfach gezählt. Diese Summe kann man generell durch ein Integral über die
+Zustandsdichte schreiben, die so (mit $\delta$-Distributionen) konstruiert ist,
+dass sie bei jedem Energieeigenwert nach Integration den entsprechenden
+Entartungsgrad ergibt. Somit können wir schreiben:
+\[
+    \Omega = - 2 \kB T \int_{-\infty}^\infty \dif E \, \rho(E) \ln\del{1 + \frac{E_\alpha - \mu}{\kB T}}.
+\]
+
+Wir gehen davon aus, dass die Zustandsdichte, die in der Teilaufgabe (c)
+gegeben ist, genau die ist, die hier funktioniert. Nun können wir die
+Sommerfeldentwicklung aus dem Skript benutzen, da wir hier nicht noch einmal
+alle Teilschritte – zweifache partielle Integration, Reihenentwickung und
+Fermiintegrale – durchrechnen möchten. Als Endergebnis ist im Skript als Formel
+(5.71) angegeben:
+\[
+    \Omega = - 2 b(\mu) - \frac{\piup^2}3 \rho(\mu) (\kB T)^2 + \mathcal
+    O(T^4).
+\]
+
+$b$ ist dabei die zweifache Stammfunktion von $\rho$, die als Parameter
+stehengelassen werden durfte.
 
 \subsection{Magnetisierung des Elektronengases}
 
