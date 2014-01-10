@@ -23,7 +23,23 @@
 
 \subsection{Energie-Eigenwerte und großkanonische Zustandssumme}
 
-\fehlt
+Die Energie-Eigenwerte eines Elektrons mit Impuls $p$ und Spin-Quantenzahl $\sigma$ in einem Magnetfeld $B=\vec B \hat e_z$ sind
+\begin{align*}
+    E_{p,\sigma} &= E_{\alpha} = E_p + E_\sigma = \frac{p}{2m} + g\mu_B\sigma B.
+    \intertext{%
+        Hat man eine Zahl $N$ von Elektronen gegeben, berechnet sich die großkanonische Zustandssumme zu
+    }
+    Z_\text{G} &= \sum_{\substack{n_{\alpha_i}=0,1\\i=1,2\dots}}
+    \exp\del{-\beta\del{E\del{\cbr{n_{\alpha_i}}}-\mu N}},
+    \intertext{%
+        mit der Gesamtenergie $E\del{\cbr{n_{\alpha_i}}} = \sum_i
+        n_{\alpha_i}E_{\alpha_i}$. Dabei gilt für die Anzahl $N = \sum_i
+        n_{\alpha_i}$. Damit erhält man
+    }
+    &= \prod_i^\infty\sum_{n_{\alpha_i}=0,1}
+    \exp\del{-\beta n_{\alpha_i}\del{E_{\alpha_i}-\mu}} \\
+    &= \prod_i^\infty 1 + \exp\del{-\beta\del{E_{\alpha_i}-\mu}}
+\end{align*}
 
 \subsection{Tieftemperaturentwicklung des großkanonischen Potenzials}
 
