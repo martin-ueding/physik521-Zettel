@@ -54,7 +54,23 @@ Die Energie-Eigenwerte eines Elektrons mit Impuls $p$ und Spin-Quantenzahl $\sig
 
 \subsection{Tieftemperaturentwicklung des großkanonischen Potenzials}
 
-\fehlt
+Das großkanonische Potenzial erhält man aus der großkanonischen Zustandssumme:
+\begin{align*}
+    \Omega &= -k_\text{B}T\ln Z_\text{G} \\
+           &= -k_\text{B}T\sum_i^\infty\ln \del{1 + \exp\del{-\beta\del{E_{\alpha_i}-\mu}}}
+    \intertext{%
+        Dies kann mit Formel 5.61 aus dem Skript in ein Integral über die
+        Energien und eine Summe über die Spins umgewandelt werden.
+    }
+    &= -k_\text{B}T\sum_\sigma\int_{-\infty}^\infty\!\dif E_p \,
+    D_\sigma(E_p)\ln\del{1+\exp\del{-\beta\del{E_p+g\mu_\text{B}\sigma
+    B-\mu}}}
+    \intertext{%
+        Nach einer partiellen Integration erhält man mit
+        $\int_{-\infty^{E_p}}\!\dif\epsilon\,a_\sigma\del{E_p}$
+    }
+    &= k_\text{B}T\sum_\sigma\int_{-\infty}^\infty\dif
+\end{align*}
 
 \subsection{Teilchenzahlen}
 
