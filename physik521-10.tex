@@ -11,6 +11,8 @@
 
 \pagestyle{plain}
 
+\newcommand\kB{k_\text B}
+
 \begin{document}
 
 \maketitle
@@ -20,6 +22,15 @@
 %\newpage
 
 \section{Pauli-Spin-Paramagnetismus eines Elektronengases}
+
+Die Zustandsdichte soll aus der Vorlesung bekannt sein. Wir benutzen die
+„Zustandsdichte idealer Quantengase“ \parencite[]{nolting-theo6}:
+\[
+    \rho(E) = \begin{cases}
+        (2S + 1) \frac{V}{4\piup^2} \del{\frac{2m}{\hbar^2}}^{3/2} & E \geq 0 \\
+        0 & \text{sonst}.
+    \end{cases}
+\]
 
 \subsection{Energie-Eigenwerte und großkanonische Zustandssumme}
 
@@ -65,7 +76,7 @@ Die Energie-Eigenwerte eines Elektrons mit Impuls $p$ und Spin-Quantenzahl $\sig
 
 \subsection{Unabhängigkeit der Zustandssumme von Magnetfeld}
 
-Es gibt eine feste Anzahl Teilchen und verschiedene Energien, daher muss ich
+Es gibt eine feste Anzahl Teilchen und verschiedene Energien, daher kann ich
 den kanonischen Formalismus benutzen.
 
 Meine Zustände sind alle Impulse $\vec p \in \R^3$. Daher muss ich für die
@@ -81,7 +92,7 @@ Zustandssumme im Impulsraum, in dem $\hat{\vec p} = \vec p$ gilt, integrieren.
         \[
             \vec q := \vec p + \frac ec \vec A.
         \]
-        Diese Substitution ist für alle Impulsunabhängigen $\vec A$ definiert
+        Diese Substitution ist für alle impulsunabhängigen $\vec A$ definiert
         und es gilt vor allem $\dif{\vec q} = \dif{\vec p}$, da $\vec A$ nicht
         vom Impuls abhängt. Somit erhalten wir:
     }
@@ -104,6 +115,23 @@ Zustandssumme im Impulsraum, in dem $\hat{\vec p} = \vec p$ gilt, integrieren.
     &= \del{\frac{2 m \piup}\beta}^{3/2}.
 \end{align*}
 
+Wir versuchen noch, die großkanonische Zustandssumme aufzustellen:
+\begin{align*}
+    Z_\text{GC}
+    &= \prod_p \prod_\sigma \del{1 + \exp\del{- \frac{E(p, \sigma) - \mu}{\kB
+    T}}} \\
+    &= \prod_p \prod_\sigma \del{1 + \exp\del{- \frac{\frac1{2m} \del{\vec p -
+\frac ec \vec A}^2- \mu}{\kB
+    T}}}
+\end{align*}
+
+Wenn man daraus jetzt
+\[
+    \exp\del{\sum_p \sum_\sigma \ln(1 + \exp(-\ldots))}
+\]
+formt, kann man wieder die gleiche Substitution im Integral vornehmen. Dadurch
+sollte auch gezeigt sind, dass $Z_\text{GC}$ nicht von $\vec A$ abhängt.
+
 \subsection{Entartungsgrad von Landau-Niveaus}
 
 Der Hamiltonoperator ist gegeben als:
@@ -123,7 +151,112 @@ so dass $\hat p = p$ und $\hat x = \iup\hbar \partial/\partial p_x$ ist. Der
 Impulsoperator ist nicht explizit zeitabhängig, so dass wir nur den Kommutator
 ausrechnen müssen, um die Zeitentwicklung zu erhalten.
 
-\fehlt
+Jedoch hatte das nicht sonderlich gut geklappt.
+
+Daher lösen wir die Schrödingergleichung mit einem Ansatz und transformieren
+die verbleibende Differentialgleichung so, dass die Differentialgleichung des
+harmonischen Oszillators herauskommt, wie in
+\cite[Abschnitt~3.2.7]{nolting-theo6}, vorgerechnet.
+
+Die Schrödingergleichung ist:
+\begin{align*}
+    E \ket\psi &= \hat H \ket\psi. \\
+    \intertext{%
+        Wir setzen $\hat H$ ein und multiplizieren teilweise aus, um die
+        Variablen etwas zu separieren:
+    }
+    &= \del{\hat p_x^2 + \hat p_z^2 + \del{\hat p_y + \frac ec B \hat x}^2}
+    \ket\psi. \\
+    \intertext{%
+        Nun wird der Ansatz $\psi(\vec r) = \exp(\iup k_y y) \exp(\iup k_z z)
+        u(x)$ gewählt.
+        Im Ortsraum ist der Impulsoperator eine Raumableitung. Die
+        Impulsoperatoren erzeugen dadurch mit der Kettenregel jeweils ein
+        $k_y^2$ und ein $k_z^2$. Für $u$ bleibt folgende Differentialgleichung
+        übrig:
+    }
+    &= - \frac{\hbar^2}{2m} \dpd[2]{}x u(x) + \frac{\hbar^2 k_z^2}{2m} u(x) +
+    \frac{1}{2m} \del{\hbar k_y + \frac ec B x}^2 u(x) \\
+    \del{E - \frac{\hbar^2 k_z^2}{2m}} u(x) &= - \frac{\hbar^2}{2m} \dpd[2]{}x u(x) +
+    \frac{1}{2m} \del{\hbar k_y + \frac ec B x}^2 u(x). \\
+    \intertext{%
+        Aus dem Ansatz „Lorentzkraft ist Zentripetalkraft“ kann die
+        Zyklotronfrequenz $\omega = eB/m$ hergeleitet werden. Dies setzen wir
+        ein und erhalten:
+    }
+    \del{E - \frac{\hbar^2 k_z^2}{2m}} u(x) &= - \frac{\hbar^2}{2m} \dpd[2]{}x u(x) +
+    \frac{1}{2m} \del{\hbar k_y + \frac{m\omega}c x}^2 u(x). \\
+    \intertext{%
+        Der letzte Summand in der Klammer muss gerade $m \omega^2 q^2/2$
+        werden, damit die Differentialgleichung die richtige Form für den
+        harmonischen Oszillator bekommt. Daher fordern wir
+        \[
+            \frac m2 \omega^2 q^2 = \frac{1}{2m} \del{\hbar k_y +
+            \frac{m\omega}c x}^2,
+        \]
+        was wir durch
+        \[
+            q = \frac 1c x + \frac{\hbar k_y}{m\omega}
+        \]
+        erfüllen können. Nolting hat hier keinen Faktor $1/c$. In der ganzen
+        Herleitung taucht bei ihm das $c$ nicht auf. Liegt dies an natürlichen
+        Einheiten mit $c = 1$? Wir müssen das $c$ ab dieser Stelle weglassen,
+        da wir ansonsten nicht die richtigen Ergebnisse erhalten. Jedenfalls
+        erhalten wir dann folgende Differentialgleichung für $u$:
+    }
+    \del{E - \frac{\hbar^2 k_z^2}{2m}} u(q) &= - \frac{\hbar^2}{2m} \dpd[2]{}q u(q) +
+    \frac m2 \omega^2 q^2 u(q).
+\end{align*}
+
+Die Lösungen dieser Gleichung sind vom harmonischen Oszillator bekannt. Somit
+ist gezeigt, dass die Bewegung einem harmonischen Oszillator entspricht. Mit
+der Quantenzahl $n$, die durch die Hermitepolynome eingeführt wird, sind die
+Energieeigenwerte durch $\hbar\omega (n + 1/2)$ gegeben. Die Energieeigenwerte
+sind allerdings auch in der Klammer gegeben. Somit können wir nach $E$
+auflösen und erhalten die Energieeigenwerte der Elektronen:
+\[
+    E = \hbar\omega \del{n + \frac12} + \frac{\hbar^2 k_z^2}{2m}.
+\]
+
+Diese Energie hängt von $n$ und $k_z$ ab, die aus $x$ und $z$ gewonnen worden
+sind. $k_y$ taucht hier nicht auf, so dass die Energieeigenwerte bezüglich
+$k_y$ entartet sind. Der Entartungsgrad ist die Anzahl der möglichen Werte, die
+$k_y$ annehmen kann.
+
+Da das Teilchen im Quader mit Kantenlängen $\{ L_i | i = 1, 2, 3 \}$
+eingesperrt ist, darf die $x$-Koordinate nur im Intervall
+\[
+    - \frac{L_x}2 \leq x \leq \frac{L_x}2
+\]
+liegen. Mit der vorhin benutzen Substitution können wir dies durch $q$ ersetzen
+und erhalten:
+\[
+    - \frac{L_x}2 \leq q - \frac{\hbar k_y}{eB} \leq \frac{L_x}2.
+\]
+
+Wir subtrahieren auf allen drei „Seiten“ $q$ und multiplizieren mit $-1$. Da
+dies eine streng monoton fallende Transformationsfunktion ist, kehren sich die
+$\leq$ zu $\geq$ um. Wir drehen dann allerdings die Gleichung wieder um, so
+dass wir die ursprüngliche Form erhalten. Somit wird die Gleichung zu:
+\[
+    q - \frac{L_x}2 \leq \frac{\hbar k_y}{eB} \leq q + \frac{L_x}2.
+\]
+
+Dies bestimmt das maximale und minimale $k_y$. Wir haben also ein Spektrum von
+\[
+    \Deltaup k_y = \frac1\hbar e B L_x
+\]
+im Phasenraum zur Verfügung. Die Zustände sind im Phasenraum mit der
+Quantenzahl $m_y$ quantisiert:
+\[
+    k = \frac{2\piup}{L_y} m_y.
+\]
+
+Aufgrund des linearen Zusammenhangs können wir mit $\Deltaup k$ die Anzahl der
+Zustände, $\Deltaup m_y$, errechnen und erhalten so:
+\[
+    \Deltaup m_y = \frac{e B L_x L_y}{2 \piup \hbar}.
+\]
 
 \subsection{Zustandsdichte des Elektronengases im Magnetfeld}
 
@@ -131,7 +264,35 @@ ausrechnen müssen, um die Zeitentwicklung zu erhalten.
 
 \subsection{Großkanonisches Potenzial}
 
-\fehlt
+Das großkanonische Potential können wir aus der Zustandssumme der ersten
+Teilaufgabe errechnen, wobei wir die Summe über die beiden entarteten Spins
+direkt ausführen:
+\[
+    \Omega = - 2 \kB T \sum_\alpha \ln\del{1 + \frac{E_\alpha - \mu}{\kB T}}.
+\]
+
+In $\sum_\alpha$ werden auch entartete Zustände gemäß ihrem Entartungsgrad
+mehrfach gezählt. Diese Summe kann man generell durch ein Integral über die
+Zustandsdichte schreiben, die so (mit $\delta$-Distributionen) konstruiert ist,
+dass sie bei jedem Energieeigenwert nach Integration den entsprechenden
+Entartungsgrad ergibt. Somit können wir schreiben:
+\[
+    \Omega = - 2 \kB T \int_{-\infty}^\infty \dif E \, \rho(E) \ln\del{1 + \frac{E_\alpha - \mu}{\kB T}}.
+\]
+
+Wir gehen davon aus, dass die Zustandsdichte, die in der Teilaufgabe (c)
+gegeben ist, genau die ist, die hier funktioniert. Nun können wir die
+Sommerfeldentwicklung aus dem Skript benutzen, da wir hier nicht noch einmal
+alle Teilschritte – zweifache partielle Integration, Reihenentwickung und
+Fermiintegrale – durchrechnen möchten. Als Endergebnis ist im Skript als Formel
+(5.71) angegeben:
+\[
+    \Omega = - 2 b(\mu) - \frac{\piup^2}3 \rho(\mu) (\kB T)^2 + \mathcal
+    O(T^4).
+\]
+
+$b$ ist dabei die zweifache Stammfunktion von $\rho$, die als Parameter
+stehengelassen werden durfte.
 
 \subsection{Magnetisierung des Elektronengases}
 
@@ -165,4 +326,4 @@ ausrechnen müssen, um die Zeitentwicklung zu erhalten.
 
 \end{document}
 
-% vim: spell spelllang=de
+% vim: spell spelllang=de tw=79
