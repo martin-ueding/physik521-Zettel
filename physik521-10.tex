@@ -62,14 +62,27 @@ Das großkanonische Potenzial erhält man aus der großkanonischen Zustandssumme
         Dies kann mit Formel 5.61 aus dem Skript in ein Integral über die
         Energien und eine Summe über die Spins umgewandelt werden.
     }
-    &= -k_\text{B}T\sum_\sigma\int_{-\infty}^\infty\!\dif E_p \,
-    D_\sigma(E_p)\ln\del{1+\exp\del{-\beta\del{E_p+g\mu_\text{B}\sigma
-    B-\mu}}}
+    &= -k_\text{B}T\sum_\sigma\int_{-\infty}^\infty\!\dif E \,
+    D_\sigma(E)\ln\del{1+\exp\del{-\beta\del{E-\mu}}}
     \intertext{%
         Nach einer partiellen Integration erhält man mit
-        $\int_{-\infty^{E_p}}\!\dif\epsilon\,a_\sigma\del{E_p}$
+        $\int_{-\infty}^{E}\!\dif\epsilon\,D_\sigma(E) = a_\sigma\del{E}$:
     }
-    &= k_\text{B}T\sum_\sigma\int_{-\infty}^\infty\dif
+    &= k_\text{B}T\sum_\sigma\int_{-\infty}^\infty\dif E \, a_\sigma\del{E}
+    \frac{-\beta\exp\del{-\beta\del{E-\mu}}} {1 +
+    \exp\del{-\beta\del{E-\mu}}} \\
+    &= -\sum_\sigma\int_{-\infty}^\infty\!\dif E\, a_\sigma(E)f(E)
+    \intertext{%
+        Nach einer weiteren partiellen Integration erhält man mit
+        $\int_{-\infty}^{E}\!\dif\epsilon\,a_\sigma\del{\epsilon}=b_\sigma(E)$:
+    }
+    &= \sum_\sigma\int_{-\infty}^\infty\!\dif E\, b_\sigma(E)f'(E)
+    \intertext{%
+        Eine Tieftemperaturnäherung nach Sommerfeld (Taylor-Entwicklung
+        von $b$ um $E=\mu$) liefert uns
+    }
+    &\approx \sum_\sigma \sbr{ b\del{\mu} +
+\frac{\piup^2}6D_\sigma(\mu)\del{\kB T}}.
 \end{align*}
 
 \subsection{Teilchenzahlen}
