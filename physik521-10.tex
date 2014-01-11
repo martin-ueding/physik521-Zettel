@@ -137,7 +137,30 @@ Die Magnetisierung des Systems ist
 
 \subsection{Magnetische Suszeptibilität}
 
-\fehlt
+Die Suszeptibilität ergibt sich aus
+\begin{align*}
+    \chi &= \mu_0\del{\dpd{M}{B}}_{T,\mu} \\
+         &= \frac{\mu_0\muB^2}{V}\del{D(\mu) + \frac{\piup^2}6\del{\kB
+    T}^2D''(\mu)}.
+    \intertext{%
+        Mit \cite[Gleichungen~3.50 und 3.74]{nolting-theo6}, erhält man für
+        die Zustandsdichte und ihre zweite Ableitung
+    }
+    D(\mu) &= \frac{3N}{2E_\text{F}^{\frac32}}\sqrt\mu, \\
+    D''(\mu) &= -\frac{3N}{8E_\text{F}^{\frac32}}\mu^{-\frac32}.
+    \intertext{%
+        Mit $\mu\approx E_\text{F}$ erhält man so für die magnetische
+        Suszeptibilität:
+    }
+    \chi &= \frac{3N\mu_0\muB^2}{2\mu^{\frac32}V}
+    \del{\sqrt\mu-\frac14\frac1{\mu^{\frac32}}\del{\kB T}^2} \\
+    &= \frac{3N\mu_0\muB^2}{2V\mu}
+    \del{1 - \frac14\del{\frac{\kB T}{\mu}}^2}.
+    \intertext{%
+        Für kleine Temperaturen $\kB T\ll\mu$ gilt damit
+    }
+    \chi &= \frac{3N\mu_0\muB^2}{2V\mu} = \text{const.}
+\end{align*}
 
 \subsection{Feste Teilchenzahl statt festes chemisches Potenzial}
 
