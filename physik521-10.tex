@@ -12,6 +12,7 @@
 \pagestyle{plain}
 
 \newcommand\kB{k_\text B}
+\newcommand\muB{\mu_\text B}
 
 \begin{document}
 
@@ -87,7 +88,40 @@ Das großkanonische Potenzial erhält man aus der großkanonischen Zustandssumme
 
 \subsection{Teilchenzahlen}
 
-\fehlt
+Die Gesamtteilchenzahl ist gegeben durch
+\begin{align*}
+    N &= \sum_\sigma \int_0^\infty\!\dif E \, D_\sigma(E)f(E).
+    \intertext{%
+        Betrachtet man die verschiedenen Spins einzeln erhält man
+    }
+    N_{\uparrow} &= \int_{-\infty}^\infty \!\dif E\, D_\uparrow(E)f(E).
+    \intertext{%
+        Mit \cite[S. 525]{nolting-theo6} ist dies
+    }
+    &= \half \int_{\mu_\text{B}B}^\infty\!\dif E\, D(E-\mu_\text{B}B)f(E).
+    \intertext{%
+        Mit $y=E-\mu_\text{B}$ und $\dif y = \dif E$ ergibt sich
+    }
+    &= \half \int_0^\infty\!\dif E\,
+    D(y)f(y+\mu_\text{B}).
+    \intertext{%
+        Da $\muB B\ll1$ Taylorn wir $f$ um $y$ und erhalten
+    }
+    &\approx \half \int_0^\infty\!\dif E\,
+    D(y)\del{f(y)+\mu_\text{B}f'(y)} \\
+    &= \half \int_0^\infty\!\dif E\,
+    D(y)f(y) + \frac{\mu_\text{B}B}{2} \int_0^\infty\!\dif E\,
+    D(y)f'(y).
+    \intertext{%
+        Analog dazu die Rechnung für den anderen Spin, es folgt
+    }
+    N_\downarrow &= \half \int_0^\infty\!\dif E\,
+    D(y)f(y) - \frac{\mu_\text{B}B}{2} \int_0^\infty\!\dif E\,
+    D(y)f'(y).
+\end{align*}
+Dies ist auch das, was in der Abbildung zu sehen ist. Ein Spin hat mehr
+Teilchen. Da aber das chemische Potenzial $\mu$ für beide gleich sein soll,
+laufen einige zum anderen Spin über.
 
 \subsection{Tieftemperaturverhalten der Magnetisierung}
 
