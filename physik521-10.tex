@@ -12,6 +12,7 @@
 \pagestyle{plain}
 
 \newcommand\kB{k_\text B}
+\newcommand\muB{\mu_\text B}
 
 \begin{document}
 
@@ -34,23 +35,132 @@ Die Zustandsdichte soll aus der Vorlesung bekannt sein. Wir benutzen die
 
 \subsection{Energie-Eigenwerte und großkanonische Zustandssumme}
 
-\fehlt
+Die Energie-Eigenwerte eines Elektrons mit Impuls $p$ und Spin-Quantenzahl $\sigma$ in einem Magnetfeld $B=\vec B \hat e_z$ sind
+\begin{align*}
+    E_{p,\sigma} &= E_{\alpha} = E_p + E_\sigma = \frac{p}{2m} + g\mu_B\sigma B.
+    \intertext{%
+        Hat man eine Zahl $N$ von Elektronen gegeben, berechnet sich die großkanonische Zustandssumme zu
+    }
+    Z_\text{G} &= \sum_{\substack{n_{\alpha_i}=0,1\\i=1,2\dots}}
+    \exp\del{-\beta\del{E\del{\cbr{n_{\alpha_i}}}-\mu N}},
+    \intertext{%
+        mit der Gesamtenergie $E\del{\cbr{n_{\alpha_i}}} = \sum_i
+        n_{\alpha_i}E_{\alpha_i}$. Dabei gilt für die Anzahl $N = \sum_i
+        n_{\alpha_i}$. Damit erhält man
+    }
+    &= \prod_i^\infty\sum_{n_{\alpha_i}=0,1}
+    \exp\del{-\beta n_{\alpha_i}\del{E_{\alpha_i}-\mu}} \\
+    &= \prod_i^\infty 1 + \exp\del{-\beta\del{E_{\alpha_i}-\mu}}
+\end{align*}
 
 \subsection{Tieftemperaturentwicklung des großkanonischen Potenzials}
 
-\fehlt
+Das großkanonische Potenzial erhält man aus der großkanonischen Zustandssumme:
+\begin{align*}
+    \Omega &= -k_\text{B}T\ln Z_\text{G} \\
+           &= -k_\text{B}T\sum_i^\infty\ln \del{1 + \exp\del{-\beta\del{E_{\alpha_i}-\mu}}}
+    \intertext{%
+        Dies kann mit Formel 5.61 aus dem Skript in ein Integral über die
+        Energien und eine Summe über die Spins umgewandelt werden.
+    }
+    &= -k_\text{B}T\sum_\sigma\int_{-\infty}^\infty\!\dif E \,
+    D_\sigma(E)\ln\del{1+\exp\del{-\beta\del{E-\mu}}}
+    \intertext{%
+        Nach einer partiellen Integration erhält man mit
+        $\int_{-\infty}^{E}\!\dif\epsilon\,D_\sigma(E) = a_\sigma\del{E}$:
+    }
+    &= k_\text{B}T\sum_\sigma\int_{-\infty}^\infty\dif E \, a_\sigma\del{E}
+    \frac{-\beta\exp\del{-\beta\del{E-\mu}}} {1 +
+    \exp\del{-\beta\del{E-\mu}}} \\
+    &= -\sum_\sigma\int_{-\infty}^\infty\!\dif E\, a_\sigma(E)f(E)
+    \intertext{%
+        Nach einer weiteren partiellen Integration erhält man mit
+        $\int_{-\infty}^{E}\!\dif\epsilon\,a_\sigma\del{\epsilon}=b_\sigma(E)$:
+    }
+    &= \sum_\sigma\int_{-\infty}^\infty\!\dif E\, b_\sigma(E)f'(E)
+    \intertext{%
+        Eine Tieftemperaturnäherung nach Sommerfeld (Taylor-Entwicklung
+        von $b$ um $E=\mu$) liefert uns
+    }
+    &\approx \sum_\sigma \sbr{ b\del{\mu} +
+\frac{\piup^2}6D_\sigma(\mu)\del{\kB T}^2}.
+\end{align*}
 
 \subsection{Teilchenzahlen}
 
-\fehlt
+Die Gesamtteilchenzahl ist gegeben durch
+\begin{align*}
+    N &= \sum_\sigma \int_0^\infty\!\dif E \, D_\sigma(E)f(E).
+    \intertext{%
+        Betrachtet man die verschiedenen Spins einzeln erhält man
+    }
+    N_{\uparrow} &= \int_{-\infty}^\infty \!\dif E\, D_\uparrow(E)f(E).
+    \intertext{%
+        Mit \cite[S. 525]{nolting-theo6} ist dies
+    }
+    &= \half \int_{\mu_\text{B}B}^\infty\!\dif E\, D(E-\mu_\text{B}B)f(E).
+    \intertext{%
+        Mit $y=E-\mu_\text{B}$ und $\dif y = \dif E$ ergibt sich
+    }
+    &= \half \int_0^\infty\!\dif E\,
+    D(y)f(y+\mu_\text{B}).
+    \intertext{%
+        Da $\muB B\ll1$ Taylorn wir $f$ um $y$ und erhalten
+    }
+    &\approx \half \int_0^\infty\!\dif E\,
+    D(y)\del{f(y)+\mu_\text{B}f'(y)} \\
+    &= \half \int_0^\infty\!\dif E\,
+    D(y)f(y) + \frac{\mu_\text{B}B}{2} \int_0^\infty\!\dif E\,
+    D(y)f'(y).
+    \intertext{%
+        Analog dazu die Rechnung für den anderen Spin, es folgt
+    }
+    N_\downarrow &= \half \int_0^\infty\!\dif E\,
+    D(y)f(y) - \frac{\mu_\text{B}B}{2} \int_0^\infty\!\dif E\,
+    D(y)f'(y).
+\end{align*}
+Dies ist auch das, was in der Abbildung zu sehen ist. Ein Spin hat mehr
+Teilchen. Da aber das chemische Potenzial $\mu$ für beide gleich sein soll,
+laufen einige zum anderen Spin über.
 
 \subsection{Tieftemperaturverhalten der Magnetisierung}
 
-\fehlt
+Die Magnetisierung des Systems ist
+\begin{align*}
+    M &= \frac\muB{V}\del{N_\downarrow-N_\uparrow} \\
+      &= -\frac{\muB^2B}{V}\int_0^\infty\!\dif\,D(y)f'(y).
+    \intertext{%
+        Eine Entwicklung nach Sommerfeld bringt für tiefe Temperaturen
+    }
+    &\approx \del{D(\mu) + \frac{\piup^2}6\del{\kB T}^2D''(\mu)}.
+\end{align*}
 
 \subsection{Magnetische Suszeptibilität}
 
-\fehlt
+Die Suszeptibilität ergibt sich aus
+\begin{align*}
+    \chi &= \mu_0\del{\dpd{M}{B}}_{T,\mu} \\
+         &= \frac{\mu_0\muB^2}{V}\del{D(\mu) + \frac{\piup^2}6\del{\kB
+    T}^2D''(\mu)}.
+    \intertext{%
+        Mit \cite[Gleichungen~3.50 und 3.74]{nolting-theo6}, erhält man für
+        die Zustandsdichte und ihre zweite Ableitung
+    }
+    D(\mu) &= \frac{3N}{2E_\text{F}^{\frac32}}\sqrt\mu, \\
+    D''(\mu) &= -\frac{3N}{8E_\text{F}^{\frac32}}\mu^{-\frac32}.
+    \intertext{%
+        Mit $\mu\approx E_\text{F}$ erhält man so für die magnetische
+        Suszeptibilität:
+    }
+    \chi &= \frac{3N\mu_0\muB^2}{2\mu^{\frac32}V}
+    \del{\sqrt\mu-\frac14\frac1{\mu^{\frac32}}\del{\kB T}^2} \\
+    &= \frac{3N\mu_0\muB^2}{2V\mu}
+    \del{1 - \frac14\del{\frac{\kB T}{\mu}}^2}.
+    \intertext{%
+        Für kleine Temperaturen $\kB T\ll\mu$ gilt damit
+    }
+    \chi &= \frac{3N\mu_0\muB^2}{2V\mu} = \text{const.}
+\end{align*}
 
 \subsection{Feste Teilchenzahl statt festes chemisches Potenzial}
 
