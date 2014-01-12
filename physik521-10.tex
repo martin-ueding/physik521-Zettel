@@ -23,6 +23,57 @@
     \printbibliography
 }{}
 
+
+\section{Bose-Einstein-Kondensation}
+\subsection{Entartungsgrad}
+Der Hamiltonian ist gegeben durch
+\[H = \frac{1}{2M}(p^2_x+p^2_y+p^2_z)+\frac{1}{2}M \omega^2_0(x^2+y^2+z^2) \]
+Die Lösung der Schrödingergleichung für diesen Hamiltonian lässt sich als Summe unabhängiger Lösungen harmonischer Oszillatoren darstellen.
+\[E_{n_1+n_2+n_3} = \hbar \omega_0 \del{n_1+n_2+n_3+\tfrac{3}{2}} \]
+Ein Energiezustand $E_n$ ergibt sich aus einer Kombination aus $n_1$, $n_2$ und $n_3$ mit der Bedingung $n_1+n_2+n_3=n$. Dabei handelt es sich um eine Kombination von n Elementen aus einer dreielementigen Menge mit Wiederholung. Aus der Kombinatorik wissen wir, dass die Anzahl an Möglichkeiten
+\[\Omega(n)=\frac{3+n-1}{(3-1)!n!}=\frac{(2+n)!}{2n!}=(n+1)(n+2)=n^2+3n+2 \]
+ist. Das ist der Entartungsgrad des Systems. Bestimme daraus nun die Zustandsdichte $\rho(\epsilon_n)$.
+\begin{align*}
+E_n &= \hbar \omega_0 \del{n+ \tfrac{3}{2}} \\
+\epsilon_n &= \hbar \omega_0 n \\
+n &= \frac{\epsilon_n}{\hbar \omega_0} \\
+\implies \Omega(\epsilon_n) &= \del{\frac{\epsilon_n}{\hbar \omega_0}}^2 +3\frac{\epsilon_n}{\hbar \omega_0}+2
+\end{align*}
+Die Zustandsdichte ist definiert als $\rho(\epsilon)=\frac{\dif \Omega}{\dif \epsilon}$.
+\[ \implies \rho(\epsilon_n) = \frac{2\epsilon_n}{(\hbar \omega_0)^2} +\frac{3}{\hbar \omega_0} \]
+
+\subsection{Thermodynamischer Limes}
+Die angegebene Zustandsdichte geht im Limes $(\hbar \omega) \longrightarrow 0$ gegen:
+\[\rho(\epsilon) = \frac{2\epsilon_n}{(\hbar \omega_0)^2} \]
+Für die Teilchenzahl gilt:
+\begin{align*}
+N &= N_0 + \int_0^\infty \dif \epsilon \ \rho(\epsilon) \frac{1}{\exp\del{\frac{\epsilon}{k_\text{B} T}}-1} \\
+&= N_0 + \int_0^\infty \dif \epsilon \  \frac{\frac{2\epsilon_n}{(\hbar \omega_0)^2}}{\exp\del{\frac{\epsilon}{k_\text{B} T}}-1} \\
+&= N_0 + \frac{2(k_\text{B} T)^2}{\hbar^2 \omega_0^2} \zeta(2) = N_0 + \frac{\pi^2 (k_\text{B} T)^2}{3 \hbar^2 \omega_0^2}
+\end{align*}
+$N_0$ ist dabei die Anzahl der Teilchen im Grundzustand.
+
+\subsection{BEC-Temperatur}
+Wir stellen den Ausdruck für $N$ nach $N_0$ um:
+\[N_0 = N - \frac{\pi^2 (k_\text{B} T)^2}{3 \hbar^2 \omega_0^2} \]
+Gehe nun analog zur Vorlesung vor:
+\begin{align*}
+N_0 &= N\del{1 - \frac{\pi^2 (k_\text{B} T)^2}{3N \hbar^2 \omega_0^2}} \\
+&= N \del{1-\del{\frac{T}{T_c}}^2} \\
+\end{align*}
+Es gilt damit also:
+\[T_0 = \frac{\hbar \omega_0 \sqrt{3N}}{\pi k_\text{B}} \]
+
+\subsection{Experimentelle Beobachtung}
+Für den harmonischen Oszillator gilt:
+\begin{align*}
+\braket{n|H|n} &= \braket{n|T+V|n} = \hbar \omega_0 \del {n+\tfrac{3}{2}} \\
+\braket{n|T|n} &= \braket{n|V|n} \\
+\implies \braket{n|V|n} &= \tfrac{1}{2} M \omega_0^2 \braket{n|x^2+y^2+z^2|n} =  \tfrac{1}{2} \hbar \omega_0 \del {n+\tfrac{3}{2}} \\
+\implies \braket{n|x^2+y^2+z^2|n} &= \frac{\hbar}{M\omega_0} \del{n+\tfrac{3}{2}}
+\end{align*}
+
+
 \end{document}
 
 % vim: spell spelllang=de
