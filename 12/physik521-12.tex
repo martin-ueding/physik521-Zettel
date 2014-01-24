@@ -192,9 +192,87 @@ den Druck setzen wir $T(V)$ ein und erhalten $p(V)$:
     p = \frac{\piup^2 \kB^4}{45 \hbar^3 c^3} T^4
 \]
 
-\section{}
+\section{Klassisches Gas in einem harmonischen Potential}
 
-\fehlt
+\subsection{Kanonische Zustandssumme}
+
+\begin{align*}
+    Z_\text C
+    &= \sum_{\vec p_1, \vec x_1} \ldots \sum_{\vec p_N, \vec x_N} \exp(-\beta
+    H) \\
+    &= \del{\sum_{\vec p, \vec x} \exp(-\beta H)}^N \\
+    &= \del{\frac{V}{(2\piup\hbar)^2} \int_{\R^3} \dif{^3 p} \int_{\R^3}
+    \dif{^3 x} \, \exp\del{-\beta
+\del{\frac{\vec p^2}{2m} + \kappa \vec x^2}}}^N \\
+\intertext{%
+Wir benutzen wieder Kugelkoordinaten.
+}
+    &= \del{\frac{16 \piup^2 V}{(2\piup\hbar)^2} \int_0^\infty \dif p
+\int_0^\infty \dif x \, p^2 x^2 \exp\del{-\beta
+\del{\frac{p^2}{2m} + \kappa x^2}}}^N \\
+\intertext{%
+    Ein derartiges Integral hatten wir schon auf einem vorherigen
+    Aufgabenzettel. Wir haben dieses jetzt mit Mathematica gelöst.
+}
+&= \del{\frac{V}{\sqrt 8 \hbar^3 \beta^3} \del{\frac m \kappa}^{3/2}}^N
+\end{align*}
+
+Daraus bestimmen wie die freie Energie zu:
+\[
+    F = - \kB T N \ln\del{\frac{V}{\sqrt 8 \hbar^3 \beta^3} \del{\frac m \kappa}^{3/2}}
+\]
+
+\subsection{Mittlerer Quadratischer Radius}
+
+\[
+    \bracket{x^2} = \frac{1}{Z_\text C} \sum_\alpha \exp(- \beta H) x^2
+\]
+
+Somit ändert sich das Integral, das wir in der vorherigen Aufgabe ausgerechnet
+haben, nur durch den weiteren Faktor $x^2$. Und natürlich wird $Z_\text C$
+herausgeteilt. Mathematica liefert uns den Ausdruck:
+\[
+    R = \frac 32 \frac{\kB T}{\kappa}.
+\]
+
+Von den Einheiten stimmt dies auch.
+
+Das Volumen nehmen wir als Kugelförmig an, wodurch wir erhalten:
+\[
+    V = \frac 43 \piup \del{\frac 32 \frac{\kB T}\kappa}^{3/2}.
+\]
+
+\subsection{Zustandssumme und freie Energie als Funktion von $N$, $V$ und $T$}
+
+Da wir die Integrale in den vorherigen Aufgabenteilen schon ausgerechnet haben,
+brauchen wir in dieser Aufgabe nichts mehr tun.
+
+\subsection{Druck}
+
+Allgemein gilt:
+\[
+    F = - pV + \mu N
+    \iff
+    p = - \tdpd F V {N, T}
+\]
+
+Hier ist:
+\[
+    F = - \kB T N \ln\del{\frac{V}{\sqrt 8 (\hbar \beta)^3} \del{\frac{m}
+        \kappa}^{3/2}}
+    \]
+
+Nach Vereinfachungen erhalten wir für den Druck:
+\[
+    p(N, V, T) = \frac{\kB T N}{V}
+\]
+
+Dies ist allerdings nur eine Funktion, wir wissen nicht, wie wir daraus eine
+Zustands\emph{gleichung} erhalten.
+
+$p(V)$ ist eine einfache Hyperbel. Wie kann sich denn $V$ ändern, wenn $N$ und
+$T$ konstant gehalten werden? Ändern sich dann $m$ oder $\kappa$?
+
 
 \IfFileExists{\bibliographyfile}{
     \printbibliography
