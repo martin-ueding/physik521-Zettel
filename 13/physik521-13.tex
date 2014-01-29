@@ -16,6 +16,7 @@
 \newcommand\muB{\mu_\text B}
 \newcommand\ZG{Z_\text G}
 \DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\sgn}{sgn}
 
 \begin{document}
 
@@ -140,6 +141,95 @@ können wir die kritische Temperatur angeben als:
     }
     \label{fig:tanh}
 \end{figure}
+
+\subsection{Bethe-Näherung}
+
+\paragraph{Zustandssumme}
+
+Es gibt einen neuen Hamiltonoperator, als muss die Zustandssumme neu berechnet
+werden.
+\begin{align*}
+    Z_\text C
+    &= \sum_{\sigma_0 = \pm \frac 12} \ldots \sum_{\sigma_N = \pm \frac 12}
+    \exp\sbr{-\beta \hat H_\text{Bethe} \sbr{\{ \sigma_i \colon i \in \N_0 \}}}
+    \\
+    &= \sum_{\sigma_0 = \pm \frac 12} \ldots \sum_{\sigma_N = \pm \frac 12}
+    \exp\sbr{\beta \del{\mu B \sigma_0 + \mu(B + B') \sum_{j=1}^q \sigma_j + J
+    \sum_{j=1}^q \sigma_0 \sigma_j}} \\
+    \intertext{%
+        Ab hier benutzen wir die Definition von $\alpha_\pm$, die auf dem
+        Aufgabenzettel auch benutzt wird:
+        \[
+            \alpha_\pm = \beta\del{\frac{\mu(B+B')}2 \pm \frac J4}.
+        \]
+        Damit erhalten wir dann mit dem Signum (Vorzeichenfunktion) $\sgn$:
+    }
+    &= \sum_{\sigma_0 = \pm \frac 12} \ldots \sum_{\sigma_N = \pm \frac 12}
+    \exp\sbr{\beta \mu B \sigma_0 + 2 \alpha_{\sgn[\sigma_0]} \sum_{j=1}^q \sigma_j} \\
+    \intertext{%
+        Wir schreiben die Summe über $\sigma_0$ abgetrennt. Außerdem trennen
+        wir die Summe in der Exponentialfunktion in zwei Faktoren auf.
+    }
+    &= \sum_{\sigma_0 = \pm \frac 12} \exp[\beta \mu B \sigma_0]
+    \sum_{\sigma_1 = \pm \frac 12} \ldots \sum_{\sigma_N = \pm \frac 12}
+    \exp\sbr{2 \alpha_{\sgn[\sigma_0]} \sum_{j=1}^q \sigma_j} \\
+    &= \sum_{\sigma_0 = \pm \frac 12} \exp[\beta \mu B \sigma_0]
+    \sum_{\sigma_1 = \pm \frac 12} \ldots \sum_{\sigma_N = \pm \frac 12}
+    \prod_{j=1}^q \exp\sbr{2 \alpha_{\sgn[\sigma_0]} \sigma_j} \\
+    \intertext{%
+        Nun lassen wir die Summe über $\sigma_i$ auf den Faktor mit $j = 1$
+        wirken. Alle anderen Faktoren können wir jeweils ausklammern. Wir
+        erhalten damit dann $2 \cosh$ für jedes Summe-Faktor-Paar. Also
+        erhalten wir zusammen:
+    }
+    &= 2^q \sum_{\sigma_0 = \pm \frac 12} \exp[\beta \mu B \sigma_0]
+    \cosh^q\sbr{\alpha_{\sgn[\sigma_0]}} \\
+    \intertext{%
+        Zuletzt führen wir die verbleibende Summe aus.
+    }
+    &= 2^q \del{ \exp\sbr{\frac 12\beta \mu B} \cosh^q\sbr{\alpha_+}
++ \exp\sbr{- \frac 12\beta \mu B} \cosh^q\sbr{\alpha_-}}
+\end{align*}
+
+\paragraph{Erwartungswert von $\sigma_j$}
+
+\fehlt
+
+\paragraph{Erwartungswert von $\sigma_0$}
+
+\begin{align*}
+    \bracket{\sigma_0}
+    &= \frac{1}{Z_\text C} \sum_{\sigma_0 = \pm\frac12} \ldots \sum_{\sigma_q = \pm\frac12}
+    \exp\sbr{\beta \mu B \sigma_0 + 2 \alpha_{\sgn[\sigma_0]} \sum_{j=1}^q
+    \sigma_j} \sigma_0 \\
+    &= \frac{1}{Z_\text C} \sum_{\sigma_0 = \pm\frac12} \ldots \sum_{\sigma_q = \pm\frac12}
+    \exp[\beta \mu B \sigma_0] 
+    \exp\sbr{2 \alpha_{\sgn[\sigma_0]} \sum_{j=1}^q
+    \sigma_j} \sigma_0 \\
+    \intertext{%
+        Jetzt können wir die ganzen Summanden $\sigma_j$ wieder als Produkte
+        aus der Exponentialfunktion ziehen. Somit erhalten wir jeweils $2
+        \cosh$.
+    }
+    &= \frac{1}{Z_\text C} \sum_{\sigma_0 = \pm\frac12}
+    \exp[\beta \mu B \sigma_0] 
+    2^q \cosh^q\sbr{\alpha_{\sgn[\sigma_0]}} \sigma_0 \\
+    \intertext{%
+        Wir führen die letzte Summe aus.
+    }
+    &= \frac{2^q}{2 Z_\text C} \del{
+        \exp\sbr{\frac 12 \beta \mu B \sigma_0} \cosh^q[\alpha_+]
+        - \exp\sbr{-\frac 12 \beta \mu B \sigma_0} \cosh^q[\alpha_-]
+    } \\
+    \intertext{%
+        Mit der Definition von $\tilde Z_\text C$ erhalten wir genau den
+        Ausdruck auf dem Aufgabenblatt:
+    }
+    &= \frac{1}{2 \tilde Z_\text C} \del{
+        \exp\sbr{\frac 12 \beta \mu B \sigma_0} \cosh^q[\alpha_+]
+        - \exp\sbr{-\frac 12 \beta \mu B \sigma_0} \cosh^q[\alpha_-]
+    }.
+\end{align*}
 
 \IfFileExists{\bibliographyfile}{
     \printbibliography
