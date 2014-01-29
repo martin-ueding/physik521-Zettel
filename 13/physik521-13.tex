@@ -1,5 +1,6 @@
 \input{../header.tex}
 \usepackage{tikz}
+\usepackage{pdflscape}
 
 %\subject{}
 \title{physik521 – Übung 13}
@@ -193,6 +194,16 @@ werden.
 
 \paragraph{Erwartungswert von $\sigma_j$}
 
+Warum steht auf dem Aufgabenzettel folgendes:
+\[
+    \bracket{\sigma_j} = \Bracket{\frac 1q \sum_{j=1}^q \sigma_j} ?
+\]
+Auf der linken Seite ist der Index $j$ frei, auf der rechten Seite wird über
+ihn summiert, daher ist er nicht mehr frei und nach außen sichtbar. Links steht
+ein Vektor, rechts ein Skalar. Sollen wir links den Index weglassen? Oder soll
+man die linke Seite ignorieren und den Erwartungswert für $\sigma_j$
+ausrechnen, so wie wir unten den Erwartungswert für $\sigma_0$ ausrechnen?
+
 \fehlt
 
 \paragraph{Erwartungswert von $\sigma_0$}
@@ -233,6 +244,81 @@ werden.
 
 
 \paragraph{Gleichheit der Gitterplätze}
+
+Es soll $\bracket{\sigma_0} = \bracket{\sigma_j}$ gelten. Also setzen wir das
+gleich. Dabei gehen wir von den Kontrollergebnissen aus. Hier kommt dann der
+Punkt, an dem man das Papier quer nehmen muss …
+\begin{landscape}
+\begin{align*}
+    \exp\sbr{\frac{\beta \mu B}2} \cosh^{q-1}[\alpha_+] \sinh[\alpha_+]
+    + \exp\sbr{- \frac{\beta \mu B}2} \cosh^{q-1}[\alpha_-] \sinh[\alpha_-]
+    &=
+    \exp\sbr{\frac{\beta \mu B}2} \cosh^q[\alpha_+]
+    - \exp\sbr{- \frac{\beta \mu B}2} \cosh^q[\alpha_-] \\
+    \intertext{%
+        Wir setzen $B = 0$. Dadurch werden alle Exponentialfunktionen 1 und
+        fallen heraus.
+    }
+    \cosh^{q-1}[\alpha_+] \sinh[\alpha_+] + \cosh^{q-1}[\alpha_-] \sinh[\alpha_-]
+    &= \cosh^q[\alpha_+] - \cosh^q[\alpha_-] \\
+    \cosh^{q-1}[\alpha_+] \del{\sinh[\alpha_+] - \cosh[\alpha_+]} + \cosh^{q-1}[\alpha_-] \del{
+    \sinh[\alpha_-] + \cosh[\alpha_-]} &= 0 \\
+    \intertext{%
+        Die Klammern können wir mit
+        \[
+            \sinh[x] - \cosh[x] = \frac 12 \del{ (\eup^x - \eup^{-x}) - (\eup^x
+            + \eup^{-x})} = - \eup^{-x}
+            \quad \text{und} \quad
+            \sinh[x] + \cosh[x] = \frac 12 \del{ (\eup^x - \eup^{-x}) + (\eup^x
+            + \eup^{-x})} = \eup^{x}.
+        \]
+        vereinfachen.
+    }
+    - \cosh^{q-1}[\alpha_+] \exp[-\alpha_+] + \cosh^{q-1}[\alpha_-] \exp[\alpha_-] &= 0 \\
+    \intertext{%
+        Jetzt ist die Gleichung schon wieder so kompakt, dass sie eigentlich
+        gar nicht mehr ins Querformat muss. Daher setzen wir jetzt $\alpha_\pm$
+        ein. An der Stelle $B = 0$ ist $\alpha_\pm$ gegeben durch $\beta \mu
+        B'/2 + \beta J/4$.
+    }
+    - \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 + \frac{\beta J}4}
+    \exp\sbr{- \frac{\beta \mu B'}4 - \frac{\beta J}4}
+    + \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 - \frac{\beta J}4}
+    \exp\sbr{\frac{\beta \mu B'}4 - \frac{\beta J}4} &= 0 \\
+    %
+    \exp\sbr{- \frac{\beta J}4} \del{
+        - \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 + \frac{\beta J}4}
+        \exp\sbr{- \frac{\beta \mu B'}4}
+        + \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 - \frac{\beta J}4}
+        \exp\sbr{\frac{\beta \mu B'}4}
+    } &= 0 \\
+    \intertext{%
+        Damit die Exponentialfunktion null werden kann, muss $\beta \to \infty$
+        gehen. Dies ist allerdings keine endliche, kritische Temperatur und
+        wird daher nicht weiter beachtet.
+    }
+    - \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 + \frac{\beta J}4}
+    \exp\sbr{- \frac{\beta \mu B'}4}
+    + \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 - \frac{\beta J}4}
+    \exp\sbr{\frac{\beta \mu B'}4} &= 0 \\
+\end{align*}
+\end{landscape}
+
+Ab hier kommen wir ohne Näherungen wahrscheinlich nicht mehr weiter. Daher
+entwickeln wir ab hier. In der Aufgabenstellung ist vorgegeben, dass man um $B'
+= 0$ entwickeln soll. Wir gehen davon aus, dass $B' = 0$ ist, weil wir gerade
+am Phasenübergang interessiert sind. An diesem tritt die spontane
+Symmetriebrechung aus und wir erhalten eine makroskopische Magnetisierung durch
+die Spins. $B'$ kann hier wahrscheinlich als Ordnungsparameter benutzt werden.
+Am Phasenübergang ist diese Ordnung jedoch noch nicht sonderlich ausgeprägt,
+sondern erscheint oder verschwindet gerade.
+
+\begin{align*}
+    \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 + \frac{\beta J}4}
+    \exp\sbr{- \frac{\beta J}4}
+    + \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 - \frac{\beta J}4}
+    \exp\sbr{\frac{\beta J}4} &= 0 \\
+\end{align*}
 
 \fehlt
 
