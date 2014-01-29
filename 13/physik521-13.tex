@@ -1,0 +1,111 @@
+\input{../header.tex}
+
+%\subject{}
+\title{physik521 – Übung 13}
+%\subtitle{}
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+        \and Paul Manz
+        \and Lino Lemmer \\ \small{\href{mailto:l2@uni-bonn.de}{l2@uni-bonn.de}}
+}
+
+\pagestyle{plain}
+
+\newcommand\kB{k_\text B}
+\newcommand\muB{\mu_\text B}
+\newcommand\ZG{Z_\text G}
+\DeclareMathOperator{\Tr}{Tr}
+
+\begin{document}
+
+\maketitle
+
+\section{Ising Modell}
+
+\subsection{Molekularfeld-Näherung}
+
+\paragraph{Kanonische Zustandssumme}
+
+Wir berechnen die kanonische Zustandssumme. Wir summieren dazu über alle
+Zustände $\ket n$ in der Spur. Diese Zustände bestehen aus den verschiedenen
+Spinkonfigurationen der einzelnen Teilchen. Somit haben wir:
+\begin{align*}
+    Z_\text C
+    &= \Tr\sbr{\exp[-\beta \hat H]} \\
+    \intertext{%
+        Wir setzen den Hamiltonoperator explizit ein:
+    }
+    &= \Tr\sbr{\exp\sbr{- \beta(J q \bracket\sigma + \mu B) \sum_{i=1}^N
+    \sigma_i}}. \\
+    \intertext{%
+        Wir benutzen als Basis die Spinzustände und schreiben die Spur somit
+        als $N$ Summen:
+    }
+    &= \sum_{\sigma_1 = \pm \frac 12} \ldots \sum_{\sigma_N = \pm \frac 12}
+    \exp\sbr{- \beta(J q \bracket\sigma + \mu B) \sum_{i=1}^N \sigma_i}. \\
+    \intertext{%
+        Die Summe in der Exponentialfunktion ziehen wir raus in ein Produkt. Da
+        wir über $N$ Einträge innerhalb der Exponentialfunktion summieren und
+        außerhalb ebenfalls über $N$ Einträge summieren, können wir dies in ein
+        Produkt zusammenfassen:
+    }
+    &= \prod_{i=1}^N \sum_{\sigma_i = \pm \frac 12} \exp\sbr{- \beta(J q
+    \bracket\sigma + \mu B) \sigma_i}. \\
+    \intertext{%
+        Das Produkt können wir als einfache Potenz schreiben, da der Faktor
+        invariant gegenüber $i$ ist. Diese Summe können wir dann auch noch
+        ausführen.
+    }
+    &= \del{\exp\sbr{\frac12 \beta(J q \bracket\sigma + \mu B)} + \exp\sbr{-
+\frac12 \beta(J q \bracket\sigma + \mu B)}}^N \\
+    &= 2^N \cosh^N\sbr{\frac12 \beta(J q \bracket\sigma + \mu B)}
+\end{align*}
+
+\paragraph{Erwartungswert des Spins}
+
+\begin{align*}
+    \bracket{\sigma_j}
+    &= \frac{1}{Z_\text C} \Tr[\sigma_j W] \\
+    &= \frac{1}{Z_\text C} \prod_{i=1}^N \sum_{\sigma_i = \pm \frac 12}
+    \exp\sbr{- \beta(J q \bracket\sigma + \mu B) \sigma_i} \sigma_j \\
+    \intertext{%
+        Wir sind nur an dem Erwartungswert von einem Spin interessiert. Daher
+        setzen wir, ohne Beschränkung der Allgemeinheit, hier $j = 1$. Aus dem
+        Produkt ziehen wir den Anteil für $i = 1$ heraus. Die Zustandssumme war
+        bereits faktorisiert, so dass wir diese ebenfalls aufteilen können:
+    }
+    &= \frac{1}{Z_{\text C,1}}
+    \sum_{\sigma_1 = \pm \frac 12} \sigma_1
+    \exp\sbr{- \beta(J q \bracket\sigma + \mu B) \sigma_1}
+    \frac{1}{Z_{\text C,1}^{N-1}}
+    \prod_{i=2}^N \sum_{\sigma_i = \pm \frac 12}
+    \exp\sbr{- \beta(J q \bracket\sigma + \mu B) \sigma_i}. \\
+    \intertext{%
+        Vergleicht man den letzten Teil mit der Berechnung der Zustandssumme,
+        sieht man, dass dort $Z_{\text C,1}^{N-1}$ herauskommt, sich mit dem
+        gleichen Faktor im Nenner kürzt. Es bleibt also:
+    }
+    &= \frac{1}{Z_{\text C,1}}
+    \sum_{\sigma_1 = \pm \frac 12} \sigma_1
+    \exp\sbr{- \beta(J q \bracket\sigma + \mu B) \sigma_1}. \\
+    \intertext{%
+        Ab hier führen wir die Summe aus, setzen $Z_{\text C,1}$ ein und
+        vereinfachen mit trigonometrischen Funktionen.
+    }
+    &= \frac 12\frac{1}{Z_{\text C,1}}
+    \del{\exp\sbr{\frac12 \beta(J q \bracket\sigma + \mu B)} - \exp\sbr{-
+        \frac12 \beta(J q \bracket\sigma + \mu B)}}  \\
+    &= \frac 12 \frac{\exp\sbr{\frac12 \beta(J q \bracket\sigma + \mu B)} -
+    \exp\sbr{- \frac12 \beta(J q \bracket\sigma + \mu B)}}{\exp\sbr{\frac12
+    \beta(J q \bracket\sigma + \mu B)} + \exp\sbr{- \frac12 \beta(J q
+    \bracket\sigma + \mu B)}} \\
+    &= \frac 12 \tanh\sbr{\frac12 \beta(J q \bracket\sigma + \mu B)}
+\end{align*}
+
+\IfFileExists{\bibliographyfile}{
+    \printbibliography
+}{}
+
+\end{document}
+
+% vim: spell spelllang=de tw=79
