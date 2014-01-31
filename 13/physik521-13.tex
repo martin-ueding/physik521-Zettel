@@ -313,16 +313,111 @@ die Spins. $B'$ kann hier wahrscheinlich als Ordnungsparameter benutzt werden.
 Am Phasenübergang ist diese Ordnung jedoch noch nicht sonderlich ausgeprägt,
 sondern erscheint oder verschwindet gerade.
 
-\begin{align*}
-    \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 + \frac{\beta J}4}
-    \exp\sbr{- \frac{\beta J}4}
-    + \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 - \frac{\beta J}4}
-    \exp\sbr{\frac{\beta J}4} &= 0 \\
-\end{align*}
+Wir setzen in die letzt Zeile der vorherigen Seite $B' = 0$ ein und erhalten
+\[
+    - \cosh\sbr{\frac{\beta J}4}^{q-1} + \cosh\sbr{-\frac{\beta J}4}^{q-1} = 0,
+\]
+was immer erfüllt ist, da $\cosh$ eine gerade Funktion ist.
 
-\fehlt
+Als nächstes bildet wir die erste Ableitung der Gleichung. Das folgende ist
+eine Gleichung, die wir einfach in vier Zeilen zerlegen mussten. Dies ändert
+aber nichts an der Bedeutung.
+\begin{multline*}
+    \del{
+        - (q-1) \cosh\sbr{\frac{\beta \mu B'}2 + \frac{\beta J}4}^{q-2}
+        \sinh\sbr{\frac{\beta \mu B'}2 + \frac{\beta J}4}
+        \frac{\beta \mu}2
+        - \cosh\sbr{\frac{\beta \mu B'}2 + \frac{\beta J}4}^{q-1}
+        \del{- \frac{\beta \mu}2}
+    } \\
+    \exp\sbr{- \frac{\beta \mu B'}2} \\
+    +
+    \del{
+        (q-1) \cosh\sbr{\frac{\beta \mu B'}2 - \frac{\beta J}4}^{q-2}
+        \sinh\sbr{\frac{\beta \mu B'}2 - \frac{\beta J}4}
+        \frac{\beta \mu}2
+        + \cosh\sbr{\frac{\beta \mu B'}2 - \frac{\beta J}4}^{q-1}
+        \frac{\beta \mu}2
+    }
+    \\
+    \exp\sbr{\frac{\beta \mu B'}2}
+    = 0
+\end{multline*}
+
+Dort setzen wir auch $B'=0$ ein und erhalten:
+\begin{multline*}
+    - (q-1) \cosh\sbr{\frac{\beta J}4}^{q-2}
+    \sinh\sbr{\frac{\beta J}4}
+    \frac{\beta \mu}2
+    - \cosh\sbr{\frac{\beta J}4}^{q-1}
+    \del{- \frac{\beta \mu}2}
+    \\
+    +
+    (q-1) \cosh\sbr{- \frac{\beta J}4}^{q-2}
+    \sinh\sbr{- \frac{\beta J}4}
+    \frac{\beta \mu}2
+    + \cosh\sbr{- \frac{\beta J}4}^{q-1}
+    \frac{\beta \mu}2
+    = 0
+\end{multline*}
+
+Nun können wir dies ein wenig vereinfachen, indem wir wieder ausnutzen, dass
+$\cosh$ gerade und $\sinh$ ungerade ist. Den Faktor 2 teilen wir heraus:
+\[
+    \del{
+        - (q-1) \cosh\sbr{\frac{\beta J}4}^{q-2}
+        \sinh\sbr{\frac{\beta J}4}
+        + \cosh\sbr{\frac{\beta J}4}^{q-1}
+    }
+    \frac{\beta \mu}2
+    = 0
+\]
 
 \paragraph{Kritische Temperatur}
+
+Nun ist eine Lösung dieser Gleichung, dass $\beta = 0$ ist. Dies ist jedoch
+unrealistisch. Daher muss die Klammer null sein.
+\begin{align*}
+    (q-1) \cosh\sbr{\frac{\beta J}4}^{q-2}
+    \sinh\sbr{\frac{\beta J}4}
+    - \cosh\sbr{\frac{\beta J}4}^{q-1} &= 0 \\
+    %
+    \cosh\sbr{\frac{\beta J}4}^{q-2}
+    \del{
+        (q-1) \sinh\sbr{\frac{\beta J}4}
+        - \cosh\sbr{\frac{\beta J}4}
+    } &= 0 \\
+    \intertext{%
+        Da $\cosh$ positiv definit ist, kann dieser Faktor nicht null sein.
+        Daher muss es wieder die Klammer sein.
+    }
+    (q-1) \sinh\sbr{\frac{\beta J}4}
+    - \cosh\sbr{\frac{\beta J}4} &= 0 \\
+    \frac 4J \arcoth[q-1] &= \beta \\
+    \frac{J}{4 \kB} \arcoth[q-1]^{-1} &= T_\text C
+\end{align*}
+
+Wie in Abbildung~\ref{fig:arcoth} zu sehen, verhält sich für $q\to\infty$
+dieser Term genauso, wie die Skalierung mit $\propto q$ in der vorherigen
+Teilaufgabe. Damit erhalten wir das gleiche Ergebnis.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \draw[->, thin] (0, 0) -- (4, 0) node[right] {$x$};
+        \draw[->, thin] (0, 0) -- (0, 4);
+        \draw[domain=1.1:4, thick] plot (\x, {1/(ln((\x+1)/(\x-1))/2)})
+        node[right] {$\arcoth[x]^{-1}$};
+        \draw[domain=1.1:4] plot (\x, {\x}) node[left] {$x$};
+    \end{tikzpicture}
+    \caption{%
+        Asymptotisches Verhalten der Funktion $\arcoth[x]^{-1}$.
+    }
+    \label{fig:arcoth}
+\end{figure}
+
+
+\section{Ginzburg-Landau Theorie des Heisenberg-Modells}
 
 \fehlt
 
@@ -332,4 +427,4 @@ sondern erscheint oder verschwindet gerade.
 
 \end{document}
 
-% vim: spell spelllang=de tw=79
+
