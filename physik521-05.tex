@@ -30,7 +30,7 @@
 \subsection{}
 Gegeben ist das Integral
 \begin{align}
-    I &= \lim_{N\to\infty}\int_a^b\!\dif x\; \exp\del{Nf(x)} \label{eq:integral}
+    I &= \lim_{N\to\infty}\int_a^b\!\dif x\; \eexp{Nf(x)} \label{eq:integral}
     \intertext{$f$ hat ein globales Maximum bei $x=x_0$. Um diesen Punkt
     Taylorn wir die Funktion:}
     f(x) &= f\del{x_0} + f'\del{x_0}\del{x-x_0} +
@@ -41,46 +41,46 @@ Gegeben ist das Integral
         brechen nach dem dritten Glied ab, erhalten wir
     }
     I &= \lim_{N\to\infty}\int_a^b\!\dif x\;
-    \exp\del{Nf\del{x_0} + Nf'\del{x_0}x + \frac{N}2f''
+    \eexp{Nf\del{x_0} + Nf'\del{x_0}x + \frac{N}2f''
     \del{x_0}\del{x-x_0}^2}\notag
     \intertext{%
         Die erste Ableitung verschwindet bei $x_0$, da dort das Maximum der
         Funktion ist.
     }
     &= \lim_{N\to\infty}\int_a^b\!\dif x\;
-    \exp\del{Nf\del{x_0}}\exp\del{\frac{N}2f''\del{x_0}\del{x-x_0}^2}\notag \\
-    &= \lim_{N\to\infty}\exp\del{Nf\del{x_0}}\int_a^b\!\dif x\;
-    \exp\del{\frac{N}2f''\del{x_0}\del{x-x_0}^2}\notag \\
-    &= \lim_{N\to\infty}\exp\del{Nf\del{x_0}}\int_a^b\!\dif x\;
-    \exp\del{\frac N2f''\del{x_0}x^2}\exp\del{Nf''\del{x_0}x_0x}
-    \exp\del{\frac N2f''\del{x_0}x_0^2} \notag \\
-    &= \lim_{N\to\infty}\exp\del{Nf\del{x_0}}\exp\del{\frac N2f''\del{x_0}x_0^2}
+    \eexp{Nf\del{x_0}}\eexp{\frac{N}2f''\del{x_0}\del{x-x_0}^2}\notag \\
+    &= \lim_{N\to\infty}\eexp{Nf\del{x_0}}\int_a^b\!\dif x\;
+    \eexp{\frac{N}2f''\del{x_0}\del{x-x_0}^2}\notag \\
+    &= \lim_{N\to\infty}\eexp{Nf\del{x_0}}\int_a^b\!\dif x\;
+    \eexp{\frac N2f''\del{x_0}x^2}\eexp{Nf''\del{x_0}x_0x}
+    \eexp{\frac N2f''\del{x_0}x_0^2} \notag \\
+    &= \lim_{N\to\infty}\eexp{Nf\del{x_0}}\eexp{\frac N2f''\del{x_0}x_0^2}
     \int_a^b\!\dif x\;
-    \exp\del{\frac N2f''\del{x_0}x^2}\exp\del{Nf''\del{x_0}x_0x} \notag
+    \eexp{\frac N2f''\del{x_0}x^2}\eexp{Nf''\del{x_0}x_0x} \notag
     \intertext{mit $a = -\frac N2 f''\del{x_0}$:}
-    &= \lim_{N\to\infty} \exp\del{Nf\del{x_0}} \exp\del{-ax_0^2} \int_a^b\!\dif x\;
-    \exp\del{2ax_0x}\exp\del{-ax^2} \notag
+    &= \lim_{N\to\infty} \eexp{Nf\del{x_0}} \eexp{-ax_0^2} \int_a^b\!\dif x\;
+    \eexp{2ax_0x}\eexp{-ax^2} \notag
     \intertext{mit $\ii\omega = -2ax_0$}
-    &= \lim_{N\to\infty} \exp\del{Nf\del{x_0}} \exp\del{\frac{\omega^2}{4a}} \int_a^b
-    \!\dif x\; \exp\del{-\ii\omega x}\exp\del{-ax^2} \label{eq:integral_getaylort}
+    &= \lim_{N\to\infty} \eexp{Nf\del{x_0}} \eexp{\frac{\omega^2}{4a}} \int_a^b
+    \!\dif x\; \eexp{-\ii\omega x}\eexp{-ax^2} \label{eq:integral_getaylort}
     \intertext{%
         Nun betrachten wir die Formel für Gaußsche Integrale
     }
-    \sqrt{\frac{\piup}a}\exp\del{-\frac{\omega^2}{4a}}&=
-    \int\!\dif t\;\exp\del{-\ii\omega t}\exp\del{-at^2}\label{eq:Gauss} 
+    \sqrt{\frac{\piup}a}\eexp{-\frac{\omega^2}{4a}}&=
+    \int\!\dif t\;\eexp{-\ii\omega t}\eexp{-at^2}\label{eq:Gauss} 
     \intertext{%
         Lösen wir nun \eqref{eq:integral_getaylort} mit \eqref{eq:Gauss}
         auf, erhalten wir:
     }
-    &= \lim_{N\to\infty} \exp\del{Nf\del{x_0}} \exp\del{\frac{\omega^2}{4a}}
-    \sqrt{\frac\piup a}\exp\del{-\frac{\omega^2}{4a}}\notag \\
-    &= \lim_{N\to\infty} \exp\del{Nf\del{x_0}} \sqrt{\frac\piup a}\notag \\
-    &= \lim_{N\to\infty} \exp\del{Nf\del{x_0}}
+    &= \lim_{N\to\infty} \eexp{Nf\del{x_0}} \eexp{\frac{\omega^2}{4a}}
+    \sqrt{\frac\piup a}\eexp{-\frac{\omega^2}{4a}}\notag \\
+    &= \lim_{N\to\infty} \eexp{Nf\del{x_0}} \sqrt{\frac\piup a}\notag \\
+    &= \lim_{N\to\infty} \eexp{Nf\del{x_0}}
     \sqrt{-\frac{2\piup}{Nf''\del{x_0}}}\notag
     \intertext{%
         Da die zweite Ableitung an der Maximalstelle negativ ist, folgt
     }
-    &= \lim_{N\to\infty} \exp\del{Nf\del{x_0}}
+    &= \lim_{N\to\infty} \eexp{Nf\del{x_0}}
     \sqrt{\frac{2\piup}{N\abs{f''\del{x_0}}}}\label{eq:sattelpunktmethode}
 \end{align}
 \subsection{}
@@ -88,23 +88,23 @@ Gegeben ist das Integral
 \begin{align*}
     \lim_{N\to\infty} N! &= \lim_{N\to\infty} \Gamma\del{N+1} \\
                          &= \lim_{N\to\infty} \int_0^\infty \!\dif x \;
-    x^N\exp\del{-x} \\
+    x^N\eexp{-x} \\
     \intertext{%
         Wir substituieren nun $x = Nz$ und $N \dif z = \dif x$:
     }
-    &=\lim_{N\to\infty} \int_0^\infty \!\dif z \; NN^Nz^N \exp\del{-Nz} \\
+    &=\lim_{N\to\infty} \int_0^\infty \!\dif z \; NN^Nz^N \eexp{-Nz} \\
     &=\lim_{N\to\infty} NN^N \int_0^\infty \!\dif z \; 
-    \exp\del{N\log\del{z}} \exp\del{-Nz} \\
+    \eexp{N\log\del{z}} \eexp{-Nz} \\
     &=\lim_{N\to\infty} N^{N+1} \int_0^\infty \!\dif z \;
-    \exp\del{N\del{\log\del{z}-z}}
+    \eexp{N\del{\log\del{z}-z}}
     \intertext{%
         Wir setzen nun $f(z) = \log\del z - z$. Diese Funktion hat ihr
         Maximum bei $z = 1$. Die zweite Ableitung an dieser Stelle ist
         $f''(1) = -\frac{1}{1^2} = -1$. Nach \eqref{eq:sattelpunktmethode}
         gilt
     }
-    &= \lim_{N\to\infty} N^{N+1}\exp\del{-N}\sqrt{\frac{2\piup}{N}}\\
-    &=\lim_{N\to\infty}\sqrt{2\piup N}N^N\exp\del{-N}
+    &= \lim_{N\to\infty} N^{N+1}\eexp{-N}\sqrt{\frac{2\piup}{N}}\\
+    &=\lim_{N\to\infty}\sqrt{2\piup N}N^N\eexp{-N}
 \end{align*}
 Dies ist die gesuchte Stirling-Formel.
 
