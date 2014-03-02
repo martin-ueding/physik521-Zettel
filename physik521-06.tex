@@ -1,0 +1,46 @@
+\input{header.tex}
+
+\setcounter{section}{0}
+\renewcommand\thesection{H\,6.\arabic{section}}
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\title{physik521: Übungsblatt 06}
+\author{%
+    Lino Lemmer \\ \small{\texttt{s6lilemm@uni-bonn.de}}
+    \and
+    Martin Ueding \\ \small{\texttt{mu@martin-ueding.de}}
+    \and
+    Paul Manz \\ \small{\texttt{p.m@uni-bonn.de}}
+}
+
+\begin{document}
+\maketitle
+
+\section{Energiefluktuationen im kanonischen Ensemble}
+
+Zunächst gilt generell Folgendes:
+\[
+    \mw{(\Delta E)^2} = \mw{E^2} - \mw{E}^2.
+\]
+
+Wir bilden die Ableitung von $\mw E$ und fassen Mittelwertsbildungen zusammen:
+\begin{align*}
+    kT^2 \dpd{\mw E}T
+    &= \frac{\sum_n \exp\del{-\frac{E_n}{kT}} E_n^2 \cdot Z_K - Z_K \cdot \mw E \sum_j \exp\del{-\frac{E_j}{kT}} E_j}{Z_K^2} \\
+    &= \mw{E^2} - \mw{E}^2 \\
+    &= \mw{(\Delta E)^2}
+\end{align*}
+
+Somit ist die Relation gezeigt.
+
+Dies hängt mit der Wärmekapazität zusammen, da diese wie folgt definiert ist:
+\[
+    c_V = \tdpd ETV.
+\]
+Es unterscheidet sich also nur um einen Faktor $kT^2$.
+
+Laut Skript sollen im Grenzfall $N \to \infty$ die Fluktuationen gegen 0 gehen.
+Daraus soll dann folgen, dass der mikrokanonische und kanonische Formalismus
+equivalent sind.
+
+\end{document}
