@@ -1,0 +1,314 @@
+\input{header.tex}
+
+\hypersetup{
+	pdftitle=
+}
+
+%\subject{}
+\title{physik521 -- Übung 9}
+%\subtitle{}
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+        \and
+        Paul Manz
+        \and
+        Lino Lemmer
+}
+
+\pagestyle{plain}
+
+\begin{document}
+
+\maketitle
+
+\section{Das ideale Fermi-Gas}
+
+\newcommand\kB{k_\text B}
+\newcommand\ZG{Z_\text G}
+\newcommand\ZGe{Z_{\text G, 1}}
+\newcommand\Eai{E_{\alpha_i}}
+\newcommand\isum{\sum_{i=1}^\infty }
+
+Wir übernehmen folgende Formeln aus dem Skript:
+\begin{gather*}
+    \ZG = \prod_{i=1}^\infty \del{1 + \exp\del{- \frac{\Eai - \mu}{\kB T}}} \\
+    \Omega = - \kB T \isum \ln \del{\ZGe(\alpha_i, \mu, T)} \\
+    \rho(E) = \isum \delta(E - \Eai)
+\end{gather*}
+
+Alle diese Aufgaben stehen so im Skript vorgerechnet. Wir haben uns bei
+unseren Rechnungen an das Skript gehalten, jedoch wieder versucht jeden
+Schritt hier zur erklären.
+
+\subsection{Allgemeine Ausdrücke}
+
+\subsubsection{Mittlere Teilchenzahl}
+
+Die Funktion $f(\Eai)$ gibt die Anzahl der Besetzungen des Zustandes $\alpha_i$ an. Somit wie im Skript:
+\[
+    \bracket N = \isum f(\Eai).
+\]
+
+Wenn man jetzt $\rho$ dazunimmt, geht dies so:
+\[
+    \bracket N = \int \dif E \, \rho(E) f(E).
+\]
+
+Dies funktioniert, da $\rho$ im Integral über $E$ an jedem Energiewert $E$ die
+Anzahl der Zustände $\alpha_i$, die diese Energie haben, gibt. Somit wird die
+Vielfachheit der Energiezustände von der Summe in das $\rho$ verlagert.
+
+\subsubsection{Entropie}
+
+Mit $\Omega = U - TS - \mu N$ kann man die Entropie $S$ als Ableitung schreiben:
+\[
+    S = - \tdpd\Omega T{\mu, V}.
+\]
+
+Diese rechnen wir jetzt konkret aus:
+\begin{align*}
+    S &= \kB \isum \ln\del{- \frac{\Eai - \mu}{\kB T}} + \kB T \isum
+    \frac{\exp\del{- \frac{\Eai - \mu}{\kB T}}}{1 + \exp\del{- \frac{\Eai -
+    \mu}{\kB T}}} \frac{\Eai - \mu}{\kB T^2} \\
+      &= - \frac\Omega T + \isum f(\Eai) \frac{\Eai - \mu}T.
+\end{align*}
+
+\subsubsection{Innere Energie}
+
+Mit der am Anfang der vorherigen Teilaufgabe genannten Relation können wir die innere Energie als $U = \Omega + TS + \mu N$ schreiben. Wir rechnen weiter:
+\begin{align*}
+    U &= \Omega + TS + \mu N \\
+      &= \Omega - \Omega + \isum f(\Eai) \cdot (\Eai - \mu) + \mu N \\
+      &= \isum f(\Eai) \cdot \Eai + \isum f(\Eai) \cdot \Eai + \mu N \\
+      &= \bracket E - \bracket N \mu + \mu N. \\
+    \intertext{%
+        Wenn man das Limit $N \to \infty$ annimmt, kann man $\lim_{N\to\infty}
+        \bracket N = N$ annehmen und weiter vereinfachen:
+    }
+      &= \bracket E.
+\end{align*}
+
+\subsubsection{Freie Energie}
+
+Die freie Energie $F$ ist wieder ein transformiertes Potential, wir benutzen
+hier $F = \Omega + \mu N$. Dabei sehen wir jedoch nicht, wie sich dies weiter
+vereinfacht.
+
+\subsection{Druck des Gases}
+
+Im Skript wird folgendes vorgerechnet. In Formel (5.47) ist das großkanonische Potential gegeben:
+\[
+    \Omega = - \kB T \sum_\sigma \dif E_\alpha \rho_\sigma(E_\alpha) \ln\del{1 + \exp\del{- \frac{E_\alpha - \mu}{\kB T}}}.
+\]
+
+Dabei stehen die $\sigma$ wahrscheinlich für alle Spins, über die Summiert wird. Allerdings ist der Index $\alpha$ frei, sollte aber wegsummiert werden, da er auf der linken Seite nicht steht. Fehlt somit noch eine Summe über $\alpha$, oder bezieht die Summe über die $\sigma$ dies noch ein?
+
+\newcommand\EF{\epsilon_\text F}
+
+In Formel (5.28) ist die Zustandsdichte pro Volumen gegeben:
+\[
+    \frac{\rho_\sigma(E)} V = \frac 34 n \frac1\EF \sqrt{\frac E\EF}.
+\]
+
+Wenn man dies jetzt nach $\rho_\sigma$ umstellt und in die obige Formel für $\Omega$ einsetzt, und noch annimmt, dass die Abhängigkeit vom Volumen jetzt alleine in dem $V$ steckt, das durch die Umformung entstanden ist, führt eine Ableitung nach $V$ nur dazu, dass dieses $V$ wieder verschwindet. Somit erhalten wir das in Skript gegebene Ergebnis von:
+\[
+    p = - \dpd \omega V = - \frac \Omega V.
+\]
+
+Jetzt haben wir dabei wohl angenommen, dass die Teilchendichte $n = N/V$ konstant bleibt, weil $\rho_\sigma/V$ diese enthält und wir nur so diese proportionale Volumenabhängigkeit erhalten. Allerdings wurde das $\mu$ in der Darstellung von $\Omega$ als konstant angenommen, damit die Ableitung derart einfach ist.
+
+Von daher scheint die Herleitung im Skript beide Annahmen gemacht zu haben.
+
+\subsubsection{Bei festem chemischen Potential}
+
+\fehlt
+
+\subsubsection{Bei fester Teilchenzahl}
+
+\fehlt
+
+\subsubsection{Diskussion}
+
+\fehlt
+
+\subsection{Spezifische Wärme}
+
+Die Definition der spezifischen Wärme ist:
+\[
+    c_V = \tdpd QTV.
+\]
+
+Hier ist die Variante mit
+\[
+    c_V = - T \tdpd ST{V,\mu}
+\]
+nützlich. Dort setzen wir jetzt die Entropie, die wir vorher berechnet haben, ein:
+\begin{align*}
+    c_V &= -T \sbr{
+    \frac{\Omega}{T^2} - \isum f(\Eai) \frac{\Eai - \mu}{T^2} - \frac 1T \tdpd \Omega T {V,\mu} - \isum \tdpd{f(\Eai)}T{V,\mu} \frac{\Eai - \mu}T
+    } \\
+    &= - \frac\Omega T + \isum f(\Eai) \frac{\Eai - \mu}T - \tdpd\Omega T{V,\mu} + \isum \tdpd{f(\Eai)}T{V,\mu} (\Eai - \mu). \\
+    \intertext{%
+        Die ersten beiden Summanden sind gerade die Entropie. Der dritte
+        Summand ist $-S$. Somit erhalten wir:
+    }
+    &= \isum \tdpd{f(\Eai)}T{V,\mu} (\Eai - \mu). \\
+    \intertext{%
+        Wir ziehen die Ableitung nach vorne, da die restlichen Größen als
+        unabhängig von der Temperatur angenommen werden.
+    }
+    &= \tdpd{}T{V,\mu} \isum f(\Eai) \cdot (\Eai - \mu) \\
+    \intertext{%
+        Es bleibt der Mittelwert von $\Eai - \mu$ übrig. Somit schreiben wir:
+    }
+    &= \tdpd{}T{V,\mu} \bracket{\Eai - \mu} \\
+    \intertext{%
+        Dies ist der Mittelwert der Abweichung der Energiewerte vom chemischen
+        Potential. In der zeitlichen Ableitung spielt $\mu$ jedoch keine Rolle
+        mehr, da es als konstant angenommen wird. Somit ist es nur der
+        Mittelwert der Energie.
+    }
+    &= \tdpd{\bracket\Eai}T{V,\mu} \\
+    \intertext{%
+        Dies identifizieren wir mit der inneren Energie:
+    }
+    &= \tdpd{U}T{V,\mu}.
+\end{align*}
+
+\subsection{Tieftemperaturentwicklung}
+
+Für die weiteren Teilaufgaben muss das großkanonische Potential genähert
+werden. Dabei wird ausgenutzt, dass bei kleinen Temperaturen die
+Fermiverteilung jenseits des chemischen Potentials annähernd konstant ist.
+
+\subsubsection{Mittlere Teilchenzahl}
+
+\begin{align*}
+    N &= 2 \int \dif E \, \rho(E) f(E) \\
+    \intertext{%
+        Nun führen wir eine partielle Integration durch, um die Ableitung der
+        Fermiverteilung zu erhalten. Dazu müssen wir dann eine Funktion
+        \[
+            b(E) := \int_{-\infty}^E \dif E' \, \rho(E')
+        \]
+        einführen, die die Stammfunktion zu $\rho$ ist.
+    }
+    &= 2 \eval{b(E) f(E)}_{E=-\infty}^\infty - 2 \int \dif E \, b(E) f'(E) \\
+    \intertext{%
+        Der erste Summand verschwindet, da $b(-\infty)$ per Definition
+        verschwindet. $f(\infty)$ verschwindet auch, da große Energien immer
+        weniger dicht besetzt sind.
+    }
+    &= - 2 \int \dif E \, b(E) f'(E) \\
+    \intertext{%
+        Da $f'(E)$ an einer recht schmalen Stelle bei $E = \mu$ von null
+        verschieden ist, und $b$ innerhalb des relevanten Intervalls nicht
+        stark variiert, kann es durch eine Taylorentwicklung angenähert werden.
+        Diese ist:
+        \[
+            b(E) = b(\mu) + b'(\mu) (E-\mu) + \frac 12 b''(\mu) (E-\mu)^2 +
+            \mathcal O (E^3).
+        \]
+        Wir setzen diese Entwicklung für $b$ ein und erhalten:
+    }
+    &= - 2 b(\mu) \int \dif E \, f'(E) - 2 b'(\mu) \int \dif E \, (E-\mu)
+    f'(E) - b''(\mu) \int \dif E \, (E-\mu)^2 f'(E). \\
+    \intertext{%
+        Im Skript sind die Lösungen zu diesen sogenannten Fermiintegralen
+        angeben. Diese setzen wir hier ein.
+    }
+    &= 2 b(\mu) + p'(\mu) \frac{\pi^2}{3} (\kB T)^2
+\end{align*}
+
+$b(\mu)$ ist die Anzahl der Zustände, die bis zum chemischen Potential besetzt
+sind.
+
+\subsubsection{Entropie}
+
+Im Skript wird eine analoge Näherung des kanonischen Potentials gemacht. Da im
+kanonischen Potential zuerst der Logarithmus der Zustandssumme steht, braucht
+man eine weitere partielle Integration, um die Ableitung der Fermiverteilung
+zu erhalten. Der Ausdruck ist gegeben als:
+\[
+    \Omega = -2 b(\mu) - \frac{\pi^2}3 p(\mu) (\kB T)^2 + \mathcal O(T^4).
+\]
+
+Die Entropie ist die negative Ableitung nach der Temperatur, also:
+\[
+    S = - \dpd \Omega T = \frac 23 \pi^2 \rho(\mu) \kB^2 T.
+\]
+
+\subsubsection{Innere Energie}
+
+Die innere Energie ist $U = \Omega + TS + \mu N$. Mit den Ergebnissen der
+vorherigen Teilaufgaben:
+\[
+    U = - 2 b(\mu) + \frac{\pi^2}3 \rho(\mu) (\kB T)^2 + \mu N.
+\]
+
+Wenn man $b(\mu) = N$ annimmt, das allerdings nicht exakt sein kann, weil wir
+in der vorherigen Aufgabe etwas anderes für $\bracket N$ erhalten haben,
+könnte man dies vielleicht noch weiter vereinfachen.
+
+\subsubsection{Freie Energie}
+
+Die freie Energie ist, wie zuvor auch, $\Omega + \mu N$ und lässt sich nicht
+sonderlich vereinfachen.
+
+\subsubsection{Druck}
+
+Der Druck ist weiterhin
+\[
+    p = - \dpd \Omega V,
+\]
+wobei das $\Omega$ jetzt das genäherte ist. Da $\rho(\omega)$ wieder
+proportional von $V$ ist und der erste Summand in $\Omega$ gar nicht von $V$
+abhängt, ist der Druck gegeben durch:
+\[
+    p = \frac{\piup^2}6 \frac{\rho(\mu)}V (\kB T)^2.
+\]
+
+\section{Modell für weiße Zwerge}
+
+\subsection{Fermiimpuls}
+Für ein ideales Fermigas gilt die Gleichung 
+\[ \bracket N = \int \dif E \ \rho(E) f_\mu(E) \]
+Wir wissen, dass bei $T=0$ alle Zustände bis zur Fermienergie besetzt sind. Um diese und damit den Fermiimpuls zu erhalten brauchen wir die Gleichung lediglich bei $T=0 \implies f_\mu=\Theta(\epsilon_{\text F})$ auszuwerten.
+\begin{align*}
+N &= \int_0^{\epsilon_{\text F}} \dif E \ \rho(E) \\
+&= \int_0^{\epsilon_{\text F}} \dif E \ \frac{VE \sqrt{E^2-(mc^2)^2}}{2\pi^2\hbar^3c^3} \\
+&= \frac{V}{2\pi^2\hbar^3c^3} \int_0^{p_{\text F}} \dif p \ \frac{Ep^2c^3}{2E} \\
+&= \frac{V}{4\pi^2\hbar^3c} \int_0^{p_{\text F}} \dif p \ p^2 \\
+&= \frac{Vp_{\text F}^3}{12\pi^2\hbar^3} \\
+\implies p_{\text F} &= \hbar \ \sqrt[3]{12\pi^2 n}
+\end{align*}
+
+Damit Elektronen sich an der Fermikante relativistisch bewegen muss $p_{\text F} > mc$ gelten:
+\begin{align*}
+p_{\text F} &> mc \\
+\implies \hbar \ \sqrt[3]{12\pi^2 n} &> mc \\
+\implies n &> \frac{(mc)^3}{12\pi^2\hbar^3} \\
+n &> \SI{1.49e29}{\centi \meter}^{-3}
+\end{align*}
+
+\subsection{Temperatur}
+Berechne die Fermienergie mithilfe der relativistischen Energie-Impuls-Beziehung.
+\begin{align*}
+\epsilon_{\text F} &= c \sqrt{m^2c^2+p_{\text F}^2} \\
+&= c \sqrt{m^2c^2+\hbar^2 (12\pi^2 n)^{2/3}} \\
+&= \SI{1.75e-13}{\joule}
+\end{align*}
+Für $k_{\text B}T$ erhalten wir:
+\begin{align*}
+k_{\text B}T = \SI{1.38e-16}{\joule} \ll \epsilon_{\text F}
+\end{align*}
+
+\subsection{Innere Energie}
+
+\IfFileExists{\bibliographyfile}{
+    \printbibliography
+}{}
+
+\end{document}
+
+% vim: spell spelllang=de
