@@ -1,0 +1,297 @@
+\input{header.tex}
+
+\setcounter{section}{0}
+\renewcommand\thesection{H\,3.\arabic{section}}
+\renewcommand\thesubsection{\thesection.\alph{subsection}}
+
+\title{physik521: Übungsblatt 03}
+\author{%
+    Lino Lemmer \\ \small{\texttt{s6lilemm@uni-bonn.de}}
+    \and
+    Martin Ueding \\ \small{\texttt{mu@martin-ueding.de}}
+    \and
+    Paul Manz \\ \small{\texttt{p.m@uni-bonn.de}}
+}
+
+\begin{document}
+\maketitle
+
+\section{Thermodynamische Beziehungen in einem magnetischen System}
+
+\newcommand\tdpd[3]{\del{\dpd{#1}{#2}}_{#3}}
+
+\subsection{Erste Herleitung}
+
+Es ist zu zeigen, dass gilt:
+\[
+    \frac{c_B}{c_M} = \frac{\chi_T}{\chi_S}
+\]
+
+Im Skript ab Seite 42 ist diese Aufgabe für zwei andere Größen
+vorgerechnet. Ich habe diese Lösung versucht nachzuvollziehen und hier
+mit mehr Erklärungen für die magnetischen Größen wiederzugeben.
+
+Hier sind alle Umformungen, die Erklärungen folgen:
+\[
+    \frac{c_B}{c_M}
+    \overset{\ref{1-1}}=
+    \frac{T \tdpd S T B}{T \tdpd S T M}
+    \overset{\ref{1-2}}=
+    \frac{ \frac{\tdpd BTS}{\tdpd BST} }{ \frac{\tdpd MTS}{\tdpd MST} }
+    =
+    \frac{\tdpd BTS}{\tdpd MTS} \frac{\tdpd MST}{\tdpd BST}
+    \overset{\ref{1-3}}=
+    \frac{\tdpd BTS \tdpd TMS}{\tdpd BST \tdpd SMT}
+    \overset{\ref{1-4}}=
+    \frac{\tdpd MBS}{\tdpd BMT}
+    \overset{\ref{1-1}}=
+    \frac{\chi_T}{\chi_S}
+\]
+
+\begin{enumerate}
+    \item
+        \label{1-1}
+        Dies gilt nach Aufgabenstellung.
+
+    \item
+        \label{1-2}
+        Wir sehen $B$ als Funktion von $S$ und $T$ an und erhalten somit
+        \[
+            0 = \dif B = \tdpd BST \dif S + \tdpd BTS \dif T,
+        \]
+        welches wir, unter Benutzung des Kehrwertes der Ableitungen und der
+        Kettenregel, zu
+        \[
+            \frac{\dif S}{\dif T} = - \frac{\tdpd BTS}{\tdpd BST} = \tdpd STB
+        \]
+        umstellen können.
+
+        Analog können wir auch herleiten, dass gilt:
+        \[
+            \tdpd STM = - \frac{\tdpd MTS}{\tdpd MST}.
+        \]
+
+    \item
+        \label{1-3}
+        Hier nutzen wir aus, dass der Kehrwert einer solchen partiellen
+        Ableitung die Differenzierung umkehrt.
+
+    \item
+        \label{1-4}
+        An dieser Stelle benutzen wir die Kettenregel
+        \[
+            \tdpd \alpha\delta\gamma = \tdpd \alpha\beta\gamma \tdpd \beta\delta\gamma
+        \]
+        im Zähler und Nenner jeweils um die Zwischenvariable $S$ zu
+        eliminieren.
+\end{enumerate}
+
+\subsection{Zweite Herleitung}
+
+Diese Aufgabe wird so komplett ab Seite 42 im Skript vorgerechnet. Hier werden
+wir die Rechungen aus dem Skript repoduzieren und versuchen, sie ausführlicher
+als im Skript zu erläutern, damit es auch etwas zur Übung beiträgt.
+
+Nach Skript folgt können $c_p$ und $c_v$ durch partielle Ableitungen von $S$
+ausgedrückt werden:
+\begin{align*}
+    c_p - c_v
+    &= T \del{\tdpd STp - \tdpd STV} \\
+    \intertext{%
+        Wir beginnen damit, die erste Ableitung anders auszudrücken. Dazu
+        interpretieren wir $S$ nicht als $S(T, V, p)$, sondern als $S(T, V(p,
+        T))$. Wenn wir jetzt nach $T$ ableiten, erhalten wir zwei Terme durch
+        die mehrdimensionale Kettenregel. Jedoch würden wir in dieser Stelle
+        eigentlich erwarten, dass die partielle Ableitung von $S$ nach $T$
+        nicht Term mit $S$ nach $V$ enthält, da nur partiell und nicht total
+        nach $T$ abgeleitet wird. Jedoch wurde dies schon an einigen Stellen so
+        gemacht und scheint auch richtig zu sein. Wir wissen nur noch nicht,
+        warum dies so ist.
+    }
+    &= T \del{\tdpd STV + \tdpd SVT \tdpd VTp - \tdpd STV} \\
+    &= T \tdpd SVT \tdpd VTp \\
+    \intertext{%
+        Der letzte Faktor beschreibt gerade die isobare Expansion. Diese wird
+        durch den Expansionskoeffizienten $\alpha_p$ ausgedrückt, der wie folgt
+        definiert ist:
+        \[
+            \alpha_p := \frac 1V \tdpd VTp.
+        \]
+        Somit erhalten wir:
+    }
+    &= T \tdpd SVT V \alpha_p \\
+    \intertext{%
+        Nun müssen wir die freie Energie $F$ benutzen. Damit können wir die
+        Ableitung $S$ nach $V$ ausdrücken. Es gilt:
+        \[
+            S = - \tdpd FTV.
+        \]
+        Dies leiten wir nun nach dem Volumen $V$ ab, wobei wir die Temperatur
+        $T$ festhalten:
+        \[
+            \tdpd SVT = - \tdpd {}VT \tdpd FTV.
+        \]
+        Damit erhalten wir:
+    }
+    &= - T \tdpd {}VT \tdpd FTV V \alpha_p \\
+    \intertext{%
+        Da $F$ ein exaktes Differential hat, kommutieren die partiellen
+        Ableitungen hier.
+    }
+    &= - T \tdpd {}TV \tdpd FVT V \alpha_p \\
+    \intertext{%
+        Die partielle Ableitung der freien Energie nach dem Volumen ist gerade
+        der negative Druck.
+    }
+    &= T \tdpd pTV V \alpha_p \\
+    \intertext{%
+        Mit der Annahme, dass $\dif V = 0$ ist, können wir noch das
+        Differential von $V(p, T)$ schreiben als:
+        \[
+            \tdpd VpT \dif p + \tdpd VTp \dif T = 0.
+        \]
+        Mit dem gleichen Trick aus der vorherigen Aufgabe kann damit nach $\dif
+        p / \dif T$ umgestellt werden. Da wir $\dif V = 0$ angesetzt hatten,
+        müssen wir jetzt $V$ festhalten. Warum wir dies jetzt als partielle
+        Ableitung schreiben können, ist uns noch nicht ganz klar. Jedenfalls
+        erhalten wir dann:
+        \[
+            \tdpd pTV = - \frac{\tdpd VTp}{\tdpd VpT}.
+        \]
+        Dies setzen wir ein.
+    }
+    &= - T \frac{\tdpd VTp}{\tdpd VpT} V \alpha_p \\
+    \intertext{%
+        Im Zähler steht wieder der Ausdehungskoeffizient $\alpha_p$. Im Nenner
+        steht die isotherme Kompressibilität, die angibt, wie sich das Volumen
+        mit dem Druck verändert. Somit erhalten wir:
+    }
+    &= - T \frac{V \alpha_p}{- V \kappa_T} V \alpha_p \\
+    &= TV \frac{\alpha_p^2}{\kappa_T} \\
+\end{align*}
+
+Damit ist die Relation gezeigt.
+
+\subsection{Dritte Herleitung}
+
+Nun das gleiche für $c_B$ und $c_M$. Wir nehmen die Herleitung aus der
+vorherigen Aufgabe und ersetzen die Größen, lassen aber die Erklärungen jetzt
+weg. $p \mapsto B$, $V \mapsto M$.
+
+\begin{align*}
+    c_B - c_M
+    &= T \del{\tdpd STB - \tdpd STM} \\
+    &= T \del{\tdpd STM + \tdpd SMT \tdpd MTB - \tdpd STM} \\
+    &= T \tdpd SMT \tdpd MTB \\
+    &= T \tdpd SMT \alpha_B \\
+    &= - T \tdpd {}MT \tdpd FTM  \alpha_p \\
+    &= - T \tdpd {}TM \tdpd FMT \alpha_p \\
+    &= T \tdpd BTM \alpha_B \\
+    &= - T \frac{\tdpd MTB}{\tdpd MBT} \alpha_B \\
+    &= - T \frac{\alpha_B}{- \kappa_T} \alpha_B \\
+    &= T \frac{\alpha_B^2}{\kappa_T} \\
+\end{align*}
+
+\section{Joule-Thomson-Effekt}
+\subsection{Enthalpie und Irreversiblität}
+Stelle zunächst fest, dass Teilchenzahl und Wärmeenergie unverändert bleiben, da wir einen adiabatischen Prozess in einem abgeschlossenen System betrachten.
+\begin{align*}
+    \dif N &= 0 \\
+    \delta Q &= 0 \\
+    \intertext{%
+        Der erste Hauptsatz führt dann auf:
+    }
+    \Delta U &= U_2 - U_1 \\
+             &= \Delta W \\
+             &= -\int_{V_1}^{0} p_1 \dif V  + \int_{0}^{V_2} p_2 \dif V \\
+             &= p_1 V_1 - p_2 V_2
+    \intertext{%
+        Für die Enthalpie gilt also:
+    }
+    H &= U+pV \\
+    \implies \Delta H &= U_1 + p_1 V_1 - (U_2 + p_2 V_2) =0
+    \intertext{%
+        Aus der Definition der Enthalpie folgt:
+    }
+    \dif H &= T \dif S + V \dif P + \mu \dif N = 0 \\
+    \iff T \dif S &= V \dif P > 0 = \delta Q
+\end{align*}
+Der Prozess läuft also irreversibel ab.
+
+\subsection{Joule-Thomson-Koeffizient}
+Der Joule-Thomson-Koeffizient ist definiert als:
+\begin{align*}
+    \delta &= \del {\dpd{T}{p}}_H
+    \intertext{%
+        Wir wissen:
+    }
+    \dif H &= T \dif S + V \dif p + \mu \dif N \\
+    S\del{T,p,N} \implies \dif S &= \del {\dpd ST}_{p,N} \dif T +
+    \del{\dpd Sp}_{T,N} \dif p
+    \intertext{%
+        Verwende $\dif N = 0$ und setze ein:
+    }
+    \dif H &= T \del {\dpd ST}_{p,N} \dif T + T \del{\dpd Sp}_{T,N} \dif p +
+    V \dif p \\
+    \dif H &= C_p \dif T + T \del{\dpd Sp}_{T,N} \dif p + V \dif p \\
+    0 &= C_p \del {\dpd{T}{p}}_H + T \del{\dpd Sp}_{T,N}+ V \\
+    0 &= C_p \delta + T \del{\dpd Sp}_{T,N}+ V \\
+    \delta &= \frac{1}{C_p} \del { -T \del{\dpd Sp}_{T,N}- V}
+    \intertext{%
+        Wir müssen noch eine Maxwell-Relation aus der Gibbs freien Energie herleiten:
+    }
+    \dif G &= -S \dif T + V \dif p + \mu \dif N \\
+    \del {\dpd GT}_{P,N} &= -S \\
+    \del {\dpd Gp}_{T,N} &= V \\
+    \implies -\del{\dpd Sp}_{T,N} &= \del{\dpd VT}_{P,N}
+    \intertext{%
+    Eingesetzt führt das auf das Endergebnis}
+    \delta &= \frac{1}{C_p} \del { T \del{\dpd VT}_{P,N}- V}
+    \intertext{%
+        Für das ideale Gas gilt:
+    }
+    V &= \frac{Nk_B T}{p} \\
+    \implies T\del{\dpd VT}_{N,P}-V &= \frac{Nk_B T}{p} -\frac{Nk_B T}{p} = 0 \\
+    \implies \delta &= 0
+\end{align*}
+
+
+\subsection{Joule Kreisprozess}
+
+
+\section{Elastischer Draht}
+\subsection{}
+Der Draht habe eine konstante Querschnittsfläche $A$. Dann gilt für die Länge des Drahtes $L=\frac VA$ und für die Kraft $K=Ap$. Für das Differential der inneren Energie $U\del {S,L}$ gilt dann:
+\begin{align*}
+    \dif U &= \del{\dpd US}_L \dif S + \del{\dpd UL}_S \dif L \\
+           &= T \dif S + \del{\dpd VL}_S \del{\dpd UV}_S \dif L \\
+           &= T \dif S - \frac{p}{A} \dif L \\
+           &= T \dif S - K \dif L
+    \intertext{%
+        Wir wollen nun ein thermodynamisches Potential $M\del{L,T}$ einführen. Führe Legendre-Trafo durch:
+    }
+    M\del{L,T} &\coloneqq U\del{S,L}- S \del{\dpd US}_L \\
+                &= U-TS \\
+    \dif M &= T \dif S - K \dif L - T \dif S - S \dif T \\
+           &=-F \dif L - S \dif T
+    \intertext{%
+        Dieses Potential können wir zur Herleitung folgender Maxwell-Relation benutzen:
+    }
+    \del{\dpd ML}_T &= -K \\
+    \del{\dpd MT}_L &= -S \\
+    \implies \del{\dpd KT}_L &= \del{\dpd SL}_T
+\end{align*}
+
+
+\subsection{}
+Aufgrund der Homogenität des Drahtes und der Tatsache, dass $S$, $L$ und $U$ extensive Größen sind folgt:
+\begin{align*}
+    S \del{\lambda U,\lambda L} &= \lambda S\del{U,L} \\
+    \intertext{%
+        Differenziation nach $\lambda$ für $\lambda \to 1$ ergibt dann:
+    }
+    \dod{}{\lambda} \del{\lambda S}= S &=\del{\dpd SU}_L U + \del{\dpd SL}_U L \\
+                                                 &= \frac{U}{T}+ FL
+\end{align*}
+
+\end{document}
