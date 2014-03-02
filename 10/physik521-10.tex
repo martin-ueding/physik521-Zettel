@@ -1,0 +1,453 @@
+\input{header.tex}
+
+%\subject{}
+\title{physik521 – Übung 10}
+%\subtitle{}
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+        \and Paul Manz
+        \and Lino Lemmer \\ \small{\href{mailto:l2@uni-bonn.de}{l2@uni-bonn.de}}
+}
+
+\pagestyle{plain}
+
+\newcommand\kB{k_\text B}
+\newcommand\muB{\mu_\text B}
+
+\begin{document}
+
+\maketitle
+
+%\newpage
+%\tableofcontents
+%\newpage
+
+\section{Pauli-Spin-Paramagnetismus eines Elektronengases}
+
+Die Zustandsdichte soll aus der Vorlesung bekannt sein. Wir benutzen die
+„Zustandsdichte idealer Quantengase“ \parencite[]{nolting-theo6}:
+\[
+    \rho(E) = \begin{cases}
+        (2S + 1) \frac{V}{4\piup^2} \del{\frac{2m}{\hbar^2}}^{3/2} & E \geq 0 \\
+        0 & \text{sonst}.
+    \end{cases}
+\]
+
+\subsection{Energie-Eigenwerte und großkanonische Zustandssumme}
+
+Die Energie-Eigenwerte eines Elektrons mit Impuls $p$ und Spin-Quantenzahl $\sigma$ in einem Magnetfeld $B=\vec B \hat e_z$ sind
+\begin{align*}
+    E_{p,\sigma} &= E_{\alpha} = E_p + E_\sigma = \frac{p^2}{2m} + g\mu_B\sigma B.
+    \intertext{%
+        Hat man eine Zahl $N$ von Elektronen gegeben, berechnet sich die großkanonische Zustandssumme zu
+    }
+    Z_\text{G} &= \sum_{\substack{n_{\alpha_i}=0,1\\i=1,2\dots}}
+    \exp\del{-\beta\del{E\del{\cbr{n_{\alpha_i}}}-\mu N}},
+    \intertext{%
+        mit der Gesamtenergie $E\del{\cbr{n_{\alpha_i}}} = \sum_i
+        n_{\alpha_i}E_{\alpha_i}$. Dabei gilt für die Anzahl $N = \sum_i
+        n_{\alpha_i}$. Damit erhält man
+    }
+    &= \prod_i^\infty\sum_{n_{\alpha_i}=0,1}
+    \exp\del{-\beta n_{\alpha_i}\del{E_{\alpha_i}-\mu}} \\
+    &= \prod_i^\infty 1 + \exp\del{-\beta\del{E_{\alpha_i}-\mu}}
+\end{align*}
+
+\subsection{Tieftemperaturentwicklung des großkanonischen Potenzials}
+
+Das großkanonische Potenzial erhält man aus der großkanonischen Zustandssumme:
+\begin{align*}
+    \Omega &= -k_\text{B}T\ln Z_\text{G} \\
+           &= -k_\text{B}T\sum_i^\infty\ln \del{1 + \exp\del{-\beta\del{E_{\alpha_i}-\mu}}}
+    \intertext{%
+        Dies kann mit Formel 5.61 aus dem Skript in ein Integral über die
+        Energien und eine Summe über die Spins umgewandelt werden.
+    }
+    &= -k_\text{B}T\sum_\sigma\int_{-\infty}^\infty\!\dif E \,
+    D_\sigma(E)\ln\del{1+\exp\del{-\beta\del{E-\mu}}}
+    \intertext{%
+        Nach einer partiellen Integration erhält man mit
+        $\int_{-\infty}^{E}\!\dif\epsilon\,D_\sigma(E) = a_\sigma\del{E}$:
+    }
+    &= k_\text{B}T\sum_\sigma\int_{-\infty}^\infty\dif E \, a_\sigma\del{E}
+    \frac{-\beta\exp\del{-\beta\del{E-\mu}}} {1 +
+    \exp\del{-\beta\del{E-\mu}}} \\
+    &= -\sum_\sigma\int_{-\infty}^\infty\!\dif E\, a_\sigma(E)f(E)
+    \intertext{%
+        Nach einer weiteren partiellen Integration erhält man mit
+        $\int_{-\infty}^{E}\!\dif\epsilon\,a_\sigma\del{\epsilon}=b_\sigma(E)$:
+    }
+    &= \sum_\sigma\int_{-\infty}^\infty\!\dif E\, b_\sigma(E)f'(E)
+    \intertext{%
+        Eine Tieftemperaturnäherung nach Sommerfeld (Taylor-Entwicklung
+        von $b$ um $E=\mu$) liefert uns
+    }
+    &\approx \sum_\sigma \sbr{ b\del{\mu} +
+\frac{\piup^2}6D_\sigma(\mu)\del{\kB T}^2}.
+\end{align*}
+
+\subsection{Teilchenzahlen}
+
+Die Gesamtteilchenzahl ist gegeben durch
+\begin{align*}
+    N &= \sum_\sigma \int_0^\infty\!\dif E \, D_\sigma(E)f(E).
+    \intertext{%
+        Betrachtet man die verschiedenen Spins einzeln erhält man
+    }
+    N_{\uparrow} &= \int_{-\infty}^\infty \!\dif E\, D_\uparrow(E)f(E).
+    \intertext{%
+        Mit \cite[S. 525]{nolting-theo6} ist dies
+    }
+    &= \half \int_{\mu_\text{B}B}^\infty\!\dif E\, D(E-\mu_\text{B}B)f(E).
+    \intertext{%
+        Mit $y=E-\mu_\text{B}$ und $\dif y = \dif E$ ergibt sich
+    }
+    &= \half \int_0^\infty\!\dif E\,
+    D(y)f(y+\mu_\text{B}).
+    \intertext{%
+        Da $\muB B\ll1$ Taylorn wir $f$ um $y$ und erhalten
+    }
+    &\approx \half \int_0^\infty\!\dif E\,
+    D(y)\del{f(y)+\mu_\text{B}f'(y)} \\
+    &= \half \int_0^\infty\!\dif E\,
+    D(y)f(y) + \frac{\mu_\text{B}B}{2} \int_0^\infty\!\dif E\,
+    D(y)f'(y).
+    \intertext{%
+        Analog dazu die Rechnung für den anderen Spin, es folgt
+    }
+    N_\downarrow &= \half \int_0^\infty\!\dif E\,
+    D(y)f(y) - \frac{\mu_\text{B}B}{2} \int_0^\infty\!\dif E\,
+    D(y)f'(y).
+\end{align*}
+Dies ist auch das, was in der Abbildung zu sehen ist. Ein Spin hat mehr
+Teilchen. Da aber das chemische Potenzial $\mu$ für beide gleich sein soll,
+laufen einige zum anderen Spin über.
+
+\subsection{Tieftemperaturverhalten der Magnetisierung}
+
+Die Magnetisierung des Systems ist
+\begin{align*}
+    M &= \frac\muB{V}\del{N_\downarrow-N_\uparrow} \\
+      &= -\frac{\muB^2B}{V}\int_0^\infty\!\dif\,D(y)f'(y).
+    \intertext{%
+        Eine Entwicklung nach Sommerfeld bringt für tiefe Temperaturen
+    }
+    &\approx \del{D(\mu) + \frac{\piup^2}6\del{\kB T}^2D''(\mu)}.
+\end{align*}
+
+\subsection{Magnetische Suszeptibilität}
+
+Die Suszeptibilität ergibt sich aus
+\begin{align*}
+    \chi &= \mu_0\del{\dpd{M}{B}}_{T,\mu} \\
+         &= \frac{\mu_0\muB^2}{V}\del{D(\mu) + \frac{\piup^2}6\del{\kB
+    T}^2D''(\mu)}.
+    \intertext{%
+        Mit \cite[Gleichungen~3.50 und 3.74]{nolting-theo6}, erhält man für
+        die Zustandsdichte und ihre zweite Ableitung
+    }
+    D(\mu) &= \frac{3N}{2E_\text{F}^{\frac32}}\sqrt\mu, \\
+    D''(\mu) &= -\frac{3N}{8E_\text{F}^{\frac32}}\mu^{-\frac32}.
+    \intertext{%
+        Mit $\mu\approx E_\text{F}$ erhält man so für die magnetische
+        Suszeptibilität:
+    }
+    \chi &= \frac{3N\mu_0\muB^2}{2\mu^{\frac32}V}
+    \del{\sqrt\mu-\frac14\frac1{\mu^{\frac32}}\del{\kB T}^2} \\
+    &= \frac{3N\mu_0\muB^2}{2V\mu}
+    \del{1 - \frac14\del{\frac{\kB T}{\mu}}^2}.
+    \intertext{%
+        Für kleine Temperaturen $\kB T\ll\mu$ gilt damit
+    }
+    \chi &= \frac{3N\mu_0\muB^2}{2V\mu} = \text{const.}
+\end{align*}
+
+\subsection{Feste Teilchenzahl statt festes chemisches Potenzial}
+
+\fehlt
+
+\section{Landau-Diamagnetismus}
+
+\subsection{Unabhängigkeit der Zustandssumme von Magnetfeld}
+
+Es gibt eine feste Anzahl Teilchen und verschiedene Energien, daher kann ich
+den kanonischen Formalismus benutzen.
+
+Meine Zustände sind alle Impulse $\vec p \in \R^3$. Daher muss ich für die
+Zustandssumme im Impulsraum, in dem $\hat{\vec p} = \vec p$ gilt, integrieren.
+\begin{align*}
+    Z_{\text C, 1}
+    &= \int\limits_{\R^3} \dif{^3 p} \, \exp(-\beta \hat H(\vec p)) \\
+    &= \int\limits_{\R^3} \dif{^3 p} \, \exp\del{-\beta \frac1{2m} \del{\vec p + \frac ec \vec A}^2} \\
+    \intertext{%
+        Jetzt ist zu zeigen, dass dies unabhängig von $\vec B$ ist. Wir werden
+        sogar zeigen, dass dies unabhängig von $\vec A$ ist. Dazu führen wir
+        eine Substitution durch:
+        \[
+            \vec q := \vec p + \frac ec \vec A.
+        \]
+        Diese Substitution ist für alle impulsunabhängigen $\vec A$ definiert
+        und es gilt vor allem $\dif{\vec q} = \dif{\vec p}$, da $\vec A$ nicht
+        vom Impuls abhängt. Somit erhalten wir:
+    }
+    &= \int\limits_{\R^3} \dif{^3 q} \, \exp\del{-\beta \frac1{2m} \vec q^2} \\
+    \intertext{%
+        An dieser Stelle ist schon gezeigt, dass die Zustandssumme nicht von
+        $\vec A$ abhängt. Jedoch können wir dieses Integral auch analytisch
+        lösen. Wir wählen Kugelkoordinaten für den Impuls und können aufgrund
+        der Isotropie den Winkelanteil schon integrieren. Es bleibt: 
+    }
+    &= 4 \piup \int_0^\infty \dif q \, q^2 \exp\del{-\beta \frac1{2m} q^2} \\
+    \intertext{%
+        Dieses Integral können wir mit partieller Integration lösen. Dabei ist
+        die erste Stammfunktion zur Exponentialfunktion die Gauß'sche
+        Fehlerfunktion. Die zweite Stammfunktion dazu ist beinhaltet wieder die
+        Fehlerfunktion, jedoch haben wir dies nur mit Mathematica
+        herausbekommen. Nach weiteren Rechnungen und weiteren Substitutionen
+        erhalten wir:
+    }
+    &= \del{\frac{2 m \piup}\beta}^{3/2}.
+\end{align*}
+
+Wir versuchen noch, die großkanonische Zustandssumme aufzustellen:
+\begin{align*}
+    Z_\text{GC}
+    &= \prod_p \prod_\sigma \del{1 + \exp\del{- \frac{E(p, \sigma) - \mu}{\kB
+    T}}} \\
+    &= \prod_p \prod_\sigma \del{1 + \exp\del{- \frac{\frac1{2m} \del{\vec p -
+\frac ec \vec A}^2- \mu}{\kB
+    T}}}
+\end{align*}
+
+Wenn man daraus jetzt
+\[
+    \exp\del{\sum_p \sum_\sigma \ln(1 + \exp(-\ldots))}
+\]
+formt, kann man wieder die gleiche Substitution im Integral vornehmen. Dadurch
+sollte auch gezeigt sind, dass $Z_\text{GC}$ nicht von $\vec A$ abhängt.
+
+\subsection{Entartungsgrad von Landau-Niveaus}
+
+Der Hamiltonoperator ist gegeben als:
+\[
+    \hat H = \frac1{2m} \del{\hat{\vec p} + \frac ec \vec A}^2
+    = \frac1{2m} \del{\hat{\vec p} + \frac ec \hat x B \ev_y}^2,
+\]
+wobei $\ev_y$ den Einheitsvektor in $y$-Richtung bezeichnet.
+
+Die Zeitentwicklung von $\vec p$ ist gegeben durch:
+\[
+    \dod{}t \hat{\vec p} = \frac1{\iup\hbar} [\hat{\vec p}, \hat H] + \dpd{}t \hat{\vec p}.
+\]
+
+Wir setzen den Hamiltonoperator ein und benutzen die Darstellung im Impulsraum,
+so dass $\hat p = p$ und $\hat x = \iup\hbar \partial/\partial p_x$ ist. Der
+Impulsoperator ist nicht explizit zeitabhängig, so dass wir nur den Kommutator
+ausrechnen müssen, um die Zeitentwicklung zu erhalten.
+
+Jedoch hatte das nicht sonderlich gut geklappt.
+
+Daher lösen wir die Schrödingergleichung mit einem Ansatz und transformieren
+die verbleibende Differentialgleichung so, dass die Differentialgleichung des
+harmonischen Oszillators herauskommt, wie in
+\cite[Abschnitt~3.2.7]{nolting-theo6}, vorgerechnet.
+
+Die Schrödingergleichung ist:
+\begin{align*}
+    E \ket\psi &= \hat H \ket\psi. \\
+    \intertext{%
+        Wir setzen $\hat H$ ein und multiplizieren teilweise aus, um die
+        Variablen etwas zu separieren:
+    }
+    &= \del{\hat p_x^2 + \hat p_z^2 + \del{\hat p_y + \frac ec B \hat x}^2}
+    \ket\psi. \\
+    \intertext{%
+        Nun wird der Ansatz $\psi(\vec r) = \exp(\iup k_y y) \exp(\iup k_z z)
+        u(x)$ gewählt.
+        Im Ortsraum ist der Impulsoperator eine Raumableitung. Die
+        Impulsoperatoren erzeugen dadurch mit der Kettenregel jeweils ein
+        $k_y^2$ und ein $k_z^2$. Für $u$ bleibt folgende Differentialgleichung
+        übrig:
+    }
+    &= - \frac{\hbar^2}{2m} \dpd[2]{}x u(x) + \frac{\hbar^2 k_z^2}{2m} u(x) +
+    \frac{1}{2m} \del{\hbar k_y + \frac ec B x}^2 u(x) \\
+    \del{E - \frac{\hbar^2 k_z^2}{2m}} u(x) &= - \frac{\hbar^2}{2m} \dpd[2]{}x u(x) +
+    \frac{1}{2m} \del{\hbar k_y + \frac ec B x}^2 u(x). \\
+    \intertext{%
+        Aus dem Ansatz „Lorentzkraft ist Zentripetalkraft“ kann die
+        Zyklotronfrequenz $\omega = eB/m$ hergeleitet werden. Dies setzen wir
+        ein und erhalten:
+    }
+    \del{E - \frac{\hbar^2 k_z^2}{2m}} u(x) &= - \frac{\hbar^2}{2m} \dpd[2]{}x u(x) +
+    \frac{1}{2m} \del{\hbar k_y + \frac{m\omega}c x}^2 u(x). \\
+    \intertext{%
+        Der letzte Summand in der Klammer muss gerade $m \omega^2 q^2/2$
+        werden, damit die Differentialgleichung die richtige Form für den
+        harmonischen Oszillator bekommt. Daher fordern wir
+        \[
+            \frac m2 \omega^2 q^2 = \frac{1}{2m} \del{\hbar k_y +
+            \frac{m\omega}c x}^2,
+        \]
+        was wir durch
+        \[
+            q = \frac 1c x + \frac{\hbar k_y}{m\omega}
+        \]
+        erfüllen können. Nolting hat hier keinen Faktor $1/c$. In der ganzen
+        Herleitung taucht bei ihm das $c$ nicht auf. Liegt dies an natürlichen
+        Einheiten mit $c = 1$? Wir müssen das $c$ ab dieser Stelle weglassen,
+        da wir ansonsten nicht die richtigen Ergebnisse erhalten. Jedenfalls
+        erhalten wir dann folgende Differentialgleichung für $u$:
+    }
+    \del{E - \frac{\hbar^2 k_z^2}{2m}} u(q) &= - \frac{\hbar^2}{2m} \dpd[2]{}q u(q) +
+    \frac m2 \omega^2 q^2 u(q).
+\end{align*}
+
+Die Lösungen dieser Gleichung sind vom harmonischen Oszillator bekannt. Somit
+ist gezeigt, dass die Bewegung einem harmonischen Oszillator entspricht. Mit
+der Quantenzahl $n$, die durch die Hermitepolynome eingeführt wird, sind die
+Energieeigenwerte durch $\hbar\omega (n + 1/2)$ gegeben. Die Energieeigenwerte
+sind allerdings auch in der Klammer gegeben. Somit können wir nach $E$
+auflösen und erhalten die Energieeigenwerte der Elektronen:
+\[
+    E = \hbar\omega \del{n + \frac12} + \frac{\hbar^2 k_z^2}{2m}.
+\]
+
+Diese Energie hängt von $n$ und $k_z$ ab, die aus $x$ und $z$ gewonnen worden
+sind. $k_y$ taucht hier nicht auf, so dass die Energieeigenwerte bezüglich
+$k_y$ entartet sind. Der Entartungsgrad ist die Anzahl der möglichen Werte, die
+$k_y$ annehmen kann.
+
+Da das Teilchen im Quader mit Kantenlängen $\{ L_i | i = 1, 2, 3 \}$
+eingesperrt ist, darf die $x$-Koordinate nur im Intervall
+\[
+    - \frac{L_x}2 \leq x \leq \frac{L_x}2
+\]
+liegen. Mit der vorhin benutzen Substitution können wir dies durch $q$ ersetzen
+und erhalten:
+\[
+    - \frac{L_x}2 \leq q - \frac{\hbar k_y}{eB} \leq \frac{L_x}2.
+\]
+
+Wir subtrahieren auf allen drei „Seiten“ $q$ und multiplizieren mit $-1$. Da
+dies eine streng monoton fallende Transformationsfunktion ist, kehren sich die
+$\leq$ zu $\geq$ um. Wir drehen dann allerdings die Gleichung wieder um, so
+dass wir die ursprüngliche Form erhalten. Somit wird die Gleichung zu:
+\[
+    q - \frac{L_x}2 \leq \frac{\hbar k_y}{eB} \leq q + \frac{L_x}2.
+\]
+
+Dies bestimmt das maximale und minimale $k_y$. Wir haben also ein Spektrum von
+\[
+    \Deltaup k_y = \frac1\hbar e B L_x
+\]
+im Phasenraum zur Verfügung. Die Zustände sind im Phasenraum mit der
+Quantenzahl $m_y$ quantisiert:
+\[
+    k = \frac{2\piup}{L_y} m_y.
+\]
+
+Aufgrund des linearen Zusammenhangs können wir mit $\Deltaup k$ die Anzahl der
+Zustände, $\Deltaup m_y$, errechnen und erhalten so:
+\[
+    \Deltaup m_y = \frac{e B L_x L_y}{2 \piup \hbar}.
+\]
+
+\subsection{Zustandsdichte des Elektronengases im Magnetfeld}
+
+\fehlt
+
+\subsection{Großkanonisches Potenzial}
+
+Das großkanonische Potential können wir aus der Zustandssumme der ersten
+Teilaufgabe errechnen, wobei wir die Summe über die beiden entarteten Spins
+direkt ausführen:
+\[
+    \Omega = - 2 \kB T \sum_\alpha \ln\del{1 + \frac{E_\alpha - \mu}{\kB T}}.
+\]
+
+In $\sum_\alpha$ werden auch entartete Zustände gemäß ihrem Entartungsgrad
+mehrfach gezählt. Diese Summe kann man generell durch ein Integral über die
+Zustandsdichte schreiben, die so (mit $\delta$-Distributionen) konstruiert ist,
+dass sie bei jedem Energieeigenwert nach Integration den entsprechenden
+Entartungsgrad ergibt. Somit können wir schreiben:
+\[
+    \Omega = - 2 \kB T \int_{-\infty}^\infty \dif E \, \rho(E) \ln\del{1 + \frac{E_\alpha - \mu}{\kB T}}.
+\]
+
+Wir gehen davon aus, dass die Zustandsdichte, die in der Teilaufgabe (c)
+gegeben ist, genau die ist, die hier funktioniert. Nun können wir die
+Sommerfeldentwicklung aus dem Skript benutzen, da wir hier nicht noch einmal
+alle Teilschritte – zweifache partielle Integration, Reihenentwickung und
+Fermiintegrale – durchrechnen möchten. Als Endergebnis ist im Skript als Formel
+(5.71) angegeben:
+\[
+    \Omega = - 2 b(\mu) - \frac{\piup^2}3 \rho(\mu) (\kB T)^2 + \mathcal
+    O(T^4).
+\]
+
+$b$ ist dabei die zweifache Stammfunktion von $\rho$, die als Parameter
+stehengelassen werden durfte.
+
+\subsection{Magnetisierung des Elektronengases}
+
+\fehlt
+
+
+\section{Bose-Einstein-Kondensation}
+\subsection{Entartungsgrad}
+Der Hamiltonian ist gegeben durch
+\[H = \frac{1}{2M}(p^2_x+p^2_y+p^2_z)+\frac{1}{2}M \omega^2_0(x^2+y^2+z^2) \]
+Die Lösung der Schrödingergleichung für diesen Hamiltonian lässt sich als Summe unabhängiger Lösungen harmonischer Oszillatoren darstellen.
+\[E_{n_1+n_2+n_3} = \hbar \omega_0 \del{n_1+n_2+n_3+\tfrac{3}{2}} \]
+Ein Energiezustand $E_n$ ergibt sich aus einer Kombination aus $n_1$, $n_2$ und $n_3$ mit der Bedingung $n_1+n_2+n_3=n$. Dabei handelt es sich um eine Kombination von n Elementen aus einer dreielementigen Menge mit Wiederholung. Aus der Kombinatorik wissen wir, dass die Anzahl an Möglichkeiten
+\[\Omega(n)=\frac{3+n-1}{(3-1)!n!}=\frac{(2+n)!}{2n!}=(n+1)(n+2)=n^2+3n+2 \]
+ist. Das ist der Entartungsgrad des Systems. Bestimme daraus nun die Zustandsdichte $\rho(\epsilon_n)$.
+\begin{align*}
+E_n &= \hbar \omega_0 \del{n+ \tfrac{3}{2}} \\
+\epsilon_n &= \hbar \omega_0 n \\
+n &= \frac{\epsilon_n}{\hbar \omega_0} \\
+\implies \Omega(\epsilon_n) &= \del{\frac{\epsilon_n}{\hbar \omega_0}}^2 +3\frac{\epsilon_n}{\hbar \omega_0}+2
+\end{align*}
+Die Zustandsdichte ist definiert als $\rho(\epsilon)=\frac{\dif \Omega}{\dif \epsilon}$.
+\[ \implies \rho(\epsilon_n) = \frac{2\epsilon_n}{(\hbar \omega_0)^2} +\frac{3}{\hbar \omega_0} \]
+
+\subsection{Thermodynamischer Limes}
+Die angegebene Zustandsdichte geht im Limes $(\hbar \omega) \longrightarrow 0$ gegen:
+\[\rho(\epsilon) = \frac{2\epsilon_n}{(\hbar \omega_0)^2} \]
+Für die Teilchenzahl gilt:
+\begin{align*}
+N &= N_0 + \int_0^\infty \dif \epsilon \ \rho(\epsilon) \frac{1}{\exp\del{\frac{\epsilon}{k_\text{B} T}}-1} \\
+&= N_0 + \int_0^\infty \dif \epsilon \  \frac{\frac{2\epsilon_n}{(\hbar \omega_0)^2}}{\exp\del{\frac{\epsilon}{k_\text{B} T}}-1} \\
+&= N_0 + \frac{2(k_\text{B} T)^2}{\hbar^2 \omega_0^2} \zeta(2) = N_0 + \frac{\pi^2 (k_\text{B} T)^2}{3 \hbar^2 \omega_0^2}
+\end{align*}
+$N_0$ ist dabei die Anzahl der Teilchen im Grundzustand.
+
+\subsection{BEC-Temperatur}
+Wir stellen den Ausdruck für $N$ nach $N_0$ um:
+\[N_0 = N - \frac{\pi^2 (k_\text{B} T)^2}{3 \hbar^2 \omega_0^2} \]
+Gehe nun analog zur Vorlesung vor:
+\begin{align*}
+N_0 &= N\del{1 - \frac{\pi^2 (k_\text{B} T)^2}{3N \hbar^2 \omega_0^2}} \\
+&= N \del{1-\del{\frac{T}{T_c}}^2} \\
+\end{align*}
+Es gilt damit also:
+\[T_0 = \frac{\hbar \omega_0 \sqrt{3N}}{\pi k_\text{B}} \]
+
+\subsection{Experimentelle Beobachtung}
+Für den harmonischen Oszillator gilt:
+\begin{align*}
+\braket{n|H|n} &= \braket{n|T+V|n} = \hbar \omega_0 \del {n+\tfrac{3}{2}} \\
+\braket{n|T|n} &= \braket{n|V|n} \\
+\implies \braket{n|V|n} &= \tfrac{1}{2} M \omega_0^2 \braket{n|x^2+y^2+z^2|n} =  \tfrac{1}{2} \hbar \omega_0 \del {n+\tfrac{3}{2}} \\
+\implies \braket{n|x^2+y^2+z^2|n} &= \frac{\hbar}{M\omega_0} \del{n+\tfrac{3}{2}}
+\end{align*}
+
+\IfFileExists{\bibliographyfile}{
+    \printbibliography
+}{}
+
+
+
+\end{document}
+
+% vim: spell spelllang=de tw=79

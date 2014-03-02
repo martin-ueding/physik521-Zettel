@@ -1,0 +1,108 @@
+\input{../header.tex}
+
+%\subject{}
+\title{physik521 – Übung 11}
+%\subtitle{}
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+        \and Paul Manz
+        \and Lino Lemmer \\ \small{\href{mailto:l2@uni-bonn.de}{l2@uni-bonn.de}}
+}
+
+\pagestyle{plain}
+
+\newcommand\kB{k_\text B}
+\newcommand\muB{\mu_\text B}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+
+\fehlt
+\section{}
+
+
+\fehlt
+\section{Heisenberg-Modell und reduzierte Dichtematrix}
+\subsection{}
+Gegeben ist der Hamiltonian
+\[H = J \ \vec{S}^1 \cdot \vec{S}^2 \hspace{1.5cm} J>0 \]
+Es gilt zu zeigen, dass:
+\[H= \frac{J}{2}(\vec{S})^2 + C = \frac{J}{4}(S_+S_-+S_-S_++2(S_3)^2)+C\]
+
+Wir beginnen mit der ersten Gleichung:
+\begin{align*}
+\frac{J}{2}(\vec{S}^2) &= \frac{J}{2} \sum_i (S^1_i + S^2_i)^2 \\
+&= \frac{J}{2} \del{2S^1_1S^2_1+2S^1_2S^2_2+S^1_3S^2_3 + \sum_{i,j} (S^j_i)^2} \\
+&= \frac{J}{2} \del{2 \ \vec{S}^1 \cdot \vec{S}^2 + \sum_{i,j} (S^j_i)^2}  \\
+(S^j_i)^2 &= \frac{1}{4} \mathbb{1} \\
+\implies J \ \vec{S}^1 \cdot \vec{S}^2 &= \frac{J}{2}(\vec{S})^2 + C
+\end{align*}
+Die zweite Gleichung:
+\begin{align*}
+S_+S_- &= (S_1 + iS_2)(S_1 - iS_2)  \\
+&= (S_1)^2 + (S_2)^2 - iS_1S_2 + iS_2S_1 \\
+&= (S_1)^2 + (S_2)^2 - i[S_1,S_2] \\
+&= (S_1)^2 + (S_2)^2 + S_3 \\
+\end{align*}
+Analog finden wir: 
+\[ S_-S_+ = (S_1)^2 + (S_2)^2 - S_3 \]
+Es folgt:
+\begin{align*}
+\frac{J}{4}(S_+S_-+S_-S_++2(S_3)^2) &= \frac{J}{4}(2(S_1)^2+2(S_2)^2+2(S_3)^2) \\
+&= \frac{J}{2}(\vec{S})^2
+\end{align*}
+Die Eigenzustände dieses Hamiltonian lassen sich durch die Einteilchenspinoren mithilfe der Clebsch-Gordan-Koeffizienten darstellen. Wir erhalten:
+\begin{align*}
+\ket{S=1, S_3=+1} &= \ket{\uparrow} \otimes \ket{\uparrow} \\
+\ket{1,0} &= \frac{1}{\sqrt{2}}\ket{\uparrow} \otimes \ket{\downarrow} + \frac{1}{\sqrt{2}} \ket{\downarrow} \otimes \ket{\uparrow} \\
+\ket{1,-1} &= \ket{\downarrow} \otimes \ket{\downarrow} \\
+\ket{0,0} &= \frac{1}{\sqrt{2}} \ket{\uparrow} \otimes \ket{\downarrow} - \frac{1}{\sqrt{2}} \ket{\downarrow} \otimes \ket{\uparrow}
+\end{align*}
+
+Der Singulettzustand hat einen Energieeigenwert von $E_0=0$ die Triplettzustände haben alle den Eigenwert $E_1=1(1+1)\frac{J}{2}=J$. Wir können die Zustände als kanonisches Ensemble auffassen, da die Teilchenzahl fest ist. Dann gilt für die Wahrscheinlichkeitsverteilung:
+\[h_i=\frac{1}{Z_c} \mathrm{e}^{-\beta E_i} \]
+mit \[Z_c=1+ 3\mathrm{e}^{-\beta J} \].
+
+Berechne in dieser Basis den Dichteoperator:
+\begin{align*}
+W_c &:= \sum_i h_i \ket{\psi_i}\bra{\psi_i} \\
+&= \frac{1}{Z_c} \del{\ket{0,0}\bra{0,0}+\mathrm{e}^{-\beta J} \sum_{S_z} \ket{1,S_z}\bra{1,S_z}} 
+\end{align*}
+
+
+\subsection{}
+Berechne die reduzierte Dichtematrix
+\begin{align*}
+W_S &= \sum_{S^2_z} \braket{S^2,S^2_z | W_c | S^2,S^2_z} \\
+&= \braket{\uparrow_R | W_c | \uparrow_R} + \braket{\downarrow_R | W_c | \downarrow_R}  \\
+\braket{\uparrow_R | W_c | \uparrow_R} &= \frac{1}{Z_c} \del{ \braket{\uparrow_R | 0,0}\braket{0,0 | \uparrow_R}} \\
+&+ \frac{\mathrm{e}^{-\beta J}}{Z_C} \del{ \braket{\uparrow_R | 1,-1}\braket{1,-1 | \uparrow_R} + \braket{\uparrow_R | 1,0}\braket{1,0 | \uparrow_R} + \braket{\uparrow_R | 1,+1}\braket{1,+1 | \uparrow_R} } \\
+&=\frac{1}{Z_c}\del{\frac{1}{2}\ket{\downarrow_S} \bra{\downarrow_S} +  \mathrm{e}^{-\beta J} \del{ \ket{\uparrow_S}\bra{\uparrow_S} + \frac{1}{2} \ket{\downarrow_S}\bra{\downarrow_S}}} \\
+\braket{\uparrow_R | W_c | \uparrow_R} &= \frac{1}{Z_c}\del{\frac{1}{2}\ket{\uparrow_S} \bra{\uparrow_S} +  \mathrm{e}^{-\beta J} \del{ \ket{\downarrow_S}\bra{\downarrow_S} + \frac{1}{2} \ket{\uparrow_S}\bra{\uparrow_S}}} \\
+\implies W_S &= \frac{1}{Z_C} \del{ \frac{1}{2}\ket{\downarrow_S} \bra{\downarrow_S} + \frac{1}{2}\ket{\uparrow_S} \bra{\uparrow_S} + \mathrm{e}^{-\beta J}\del{\ket{ \frac{3}{2} \downarrow_S}\bra{\downarrow_S} + \frac{3}{2} \ket{\uparrow_S}\bra{\uparrow_S}}}
+\end{align*}
+
+
+\subsection{}
+Für $T \longrightarrow 0$ verschwindet $\mathrm{e}^{-\beta J}$. Aus der Dichtematrix wird dann:
+\[W_C= \ket{0,0}\bra{0,0} \] also der Projektor auf den Grundzustand.
+Aus der reduzierten Dichtematrix wird:
+\[W_S = \frac{1}{2}\ket{\downarrow_S} \bra{\downarrow_S} + \frac{1}{2}\ket{\uparrow_S} \bra{\uparrow_S} \]
+Im ersten Fall ist als Energiezustand nur der Grundzustand möglich. Für den Entartungsgrad gilt dann $\Omega(T\rightarrow 0)=1$ für die Entropie also \[S=k_{\text B} \ln \Omega =0 \]
+Im Zweiten Fall gilt:
+\begin{align*}
+\Omega(T\rightarrow 0) &= 2 \\
+S &=k_{\text B} \ln 2
+\end{align*}
+
+
+\IfFileExists{\bibliographyfile}{
+    \printbibliography
+}{}
+
+\end{document}
+
+% vim: spell spelllang=de tw=79

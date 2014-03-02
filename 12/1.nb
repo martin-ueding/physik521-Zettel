@@ -1,0 +1,147 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      3809,        137]
+NotebookOptionsPosition[      3394,        117]
+NotebookOutlinePosition[      3730,        132]
+CellTagsIndexPosition[      3687,        129]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"zc", "=", 
+  RowBox[{"16", 
+   RowBox[{"Pi", "^", "2"}], " ", 
+   RowBox[{"V", "/", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "Pi", " ", "hbar"}], ")"}], "^", "3"}]}], 
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"p", "^", "2"}], " ", 
+      RowBox[{"x", "^", "2"}], " ", 
+      RowBox[{"Exp", "[", 
+       RowBox[{
+        RowBox[{"-", "beta"}], 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"p", "^", "2"}], "/", 
+           RowBox[{"(", 
+            RowBox[{"2", "m"}], ")"}]}], "+", 
+          RowBox[{"kappa", " ", 
+           RowBox[{"x", "^", "2"}]}]}], ")"}]}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"p", ",", "0", ",", "Infinity"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "Infinity"}], "}"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.599490019073389*^9, 3.599490068993126*^9}, {
+  3.5994904136454773`*^9, 3.599490414822171*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ConditionalExpression", "[", 
+  RowBox[{
+   FractionBox["V", 
+    RowBox[{"2", " ", 
+     SqrtBox["2"], " ", 
+     SuperscriptBox["hbar", "3"], " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"beta", " ", "kappa"}], ")"}], 
+      RowBox[{"3", "/", "2"}]], " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       FractionBox["beta", "m"], ")"}], 
+      RowBox[{"3", "/", "2"}]]}]], ",", 
+   RowBox[{
+    RowBox[{"Re", "[", 
+     FractionBox["beta", "m"], "]"}], ">", "0"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.599490073439746*^9, 3.599490416885151*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"1", "/", "zc"}], " ", "16", 
+  RowBox[{"Pi", "^", "2"}], " ", 
+  RowBox[{"V", "/", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"2", "Pi", " ", "hbar"}], ")"}], "^", "3"}]}], 
+  RowBox[{"Integrate", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"p", "^", "2"}], " ", 
+     RowBox[{"x", "^", "4"}], " ", 
+     RowBox[{"Exp", "[", 
+      RowBox[{
+       RowBox[{"-", "beta"}], 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"p", "^", "2"}], "/", 
+          RowBox[{"(", 
+           RowBox[{"2", "m"}], ")"}]}], "+", 
+         RowBox[{"kappa", " ", 
+          RowBox[{"x", "^", "2"}]}]}], ")"}]}], "]"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"p", ",", "0", ",", "Infinity"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "Infinity"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.599490420032289*^9, 3.599490439616591*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ConditionalExpression", "[", 
+  RowBox[{
+   FractionBox["3", 
+    RowBox[{"2", " ", "beta", " ", "kappa"}]], ",", 
+   RowBox[{
+    RowBox[{"Re", "[", 
+     FractionBox["beta", "m"], "]"}], ">", "0"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.599490442728561*^9}]
+}, Open  ]]
+},
+WindowSize->{958, 293},
+WindowMargins->{{960, Automatic}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Linux x86 (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 972, 29, 55, "Input"],
+Cell[1554, 53, 592, 18, 61, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2183, 76, 906, 28, 55, "Input"],
+Cell[3092, 106, 286, 8, 49, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

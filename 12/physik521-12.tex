@@ -1,0 +1,283 @@
+\input{../header.tex}
+
+%\subject{}
+\title{physik521 – Übung 12}
+%\subtitle{}
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+        \and Paul Manz
+        \and Lino Lemmer \\ \small{\href{mailto:l2@uni-bonn.de}{l2@uni-bonn.de}}
+}
+
+\pagestyle{plain}
+
+\newcommand\kB{k_\text B}
+\newcommand\muB{\mu_\text B}
+\newcommand\ZG{Z_\text G}
+
+\begin{document}
+
+\maketitle
+
+\section{Thermisches Photonengas}
+
+Gegeben ist:
+\[
+    \rho(E) = \frac{V E^2}{\piup (\hbar c)^3}
+    \eqnsep
+    E(\vec p) = |\vec p| c.
+\]
+
+\subsection{Großkanonisches Potential}
+
+Die Photonen interagieren nicht miteinander. Also sollte es keinen
+Energieunterschied ausmachen, wenn sich die Anzahl ändert. Daher ist $\mu = 0$.
+
+Die Zustände, die wir haben, sind die verschiedenen Wellenvektoren $\vec k \in
+\R^3$. Diese hängen mit dem Impulsen $\vec p$ über $\vec p = \hbar \vec k$
+zusammen. Als weitere Freiheitsgerade haben wir die beiden Helizitäten $\pm 1$.
+Somit ist die großkanonische Zustandssumme:
+\begin{align*}
+    \ZG
+    &= \sum_{n=0}^\infty \exp\del{- \beta \sum_{\vec k \in \R^3} \sum_{s=\pm1} E(\vec k)} \\
+    &= \sum_{n=0}^\infty \prod_{\vec k \in \R^3} \prod_{s=\pm1} \exp(- \beta E(\vec k)) \\
+    \intertext{%
+        Wir wenden die Formel für den Grenzwert der geometrischen Reihe an.
+        Außerdem führen wir das Produkt über die beiden Helizitäten aus.
+    }
+    &= \del{\prod_{\vec k \in \R^3} \frac{1}{1 - \exp(- \beta E(\vec k))}}^2 \\
+    &=: \del{\prod_{\vec k \in \R^3} \tilde Z_\text G}^2
+\end{align*}
+    
+Daraus bestimmen wir jetzt das großkanonische Potential:
+\begin{align*}
+    \Omega
+    &= - \kB T \ln(\ZG) \\
+    &= - 2 \kB T \sum_{\vec k \in \R^3} \ln(\tilde Z_\text G (\vec k)) \\
+    \intertext{%
+        An dieser Stelle müssen wir die Summe in ein Integral umschreiben, um
+        weiter rechnen zu können. Die Wellenzahlzustände (Impulszustände) sind
+        aufgrund der am Volumenrand verschwindenden Wellenfunktion quantisiert.
+        Wir nehmen ohne Beschränkung der Allgemeinheit an, dass das Volumen ein
+        Würfel mit Kantenlänge $l$ ist. Es gibt eine kleinste Wellenzahl $k_0$,
+        die durch $2\piup/l$ gegeben ist. Alle höheren Wellenzahlen sind
+        Vielfache davon. Somit schreiben wir die Summe in einer Dimension um
+        als $\sum_{k_x \in \R} = \sum_{n \in \Z} k_0 n$. Aus der Summe über $n$
+        können wir nun ein Integral $\int \dif n$ machen, da $l$ so groß ist,
+        dass $n$ quasidicht in $\R$ liegt. Mit $\dif n = \dif k l / (2\piup)$
+        erhalten wir einen Vorfaktor $V/(2\piup)^3$ vor dem Integral, wenn wir die Summe
+        in allen drei Dimensionen in ein Integral umwandeln.
+    }
+    &= - 2 \kB T \frac{V}{(2\piup)^3} \int_{\R^3} \dif{^3 k} \, \ln(\tilde Z_\text G (\vec k)) \\
+    \intertext{%
+        Um die normale Darstellung mit $\vec p$ zu erhalten, substituieren wir
+        erneut.
+    }
+    &= - 2 \kB T \frac{V}{(2\piup\hbar)^3} \int_{\R^3} \dif{^3 p} \, \ln\del{\frac{1}{1 -
+    \exp(- \beta |\vec p|c)}} \\
+    &= 2 \kB T \frac{V}{(2\piup\hbar)^3} \int_{\R^3} \dif{^3 p} \, \ln\del{1 -
+    \exp(- \beta |\vec p|c)} \\
+    \intertext{%
+        Da wir nur am Betrag von $\vec p$ interessiert sind, wählen wir
+        Kugelkoordinaten.
+    }
+    &= 2 \frac{4 \piup \kB T V}{(2\piup\hbar)^3} \int_{0}^\infty \dif p \, p^2
+    \ln\del{1 - \exp(- \beta pc)} \\
+    \intertext{%
+        Nun substituieren wir, damit wir den Tipp auf dem Aufgabenblatt
+        anwenden können, $x := \beta pc$.
+    }
+    &= 2 \frac{4 \piup \kB T V}{(2\piup\hbar)^3 (\beta c)^3} \int_{0}^\infty
+    \dif x \, x^2 \ln\del{1 - \exp(-x)} \\
+    \intertext{%
+        Das verbleibende Integral ist laut Tipp $-\piup^4/45$.
+    }
+    &= - \frac{\piup^2 \kB^4 V}{45 (\hbar c)^3} T^4
+\end{align*}
+
+Dies stimmt mit dem Kontrollergebnis überein.
+
+\subsection{Mittlere Photonenzahl}
+
+Die Anzahl der Teilchen ist die Summe der Besetzungszahlen der Zustände. So ist
+im Skript als Formel (5.136) angegeben:
+\[
+    N = \sum_\alpha b(E_\alpha).
+\]
+
+Dort wird aber über die Zustände $\alpha$ summiert. Wir möchten lieber über die
+Energien summieren und gebrauchen daher die schon gegebene Zustandsdichte:
+\begin{align*}
+    N
+    &= \int \dif E \, \rho(E) b(E) \\
+    &= \dif E \frac{V E^2}{\piup^2 \hbar^3 c^3} \frac{1}{\exp(-\beta E) - 1} \\
+    \intertext{%
+        Hier können wir das Integral auf dem Aufgabenblatt benutzen, wenn wir
+        $x := \beta E$ setzen.
+    }
+    &= V \del{\frac{\kB T}{\hbar c}}^3 \int \dif x \, x^2 \frac{1}{\exp(-x) -1
+} \\
+    &\approx \num{0.244} \del{\frac{\kB T}{\hbar c}}^3 V
+\end{align*}
+
+Auch dies stimmt mit dem Kontrollergebnis überein.
+
+\subsection{Entropie und innere Energie}
+
+Entropie:
+\begin{align*}
+    S
+    &= - \dpd\Omega T \\
+    &= \frac{4 \piup^2 \kB^4 V}{45 \hbar^3 c^3} T^3
+\end{align*}
+
+Innere Energie:
+\[
+    U = \omega + TS = (4 + 1) \frac{\piup^2 \kB^4 V}{45 \hbar^3 c^3} T^4
+\]
+
+Da $\Omega = U - TS - \mu N$ sowie $F = U - TS$ ist, sind diese beiden
+Potentiale identisch, sobald $\mu = 0$ ist.
+
+\subsection{Druck}
+
+Es gilt:
+\[
+    \dif \Omega = - S \dif T - p \dif V - N \dif \mu
+\]
+
+Daher:
+\[
+    p = - \tdpd \Omega V {T, \mu}
+    = \frac{\piup^2 \kB^4}{45 \hbar^3 c^3} T^4
+\]
+
+Der Druck hängt nicht vom Volumen ab. Der Strahlungsdruck steigt also nicht
+direkt durch alleinige Verringerung des Volumens. Dies liegt daran, dass die
+Photonen nicht wechselwirken.
+
+\subsection{Adiabatische Zustandsgleichungen}
+
+Moment! Adiabatisch bedeutet $\deltaup Q = 0$. $\dif S = 0$ bedeutet
+reversibel. Wir gehen hier davon aus, dass $\dif S = 0$ das entscheidende ist.
+
+Nach „Einführung in die Extragalaktische Astronomie“ erwarten wir, dass die
+Energiedichte mit einer Längenskala $l$ in der Form $l^{-4}$ skaliert.
+
+\begin{align*}
+    S &= \frac{4 \pi^2 \kB^4 V}{45 \hbar^3 c^3} T^3 \\
+    \dif S &= \frac{4 \pi^2 \kB^4}{45 \hbar^3 c^3} (\dif V \, T^3 + 3 V T^2 \dif
+    T) \overset != 0 \\
+    \iff 0 &= \dif V \, T + 3 V \dif T
+\end{align*}
+
+$N$ hängt ebenfalls von $V T^3$ ab, hat also ein totales Differential $\dif N$,
+das proportional zu $\dif S$ ist. Somit ist $\dif N = 0$ und die Teilchenzahl
+erhalten.
+
+Wenn $N$ eine Konstante ist, dann kann man daraus $T(V)$ erhalten, in dem man
+$N(T, V)$ umstellt:
+\[
+    T(V) = \frac{\hbar c}\kB \sqrt[3]{\frac{N}{\num{0.244} V}}.
+\]
+
+Die Temperatur nimmt also mit dem Volumen ab. Die Energie hängt von der
+Temperatur und dem Volumen mit $U \propto V T^4$ ab. Somit die Energiedichte
+$\rho_U \propto V^{-3/4} = l^{-4}$. Dies stimmt mit der Friedmann-Gleichung
+überein.
+
+Für
+den Druck setzen wir $T(V)$ ein und erhalten $p(V)$:
+\[
+    p = \frac{\piup^2 \kB^4}{45 \hbar^3 c^3} T^4
+\]
+
+\section{Klassisches Gas in einem harmonischen Potential}
+
+\subsection{Kanonische Zustandssumme}
+
+\begin{align*}
+    Z_\text C
+    &= \sum_{\vec p_1, \vec x_1} \ldots \sum_{\vec p_N, \vec x_N} \exp(-\beta
+    H) \\
+    &= \del{\sum_{\vec p, \vec x} \exp(-\beta H)}^N \\
+    &= \del{\frac{V}{(2\piup\hbar)^2} \int_{\R^3} \dif{^3 p} \int_{\R^3}
+    \dif{^3 x} \, \exp\del{-\beta
+\del{\frac{\vec p^2}{2m} + \kappa \vec x^2}}}^N \\
+\intertext{%
+Wir benutzen wieder Kugelkoordinaten.
+}
+    &= \del{\frac{16 \piup^2 V}{(2\piup\hbar)^2} \int_0^\infty \dif p
+\int_0^\infty \dif x \, p^2 x^2 \exp\del{-\beta
+\del{\frac{p^2}{2m} + \kappa x^2}}}^N \\
+\intertext{%
+    Ein derartiges Integral hatten wir schon auf einem vorherigen
+    Aufgabenzettel. Wir haben dieses jetzt mit Mathematica gelöst.
+}
+&= \del{\frac{V}{\sqrt 8 \hbar^3 \beta^3} \del{\frac m \kappa}^{3/2}}^N
+\end{align*}
+
+Daraus bestimmen wie die freie Energie zu:
+\[
+    F = - \kB T N \ln\del{\frac{V}{\sqrt 8 \hbar^3 \beta^3} \del{\frac m \kappa}^{3/2}}
+\]
+
+\subsection{Mittlerer Quadratischer Radius}
+
+\[
+    \bracket{x^2} = \frac{1}{Z_\text C} \sum_\alpha \exp(- \beta H) x^2
+\]
+
+Somit ändert sich das Integral, das wir in der vorherigen Aufgabe ausgerechnet
+haben, nur durch den weiteren Faktor $x^2$. Und natürlich wird $Z_\text C$
+herausgeteilt. Mathematica liefert uns den Ausdruck:
+\[
+    R = \frac 32 \frac{\kB T}{\kappa}.
+\]
+
+Von den Einheiten stimmt dies auch.
+
+Das Volumen nehmen wir als Kugelförmig an, wodurch wir erhalten:
+\[
+    V = \frac 43 \piup \del{\frac 32 \frac{\kB T}\kappa}^{3/2}.
+\]
+
+\subsection{Zustandssumme und freie Energie als Funktion von $N$, $V$ und $T$}
+
+Da wir die Integrale in den vorherigen Aufgabenteilen schon ausgerechnet haben,
+brauchen wir in dieser Aufgabe nichts mehr tun.
+
+\subsection{Druck}
+
+Allgemein gilt:
+\[
+    F = - pV + \mu N
+    \iff
+    p = - \tdpd F V {N, T}
+\]
+
+Hier ist:
+\[
+    F = - \kB T N \ln\del{\frac{V}{\sqrt 8 (\hbar \beta)^3} \del{\frac{m}
+        \kappa}^{3/2}}
+    \]
+
+Nach Vereinfachungen erhalten wir für den Druck:
+\[
+    p(N, V, T) = \frac{\kB T N}{V}
+\]
+
+Dies ist allerdings nur eine Funktion, wir wissen nicht, wie wir daraus eine
+Zustands\emph{gleichung} erhalten.
+
+$p(V)$ ist eine einfache Hyperbel. Wie kann sich denn $V$ ändern, wenn $N$ und
+$T$ konstant gehalten werden? Ändern sich dann $m$ oder $\kappa$?
+
+
+\IfFileExists{\bibliographyfile}{
+    \printbibliography
+}{}
+
+\end{document}
+
+% vim: spell spelllang=de tw=79

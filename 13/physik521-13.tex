@@ -1,0 +1,430 @@
+\input{../header.tex}
+\usepackage{tikz}
+\usepackage{pdflscape}
+
+%\subject{}
+\title{physik521 – Übung 13}
+%\subtitle{}
+\author{
+	Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+        \and Paul Manz
+        \and Lino Lemmer \\ \small{\href{mailto:l2@uni-bonn.de}{l2@uni-bonn.de}}
+}
+
+\pagestyle{plain}
+
+\newcommand\kB{k_\text B}
+\newcommand\muB{\mu_\text B}
+\newcommand\ZG{Z_\text G}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\sgn}{sgn}
+
+\begin{document}
+
+\maketitle
+
+\section{Ising Modell}
+
+\subsection{Molekularfeld-Näherung}
+
+\paragraph{Kanonische Zustandssumme}
+
+Wir berechnen die kanonische Zustandssumme. Wir summieren dazu über alle
+Zustände $\ket n$ in der Spur. Diese Zustände bestehen aus den verschiedenen
+Spinkonfigurationen der einzelnen Teilchen. Somit haben wir:
+\begin{align*}
+    Z_\text C
+    &= \Tr\sbr{\exp[-\beta \hat H]} \\
+    \intertext{%
+        Wir setzen den Hamiltonoperator explizit ein:
+    }
+    &= \Tr\sbr{\exp\sbr{- \beta(J q \bracket\sigma + \mu B) \sum_{i=1}^N
+    \sigma_i}}. \\
+    \intertext{%
+        Wir benutzen als Basis die Spinzustände und schreiben die Spur somit
+        als $N$ Summen:
+    }
+    &= \sum_{\sigma_1 = \pm \frac 12} \ldots \sum_{\sigma_N = \pm \frac 12}
+    \exp\sbr{- \beta(J q \bracket\sigma + \mu B) \sum_{i=1}^N \sigma_i}. \\
+    \intertext{%
+        Die Summe in der Exponentialfunktion ziehen wir raus in ein Produkt. Da
+        wir über $N$ Einträge innerhalb der Exponentialfunktion summieren und
+        außerhalb ebenfalls über $N$ Einträge summieren, können wir dies in ein
+        Produkt zusammenfassen:
+    }
+    &= \prod_{i=1}^N \sum_{\sigma_i = \pm \frac 12} \exp\sbr{- \beta(J q
+    \bracket\sigma + \mu B) \sigma_i}. \\
+    \intertext{%
+        Das Produkt können wir als einfache Potenz schreiben, da der Faktor
+        invariant gegenüber $i$ ist. Diese Summe können wir dann auch noch
+        ausführen.
+    }
+    &= \del{\exp\sbr{\frac12 \beta(J q \bracket\sigma + \mu B)} + \exp\sbr{-
+\frac12 \beta(J q \bracket\sigma + \mu B)}}^N \\
+    &= 2^N \cosh^N\sbr{\frac12 \beta(J q \bracket\sigma + \mu B)}
+\end{align*}
+
+\paragraph{Erwartungswert des Spins}
+
+\begin{align*}
+    \bracket{\sigma_j}
+    &= \frac{1}{Z_\text C} \Tr[\sigma_j W] \\
+    &= \frac{1}{Z_\text C} \prod_{i=1}^N \sum_{\sigma_i = \pm \frac 12}
+    \exp\sbr{- \beta(J q \bracket\sigma + \mu B) \sigma_i} \sigma_j \\
+    \intertext{%
+        Wir sind nur an dem Erwartungswert von einem Spin interessiert. Daher
+        setzen wir, ohne Beschränkung der Allgemeinheit, hier $j = 1$. Aus dem
+        Produkt ziehen wir den Anteil für $i = 1$ heraus. Die Zustandssumme war
+        bereits faktorisiert, so dass wir diese ebenfalls aufteilen können:
+    }
+    &= \frac{1}{Z_{\text C,1}}
+    \sum_{\sigma_1 = \pm \frac 12} \sigma_1
+    \exp\sbr{- \beta(J q \bracket\sigma + \mu B) \sigma_1}
+    \frac{1}{Z_{\text C,1}^{N-1}}
+    \prod_{i=2}^N \sum_{\sigma_i = \pm \frac 12}
+    \exp\sbr{- \beta(J q \bracket\sigma + \mu B) \sigma_i}. \\
+    \intertext{%
+        Vergleicht man den letzten Teil mit der Berechnung der Zustandssumme,
+        sieht man, dass dort $Z_{\text C,1}^{N-1}$ herauskommt, sich mit dem
+        gleichen Faktor im Nenner kürzt. Es bleibt also:
+    }
+    &= \frac{1}{Z_{\text C,1}}
+    \sum_{\sigma_1 = \pm \frac 12} \sigma_1
+    \exp\sbr{- \beta(J q \bracket\sigma + \mu B) \sigma_1}. \\
+    \intertext{%
+        Ab hier führen wir die Summe aus, setzen $Z_{\text C,1}$ ein und
+        vereinfachen mit trigonometrischen Funktionen.
+    }
+    &= \frac 12\frac{1}{Z_{\text C,1}}
+    \del{\exp\sbr{\frac12 \beta(J q \bracket\sigma + \mu B)} - \exp\sbr{-
+        \frac12 \beta(J q \bracket\sigma + \mu B)}}  \\
+    &= \frac 12 \frac{\exp\sbr{\frac12 \beta(J q \bracket\sigma + \mu B)} -
+    \exp\sbr{- \frac12 \beta(J q \bracket\sigma + \mu B)}}{\exp\sbr{\frac12
+    \beta(J q \bracket\sigma + \mu B)} + \exp\sbr{- \frac12 \beta(J q
+    \bracket\sigma + \mu B)}} \\
+    &= \frac 12 \tanh\sbr{\frac12 \beta(J q \bracket\sigma + \mu B)}
+\end{align*}
+
+\paragraph{Grafische Diskussion}
+
+Für $B = 0$ gilt
+\[
+    \bracket\sigma = \frac 12 \tanh\sbr{\frac12 \beta J q \bracket\sigma}.
+\]
+
+Wir definieren $x := \beta J q \bracket\sigma / 2$ und stellen dies
+entsprechend nach $\bracket\sigma$ um. Somit erhalten wir als dimensionslose
+Funktionsvorschrift:
+\[
+    \frac{4 \kB T}{J q} x = \tanh[x].
+\]
+
+Dies haben wir in Abbildung~\ref{fig:tanh} grafisch dargestellt. Die kritische
+Temperatur ist dann erreicht, wenn die Steigung der Geraden eins wird. Daher
+können wir die kritische Temperatur angeben als:
+\[
+    T_\text C = \frac{Jq}{4 \kB}.
+\]
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.7]
+        \clip (-5, -1.5) rectangle (5, 1.5);
+        \draw[->, thin] (-3, 0) -- (3, 0) node[right] {$x$};
+        \draw[->, thin] (0, -1) -- (0, 1);
+        \draw[domain=-3:3, thick] plot (\x, {tanh(\x)}) node[right] {$\tanh[x]$};
+        \foreach \m in {0.4, 1, 2}
+            \draw[domain=-3:3] plot (\x, {\x * \m});
+    \end{tikzpicture}
+    \caption{%
+        Schnittpunkte von $\tanh[x]$ mit $\frac{4 \kB T}{J q} x$, wobei
+        $\frac{4 \kB T}{J q}$ die Werte \numlist{0.4;1;2} annimmt.
+    }
+    \label{fig:tanh}
+\end{figure}
+
+\subsection{Bethe-Näherung}
+
+\paragraph{Zustandssumme}
+
+Es gibt einen neuen Hamiltonoperator, als muss die Zustandssumme neu berechnet
+werden.
+\begin{align*}
+    Z_\text C
+    &= \sum_{\sigma_0 = \pm \frac 12} \ldots \sum_{\sigma_N = \pm \frac 12}
+    \exp\sbr{-\beta \hat H_\text{Bethe} \sbr{\{ \sigma_i \colon i \in \N_0 \}}}
+    \\
+    &= \sum_{\sigma_0 = \pm \frac 12} \ldots \sum_{\sigma_N = \pm \frac 12}
+    \exp\sbr{\beta \del{\mu B \sigma_0 + \mu(B + B') \sum_{j=1}^q \sigma_j + J
+    \sum_{j=1}^q \sigma_0 \sigma_j}} \\
+    \intertext{%
+        Ab hier benutzen wir die Definition von $\alpha_\pm$, die auf dem
+        Aufgabenzettel auch benutzt wird:
+        \[
+            \alpha_\pm = \beta\del{\frac{\mu(B+B')}2 \pm \frac J4}.
+        \]
+        Damit erhalten wir dann mit dem Signum (Vorzeichenfunktion) $\sgn$:
+    }
+    &= \sum_{\sigma_0 = \pm \frac 12} \ldots \sum_{\sigma_N = \pm \frac 12}
+    \exp\sbr{\beta \mu B \sigma_0 + 2 \alpha_{\sgn[\sigma_0]} \sum_{j=1}^q \sigma_j} \\
+    \intertext{%
+        Wir schreiben die Summe über $\sigma_0$ abgetrennt. Außerdem trennen
+        wir die Summe in der Exponentialfunktion in zwei Faktoren auf.
+    }
+    &= \sum_{\sigma_0 = \pm \frac 12} \exp[\beta \mu B \sigma_0]
+    \sum_{\sigma_1 = \pm \frac 12} \ldots \sum_{\sigma_N = \pm \frac 12}
+    \exp\sbr{2 \alpha_{\sgn[\sigma_0]} \sum_{j=1}^q \sigma_j} \\
+    &= \sum_{\sigma_0 = \pm \frac 12} \exp[\beta \mu B \sigma_0]
+    \sum_{\sigma_1 = \pm \frac 12} \ldots \sum_{\sigma_N = \pm \frac 12}
+    \prod_{j=1}^q \exp\sbr{2 \alpha_{\sgn[\sigma_0]} \sigma_j} \\
+    \intertext{%
+        Nun lassen wir die Summe über $\sigma_i$ auf den Faktor mit $j = 1$
+        wirken. Alle anderen Faktoren können wir jeweils ausklammern. Wir
+        erhalten damit dann $2 \cosh$ für jedes Summe-Faktor-Paar. Also
+        erhalten wir zusammen:
+    }
+    &= 2^q \sum_{\sigma_0 = \pm \frac 12} \exp[\beta \mu B \sigma_0]
+    \cosh^q\sbr{\alpha_{\sgn[\sigma_0]}} \\
+    \intertext{%
+        Zuletzt führen wir die verbleibende Summe aus.
+    }
+    &= 2^q \del{ \exp\sbr{\frac 12\beta \mu B} \cosh^q\sbr{\alpha_+}
++ \exp\sbr{- \frac 12\beta \mu B} \cosh^q\sbr{\alpha_-}}
+\end{align*}
+
+\paragraph{Erwartungswert von $\sigma_j$}
+
+Warum steht auf dem Aufgabenzettel folgendes:
+\[
+    \bracket{\sigma_j} = \Bracket{\frac 1q \sum_{j=1}^q \sigma_j} ?
+\]
+Auf der linken Seite ist der Index $j$ frei, auf der rechten Seite wird über
+ihn summiert, daher ist er nicht mehr frei und nach außen sichtbar. Links steht
+ein Vektor, rechts ein Skalar. Sollen wir links den Index weglassen? Oder soll
+man die linke Seite ignorieren und den Erwartungswert für $\sigma_j$
+ausrechnen, so wie wir unten den Erwartungswert für $\sigma_0$ ausrechnen?
+
+\fehlt
+
+\paragraph{Erwartungswert von $\sigma_0$}
+
+\begin{align*}
+    \bracket{\sigma_0}
+    &= \frac{1}{Z_\text C} \sum_{\sigma_0 = \pm\frac12} \ldots \sum_{\sigma_q = \pm\frac12}
+    \exp\sbr{\beta \mu B \sigma_0 + 2 \alpha_{\sgn[\sigma_0]} \sum_{j=1}^q
+    \sigma_j} \sigma_0 \\
+    &= \frac{1}{Z_\text C} \sum_{\sigma_0 = \pm\frac12} \ldots \sum_{\sigma_q = \pm\frac12}
+    \exp[\beta \mu B \sigma_0] 
+    \exp\sbr{2 \alpha_{\sgn[\sigma_0]} \sum_{j=1}^q
+    \sigma_j} \sigma_0 \\
+    \intertext{%
+        Jetzt können wir die ganzen Summanden $\sigma_j$ wieder als Produkte
+        aus der Exponentialfunktion ziehen. Somit erhalten wir jeweils $2
+        \cosh$.
+    }
+    &= \frac{1}{Z_\text C} \sum_{\sigma_0 = \pm\frac12}
+    \exp[\beta \mu B \sigma_0] 
+    2^q \cosh^q\sbr{\alpha_{\sgn[\sigma_0]}} \sigma_0 \\
+    \intertext{%
+        Wir führen die letzte Summe aus.
+    }
+    &= \frac{2^q}{2 Z_\text C} \del{
+        \exp\sbr{\frac 12 \beta \mu B \sigma_0} \cosh^q[\alpha_+]
+        - \exp\sbr{-\frac 12 \beta \mu B \sigma_0} \cosh^q[\alpha_-]
+    } \\
+    \intertext{%
+        Mit der Definition von $\tilde Z_\text C$ erhalten wir genau den
+        Ausdruck auf dem Aufgabenblatt:
+    }
+    &= \frac{1}{2 \tilde Z_\text C} \del{
+        \exp\sbr{\frac 12 \beta \mu B \sigma_0} \cosh^q[\alpha_+]
+        - \exp\sbr{-\frac 12 \beta \mu B \sigma_0} \cosh^q[\alpha_-]
+    }.
+\end{align*}
+
+
+\paragraph{Gleichheit der Gitterplätze}
+
+Es soll $\bracket{\sigma_0} = \bracket{\sigma_j}$ gelten. Also setzen wir das
+gleich. Dabei gehen wir von den Kontrollergebnissen aus. Hier kommt dann der
+Punkt, an dem man das Papier quer nehmen muss …
+\begin{landscape}
+\begin{align*}
+    \exp\sbr{\frac{\beta \mu B}2} \cosh^{q-1}[\alpha_+] \sinh[\alpha_+]
+    + \exp\sbr{- \frac{\beta \mu B}2} \cosh^{q-1}[\alpha_-] \sinh[\alpha_-]
+    &=
+    \exp\sbr{\frac{\beta \mu B}2} \cosh^q[\alpha_+]
+    - \exp\sbr{- \frac{\beta \mu B}2} \cosh^q[\alpha_-] \\
+    \intertext{%
+        Wir setzen $B = 0$. Dadurch werden alle Exponentialfunktionen 1 und
+        fallen heraus.
+    }
+    \cosh^{q-1}[\alpha_+] \sinh[\alpha_+] + \cosh^{q-1}[\alpha_-] \sinh[\alpha_-]
+    &= \cosh^q[\alpha_+] - \cosh^q[\alpha_-] \\
+    \cosh^{q-1}[\alpha_+] \del{\sinh[\alpha_+] - \cosh[\alpha_+]} + \cosh^{q-1}[\alpha_-] \del{
+    \sinh[\alpha_-] + \cosh[\alpha_-]} &= 0 \\
+    \intertext{%
+        Die Klammern können wir mit
+        \[
+            \sinh[x] - \cosh[x] = \frac 12 \del{ (\eup^x - \eup^{-x}) - (\eup^x
+            + \eup^{-x})} = - \eup^{-x}
+            \qquad \text{und} \qquad
+            \sinh[x] + \cosh[x] = \frac 12 \del{ (\eup^x - \eup^{-x}) + (\eup^x
+            + \eup^{-x})} = \eup^{x}.
+        \]
+        vereinfachen.
+    }
+    - \cosh^{q-1}[\alpha_+] \exp[-\alpha_+] + \cosh^{q-1}[\alpha_-] \exp[\alpha_-] &= 0 \\
+    \intertext{%
+        Jetzt ist die Gleichung schon wieder so kompakt, dass sie eigentlich
+        gar nicht mehr ins Querformat muss. Daher setzen wir jetzt $\alpha_\pm$
+        ein. An der Stelle $B = 0$ ist $\alpha_\pm$ gegeben durch $\beta \mu
+        B'/2 + \beta J/4$.
+    }
+    - \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 + \frac{\beta J}4}
+    \exp\sbr{- \frac{\beta \mu B'}4 - \frac{\beta J}4}
+    + \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 - \frac{\beta J}4}
+    \exp\sbr{\frac{\beta \mu B'}4 - \frac{\beta J}4} &= 0 \\
+    %
+    \exp\sbr{- \frac{\beta J}4} \del{
+        - \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 + \frac{\beta J}4}
+        \exp\sbr{- \frac{\beta \mu B'}4}
+        + \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 - \frac{\beta J}4}
+        \exp\sbr{\frac{\beta \mu B'}4}
+    } &= 0 \\
+    \intertext{%
+        Damit die Exponentialfunktion null werden kann, muss $\beta \to \infty$
+        gehen. Dies ist allerdings keine endliche, kritische Temperatur und
+        wird daher nicht weiter beachtet.
+    }
+    - \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 + \frac{\beta J}4}
+    \exp\sbr{- \frac{\beta \mu B'}4}
+    + \cosh^{q-1}\sbr{\frac{\beta \mu B'}4 - \frac{\beta J}4}
+    \exp\sbr{\frac{\beta \mu B'}4} &= 0 \\
+\end{align*}
+\end{landscape}
+
+Ab hier kommen wir ohne Näherungen wahrscheinlich nicht mehr weiter. Daher
+entwickeln wir ab hier. In der Aufgabenstellung ist vorgegeben, dass man um $B'
+= 0$ entwickeln soll. Wir gehen davon aus, dass $B' = 0$ ist, weil wir gerade
+am Phasenübergang interessiert sind. An diesem tritt die spontane
+Symmetriebrechung aus und wir erhalten eine makroskopische Magnetisierung durch
+die Spins. $B'$ kann hier wahrscheinlich als Ordnungsparameter benutzt werden.
+Am Phasenübergang ist diese Ordnung jedoch noch nicht sonderlich ausgeprägt,
+sondern erscheint oder verschwindet gerade.
+
+Wir setzen in die letzt Zeile der vorherigen Seite $B' = 0$ ein und erhalten
+\[
+    - \cosh\sbr{\frac{\beta J}4}^{q-1} + \cosh\sbr{-\frac{\beta J}4}^{q-1} = 0,
+\]
+was immer erfüllt ist, da $\cosh$ eine gerade Funktion ist.
+
+Als nächstes bildet wir die erste Ableitung der Gleichung. Das folgende ist
+eine Gleichung, die wir einfach in vier Zeilen zerlegen mussten. Dies ändert
+aber nichts an der Bedeutung.
+\begin{multline*}
+    \del{
+        - (q-1) \cosh\sbr{\frac{\beta \mu B'}2 + \frac{\beta J}4}^{q-2}
+        \sinh\sbr{\frac{\beta \mu B'}2 + \frac{\beta J}4}
+        \frac{\beta \mu}2
+        - \cosh\sbr{\frac{\beta \mu B'}2 + \frac{\beta J}4}^{q-1}
+        \del{- \frac{\beta \mu}2}
+    } \\
+    \exp\sbr{- \frac{\beta \mu B'}2} \\
+    +
+    \del{
+        (q-1) \cosh\sbr{\frac{\beta \mu B'}2 - \frac{\beta J}4}^{q-2}
+        \sinh\sbr{\frac{\beta \mu B'}2 - \frac{\beta J}4}
+        \frac{\beta \mu}2
+        + \cosh\sbr{\frac{\beta \mu B'}2 - \frac{\beta J}4}^{q-1}
+        \frac{\beta \mu}2
+    }
+    \\
+    \exp\sbr{\frac{\beta \mu B'}2}
+    = 0
+\end{multline*}
+
+Dort setzen wir auch $B'=0$ ein und erhalten:
+\begin{multline*}
+    - (q-1) \cosh\sbr{\frac{\beta J}4}^{q-2}
+    \sinh\sbr{\frac{\beta J}4}
+    \frac{\beta \mu}2
+    - \cosh\sbr{\frac{\beta J}4}^{q-1}
+    \del{- \frac{\beta \mu}2}
+    \\
+    +
+    (q-1) \cosh\sbr{- \frac{\beta J}4}^{q-2}
+    \sinh\sbr{- \frac{\beta J}4}
+    \frac{\beta \mu}2
+    + \cosh\sbr{- \frac{\beta J}4}^{q-1}
+    \frac{\beta \mu}2
+    = 0
+\end{multline*}
+
+Nun können wir dies ein wenig vereinfachen, indem wir wieder ausnutzen, dass
+$\cosh$ gerade und $\sinh$ ungerade ist. Den Faktor 2 teilen wir heraus:
+\[
+    \del{
+        - (q-1) \cosh\sbr{\frac{\beta J}4}^{q-2}
+        \sinh\sbr{\frac{\beta J}4}
+        + \cosh\sbr{\frac{\beta J}4}^{q-1}
+    }
+    \frac{\beta \mu}2
+    = 0
+\]
+
+\paragraph{Kritische Temperatur}
+
+Nun ist eine Lösung dieser Gleichung, dass $\beta = 0$ ist. Dies ist jedoch
+unrealistisch. Daher muss die Klammer null sein.
+\begin{align*}
+    (q-1) \cosh\sbr{\frac{\beta J}4}^{q-2}
+    \sinh\sbr{\frac{\beta J}4}
+    - \cosh\sbr{\frac{\beta J}4}^{q-1} &= 0 \\
+    %
+    \cosh\sbr{\frac{\beta J}4}^{q-2}
+    \del{
+        (q-1) \sinh\sbr{\frac{\beta J}4}
+        - \cosh\sbr{\frac{\beta J}4}
+    } &= 0 \\
+    \intertext{%
+        Da $\cosh$ positiv definit ist, kann dieser Faktor nicht null sein.
+        Daher muss es wieder die Klammer sein.
+    }
+    (q-1) \sinh\sbr{\frac{\beta J}4}
+    - \cosh\sbr{\frac{\beta J}4} &= 0 \\
+    \frac 4J \arcoth[q-1] &= \beta \\
+    \frac{J}{4 \kB} \arcoth[q-1]^{-1} &= T_\text C
+\end{align*}
+
+Wie in Abbildung~\ref{fig:arcoth} zu sehen, verhält sich für $q\to\infty$
+dieser Term genauso, wie die Skalierung mit $\propto q$ in der vorherigen
+Teilaufgabe. Damit erhalten wir das gleiche Ergebnis.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \draw[->, thin] (0, 0) -- (4, 0) node[right] {$x$};
+        \draw[->, thin] (0, 0) -- (0, 4);
+        \draw[domain=1.1:4, thick] plot (\x, {1/(ln((\x+1)/(\x-1))/2)})
+        node[right] {$\arcoth[x]^{-1}$};
+        \draw[domain=1.1:4] plot (\x, {\x}) node[left] {$x$};
+    \end{tikzpicture}
+    \caption{%
+        Asymptotisches Verhalten der Funktion $\arcoth[x]^{-1}$.
+    }
+    \label{fig:arcoth}
+\end{figure}
+
+
+\section{Ginzburg-Landau Theorie des Heisenberg-Modells}
+
+\fehlt
+
+\IfFileExists{\bibliographyfile}{
+    \printbibliography
+}{}
+
+\end{document}
+
+
