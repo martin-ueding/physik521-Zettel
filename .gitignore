@@ -1,20 +1,7 @@
-physik521-01/2013-10-22-Note-10-53.xoj.pdf
 "physik521-01/Anwesenheits\303\274bungen.xoj.pdf"
 physik521-01/physik521-01-blx.bib
 physik521-01/physik521-01.bbl
 physik521-01/physik521-01.blg
-physik521-02/H2-1-a.xoj.pdf
-physik521-02/H2-1-b.xoj.pdf
-physik521-02/H2-1-c.xoj.pdf
-physik521-02/H3.xoj.pdf
-physik521-02/Mitschrift.xoj.pdf
-physik521-03/H1.xoj.pdf
-physik521-04/2.xoj.pdf
-physik521-05/2.xoj.pdf
-physik521-05/Notizen.xoj.pdf
-physik521-06/1.xoj.pdf
-physik521-07/2.xoj.pdf
-physik521-07/3.xoj.pdf
 physik521-08/physik521-08-blx.bib
 physik521-08/physik521-08.aux
 physik521-08/physik521-08.bbl
@@ -45,7 +32,6 @@ physik521-12/physik521-12.log
 physik521-12/physik521-12.out
 physik521-12/physik521-12.pdf
 physik521-12/physik521-12.run.xml
-physik521-13/2.xoj.pdf
 physik521-13/physik521-13-blx.bib
 physik521-13/physik521-13.aux
 physik521-13/physik521-13.bbl
@@ -61,3 +47,4 @@ physik521-13/physik521-13.run.xml
 points-physik521.pdf
 points-physik521.png
 points-physik521.svg
+*.xoj.pdf
